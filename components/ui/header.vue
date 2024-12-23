@@ -3,19 +3,33 @@
 </script>
 
 <template>
-   <nav class="shadow-xl navbar bg-base-100">
-      <div class="flex-1">
+   <nav class="items-center justify-between shadow-xl navbar bg-base-100">
+      <div class="">
          <!-- <a class="text-xl btn btn-ghost">daisyUI</a> -->
          <NuxtLink class="text-xl btn btn-ghost" to="/">ViaClone68</NuxtLink>
       </div>
+      <ul class="flex gap-3">
+         <li><NuxtLink to="#" class="btn btn-ghost">Nạp tiền</NuxtLink></li>
+         <li>
+            <div class="dropdown dropdown-hover">
+               <div tabindex="0" role="button" class="btn-ghost btn">Hover</div>
+               <ul
+                  tabindex="0"
+                  class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                  <li><NuxtLink>Item 1</NuxtLink></li>
+                  <li><a>Item 2</a></li>
+               </ul>
+            </div>
+         </li>
+      </ul>
       <div class="flex-none gap-2">
          <MaterialSwitchTheme />
-         <div class="form-control">
+         <!-- <div class="form-control">
             <input
                type="text"
                placeholder="Search"
                class="w-24 input input-bordered md:w-auto" />
-         </div>
+         </div> -->
          <div class="dropdown dropdown-end">
             <div
                tabindex="0"
