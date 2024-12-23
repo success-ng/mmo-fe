@@ -58,7 +58,7 @@
       </div>
    </div>
    <div class="shadow-lg card card-compact bg-base-100">
-      <div class="card-body">
+      <form class="card-body">
          <h1 class="card-title">Thông tin người dùng</h1>
          <div class="grid grid-cols-3">
             <label class="space-y-3">
@@ -90,7 +90,10 @@
                <input type="text" name="" id="" class="input input-bordered" />
             </label>
          </div>
-      </div>
+         <button class="font-bold btn btn-primary text-primary-content">
+            Lưu
+         </button>
+      </form>
    </div>
    <div class="shadow-lg card card-compact bg-base-100">
       <div class="card-body">

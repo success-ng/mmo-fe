@@ -31,20 +31,21 @@
          </div>
          <pre class="flex-1 text-wrap">{{ product.description }}</pre>
          <div class="justify-self-end card-actions">
-            <button
+            <a
                class="w-full btn btn-primary text-primary-content btn-sm"
-               @click="openModal">
+               href="#my_modal_2">
                Mua
-            </button>
-            <dialog ref="myModal" id="my_modal_2" class="modal">
+            </a>
+
+            <div class="modal" role="dialog" id="my_modal_2">
                <div class="modal-box">
                   <h3 class="text-lg font-bold">Hello!</h3>
-                  <p class="py-4">Press ESC key or click outside to close</p>
+                  <p class="py-4">This modal works with anchor links</p>
+                  <div class="modal-action">
+                     <a href="#" class="btn">Yay!</a>
+                  </div>
                </div>
-               <form method="dialog" class="modal-backdrop">
-                  <button>close</button>
-               </form>
-            </dialog>
+            </div>
          </div>
       </div>
    </div>

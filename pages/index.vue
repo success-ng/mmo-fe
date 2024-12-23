@@ -4,7 +4,7 @@
 
 <template>
    <section class="space-y-4">
-      <div class="card p-10 bg-base-100">
+      <div class="p-10 card bg-base-100">
          <p>
             Nếu bạn đang cần mua Acc, Via, Clone, BM, Fanpage, TKQC... Thì đây
             là nơi tốt nhất rồi nhé !
@@ -33,7 +33,7 @@
          </p>
       </div>
       <CustomCategory />
-      <!-- <div class="card bg-base-100 p-10 text-base-content space-y-4">
+      <!-- <div class="p-10 space-y-4 card bg-base-100 text-base-content">
       </div> -->
    </section>
 </template>

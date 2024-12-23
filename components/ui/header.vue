@@ -6,7 +6,7 @@
    <nav class="shadow-xl navbar bg-base-100">
       <div class="flex-1">
          <!-- <a class="text-xl btn btn-ghost">daisyUI</a> -->
-         <NuxtLink class="text-xl btn btn-ghost" to="/">daisyUi</NuxtLink>
+         <NuxtLink class="text-xl btn btn-ghost" to="/">ViaClone68</NuxtLink>
       </div>
       <div class="flex-none gap-2">
          <MaterialSwitchTheme />

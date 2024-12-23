@@ -17,9 +17,9 @@
             <img :src="category.icon" alt="" class="w-[2em]" />
          </figure>
          <!-- Tên danh mục -->
-         <span class="text-base">{{ category.name }}</span>
+         <span class="text-neutral-content">{{ category.name }}</span>
       </div>
-      <div class="grid grid-cols-4 gap-3">
+      <div class="grid gap-3 md:grid-cols-4">
          <CustomProduct
             :product="product"
             v-for="product in category.products" />
