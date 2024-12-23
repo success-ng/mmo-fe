@@ -1,26 +1,25 @@
 <script setup lang="ts">
-   const profileItem = [
-      {
-         link: "/profile",
-         icon: "fa6-solid:user",
-         title: "Thông tin",
-      },
-      {
-         link: "/profile/security",
-         icon: "fa6-solid:user-shield",
-         title: "Bảo mât",
-      },
-      {
-         link: "/profile/history",
-         icon: "fa6-solid:clock-rotate-left",
-         title: "Lịch sử",
-      },
-   ];
+const profileItem = [
+   {
+      link: "/profile",
+      icon: "fa6-solid:user",
+      title: "Thông tin",
+   },
+   {
+      link: "/profile/security",
+      icon: "fa6-solid:user-shield",
+      title: "Bảo mât",
+   },
+   {
+      link: "/profile/history",
+      icon: "fa6-solid:clock-rotate-left",
+      title: "Lịch sử",
+   },
+];
 </script>
 
 <template>
-   <ul
-      class="w-56 shadow-xl menu bg-base-100 text-base-content rounded-box h-fit">
+   <ul class="w-56 shadow-xl menu bg-base-100 text-base-content rounded-box h-fit">
       <li v-for="item in profileItem">
          <NuxtLink :to="item.link">
             <Icon :name="item.icon" size="20" />
