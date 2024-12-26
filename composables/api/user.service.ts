@@ -1,6 +1,10 @@
+import { useCoreAxiosInstance } from "../core/axios.instance"
+import type { RegisterForm } from "../forms/register.form"
 import type { UserHistoryModel } from "../models/user-history.model "
 
 export const useApiUserService = () => {
+  const axios = useCoreAxiosInstance()
+
   const userInfo = () => {
     return ref({
       id: 1,
@@ -158,5 +162,10 @@ export const useApiUserService = () => {
       },
     ]);
   }
-  return { userInfo, userTransaction, userOrder, userHistory }
+
+  const register = (form: RegisterForm) => {
+    axios.post('/user/create', form)
+  }
+
+  return { userInfo, userTransaction, userOrder, userHistory, register }
 }
