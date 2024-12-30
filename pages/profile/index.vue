@@ -4,7 +4,8 @@
       layout: "profile",
    });
    const userService = useApiUserService();
-   const user = userService.userInfo();
+   const user = await userService.profile();
+   console.log(user);
    const orders = userService.userOrder();
    const transactions = userService.userTransaction();
 </script>
@@ -51,7 +52,7 @@
                <span
                   class="gap-2 badge badge-outline badge-secondary text-secondary-content">
                   <Icon name="fa6-solid:money-bill-transfer" size="12" />
-                  {{ user.deposit }} đ
+                  {{ user.deposited }} đ
                </span>
             </p>
          </div>
@@ -63,19 +64,39 @@
          <div class="grid grid-cols-3">
             <label class="space-y-3">
                <p>Tên đăng nhập</p>
-               <input type="text" name="" id="" class="input input-bordered" />
+               <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="input input-bordered"
+                  v-model="user.username" />
             </label>
             <label class="space-y-3">
                <p>Email</p>
-               <input type="text" name="" id="" class="input input-bordered" />
+               <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="input input-bordered"
+                  v-model="user.email" />
             </label>
             <label class="space-y-3">
                <p>Số điện thoại</p>
-               <input type="text" name="" id="" class="input input-bordered" />
+               <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="input input-bordered"
+                  v-model="user.phone" />
             </label>
             <label class="space-y-3">
                <p>Họ và tên</p>
-               <input type="text" name="" id="" class="input input-bordered" />
+               <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="input input-bordered"
+                  v-model="user.fullname" />
             </label>
             <label class="space-y-3">
                <p>Telegram chat id</p>

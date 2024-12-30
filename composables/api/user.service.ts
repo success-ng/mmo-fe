@@ -5,7 +5,12 @@ import type { UserHistoryModel } from "../models/user-history.model "
 export const useApiUserService = () => {
   const axios = useCoreAxiosInstance()
 
-  const userInfo = () => {
+  const profile = async () => {
+    const data = await axios.get('/auth/profile')
+    return {
+      ...data.data.userInfo,
+      avatar: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp",
+    };
     return ref({
       id: 1,
       username: "john_doe",
@@ -167,5 +172,5 @@ export const useApiUserService = () => {
     axios.post('/user/create', form)
   }
 
-  return { userInfo, userTransaction, userOrder, userHistory, register }
+  return { profile, userTransaction, userOrder, userHistory, register }
 }

@@ -9,7 +9,7 @@ export type OtherProductModel = {
   max: string;
 }
 
-export type Product = {
+export type ProductModel = {
   id: string;
   name: string;
   price: string;

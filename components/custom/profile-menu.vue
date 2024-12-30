@@ -20,7 +20,7 @@
 
 <template>
    <ul
-      class="w-56 shadow-xl -z-10 menu bg-base-100 text-base-content rounded-box h-fit">
+      class="w-56 shadow-xl menu bg-base-100 text-base-content rounded-box h-fit">
       <li v-for="item in profileItem">
          <NuxtLink :to="item.link">
             <Icon :name="item.icon" size="20" />

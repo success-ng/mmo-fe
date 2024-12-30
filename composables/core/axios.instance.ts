@@ -36,7 +36,7 @@ export const useCoreAxiosInstance = () => {
       if (error.response?.status === 401) {
         // Ví dụ: Điều hướng đến trang đăng nhập nếu token hết hạn
         const router = useRouter();
-        router.push("/login");
+        router.push("/auth");
       }
       return Promise.reject(error);
     }

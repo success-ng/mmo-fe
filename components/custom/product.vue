@@ -1,24 +1,25 @@
 <script setup lang="ts">
-import type { ProductModel } from "~/composables/models/product.model";
-defineProps<{
-   product: ProductModel;
-}>();
-const myModal = ref<HTMLDialogElement | null>(null);
+   import type { ProductModel } from "~/composables/models/product.model";
+   defineProps<{
+      product: ProductModel;
+   }>();
+   const myModal = ref<HTMLDialogElement | null>(null);
 
-// Hàm để mở modal
-const openModal = () => {
-   if (myModal.value) {
-      myModal.value.showModal();
-   }
-};
+   // Hàm để mở modal
+   const openModal = () => {
+      if (myModal.value) {
+         myModal.value.showModal();
+      }
+   };
 </script>
 
 <template>
-   <div class="card bg-base-100 text-base-content overflow-hidden">
-      <p class="flex-none card-title text-base p-4 bg-blue-500 text-white text-center">
+   <div class="overflow-hidden card bg-base-100 text-base-content">
+      <p
+         class="flex-none p-4 text-base text-center text-white bg-blue-500 card-title">
          {{ product.name }}
       </p>
-      <div class="gap-3 card-body justify-between">
+      <div class="justify-between gap-3 card-body">
          <div class="space-y-4">
             <div class="flex gap-3">
                <span class="gap-2 badge badge-accent text-accent-content">
@@ -31,23 +32,22 @@ const openModal = () => {
                </span>
             </div>
             <div class="">
-               <pre class="text-dark flex-1 text-wrap font-sans">{{ product.description }}</pre>
-               <!-- <p class=" text-nowrap overflow-hidden">{{ product.description }}</p> -->
-               <!-- <div class="divider my-0" /> -->
-               <p>
-                  - Change thông tin
-               </p>
-               <!-- <div class="divider my-0" /> -->
-               <p>
-                  - Hỗ trợ backup
-               </p>
+               <pre class="flex-1 font-sans text-dark text-wrap">{{
+                  product.description
+               }}</pre>
+               <!-- <p class="overflow-hidden text-nowrap">{{ product.description }}</p> -->
+               <!-- <div class="my-0 divider" /> -->
+               <p>- Change thông tin</p>
+               <!-- <div class="my-0 divider" /> -->
+               <p>- Hỗ trợ backup</p>
                <!-- <div class="">
                </div> -->
             </div>
          </div>
 
          <div class="justify-self-end card-actions">
-            <a class="w-full btn btn-primary text-white btn-sm bg-gradient-to-t from-sky-400 to-sky-700"
+            <a
+               class="w-full text-white btn btn-primary btn-sm bg-gradient-to-t from-sky-400 to-sky-700"
                href="#my_modal_2">
                MUA NGAY
             </a>
