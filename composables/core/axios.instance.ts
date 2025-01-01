@@ -33,7 +33,7 @@ export const useCoreAxiosInstance = () => {
     },
     (error) => {
       // Xử lý lỗi từ phản hồi
-      if (error.response?.status === 401) {
+      if (error.response?.status === 401 || error.response?.status === 403) {
         // Ví dụ: Điều hướng đến trang đăng nhập nếu token hết hạn
         const router = useRouter();
         router.push("/auth");

@@ -1,6 +1,7 @@
 import { useCoreAxiosInstance } from "../core/axios.instance"
 import type { RegisterForm } from "../forms/register.form"
 import type { UserHistoryModel } from "../models/user-history.model "
+import type { UserModel } from "../models/user.model"
 
 export const useApiUserService = () => {
   const axios = useCoreAxiosInstance()
@@ -11,24 +12,6 @@ export const useApiUserService = () => {
       ...data.data.userInfo,
       avatar: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp",
     };
-    return ref({
-      id: 1,
-      username: "john_doe",
-      address: "123 Main St, Springfield, IL",
-      avatar: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp",
-      country: "USA",
-      email: "johndoe@example.com",
-      fullname: "John Doe",
-      is_active: 1,
-      is_deleted: 0,
-      language: "en",
-      phone: "+1234567890",
-      balance: 200,
-      paid: 200,
-      deposit: 200,
-      createAt: "2024-12-22T12:00:00Z",
-      updateAt: "2024-12-22T12:30:00Z"
-    })
   }
   const userTransaction = () => {
     return ref([
@@ -168,9 +151,14 @@ export const useApiUserService = () => {
     ]);
   }
 
+  const getUsers = async (): Promise<UserModel[]> => {
+    const data = await axios.get('/user/')
+    return data.data
+  }
+
   const register = (form: RegisterForm) => {
     axios.post('/user/create', form)
   }
 
-  return { profile, userTransaction, userOrder, userHistory, register }
+  return { profile, userTransaction, userOrder, userHistory, register, getUsers }
 }
