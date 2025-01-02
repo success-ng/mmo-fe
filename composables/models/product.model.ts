@@ -15,8 +15,4 @@ export type ProductModel = {
   price: string;
   amount: number;
   description: string;
-  country: string,
-  createFrom: number,
-  createTo: number,
-  friends: string,
 }
