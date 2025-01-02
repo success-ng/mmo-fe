@@ -1,8 +1,9 @@
 export type TransactionModel = {
   id: number,
-  accountId: number,
+  userId: number,
   amount: number,
   paymentMethod: string,
   status: string,
   transactionDate: string
+  order: {}
 }

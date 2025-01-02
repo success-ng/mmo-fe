@@ -1,12 +1,17 @@
 <script setup lang="ts">
    import { useApiUserService } from "~/composables/api/user.service";
+   import type { UserModel } from "~/composables/models/user.model";
    definePageMeta({
       layout: "profile",
    });
    const userService = useApiUserService();
-   const user = await userService.profile();
-   console.log(user);
    const orders = userService.userOrder();
+   const user: Ref<UserModel> = ref({} as UserModel);
+   onMounted(async () => {
+      user.value = await userService.profile();
+   });
+   // const user = await userService.profile();
+   console.log(user.value);
    const transactions = userService.userTransaction();
 </script>
 

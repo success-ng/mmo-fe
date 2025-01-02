@@ -6,7 +6,7 @@ import type { UserModel } from "../models/user.model"
 export const useApiUserService = () => {
   const axios = useCoreAxiosInstance()
 
-  const profile = async () => {
+  const profile = async (): Promise<UserModel> => {
     const data = await axios.get('/auth/profile')
     return {
       ...data.data.userInfo,
