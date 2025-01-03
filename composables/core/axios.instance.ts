@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "vue3-toastify";
 
 export const useCoreAxiosInstance = () => {
   const axiosInstance = axios.create({
@@ -8,7 +9,6 @@ export const useCoreAxiosInstance = () => {
       "Content-Type": "application/json",
     },
   });
-
   // Thêm request interceptor
   axiosInstance.interceptors.request.use(
     (config) => {
@@ -29,6 +29,7 @@ export const useCoreAxiosInstance = () => {
   axiosInstance.interceptors.response.use(
     (response) => {
       // Xử lý phản hồi thành công
+      // toast.success(`Request successful! Status: ${response.status}`);
       return response.data;
     },
     (error) => {
@@ -38,6 +39,7 @@ export const useCoreAxiosInstance = () => {
         const router = useRouter();
         router.push("/auth");
       }
+      // toast.error(`Request failed! Status: ${error.response?.status}`);
       return Promise.reject(error);
     }
   );

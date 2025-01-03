@@ -1,9 +1,5 @@
 <script setup lang="ts">
    import { useApiUserService } from "~/composables/api/user.service";
-
-   definePageMeta({
-      layout: "profile",
-   });
    const userService = useApiUserService();
    const userHistory = userService.userHistory();
 </script>

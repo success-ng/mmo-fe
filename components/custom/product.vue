@@ -1,16 +1,12 @@
 <script setup lang="ts">
    import type { ProductModel } from "~/composables/models/product.model";
-   defineProps<{
+   const { product } = defineProps<{
       product: ProductModel;
    }>();
-   const myModal = ref<HTMLDialogElement | null>(null);
-
-   // Hàm để mở modal
-   const openModal = () => {
-      if (myModal.value) {
-         myModal.value.showModal();
-      }
-   };
+   const buyModel = ref({
+      id: product.id,
+      amount: 1,
+   });
 </script>
 
 <template>
@@ -22,12 +18,14 @@
       <div class="justify-between gap-3 card-body">
          <div class="space-y-4">
             <div class="flex gap-3">
-               <span class="gap-2 badge badge-accent text-accent-content">
+               <span
+                  class="gap-2 badge badge-accent text-accent-content text-nowrap">
                   <Icon name="lucide:package-open" />
                   Còn lại:
                   {{ product.amount }}
                </span>
-               <span class="gap-2 badge badge-warning text-warning-content">
+               <span
+                  class="gap-2 badge badge-warning text-warning-content text-nowrap">
                   <Icon name="fa6-solid:coins" />Giá: {{ product.price }} đ
                </span>
             </div>
@@ -48,16 +46,49 @@
          <div class="justify-self-end card-actions">
             <a
                class="w-full text-white btn btn-primary btn-sm bg-gradient-to-t from-sky-400 to-sky-700"
-               href="#my_modal_2">
+               :href="`#my_modal_${product.id}`">
                MUA NGAY
             </a>
 
-            <div class="modal" role="dialog" id="my_modal_2">
-               <div class="modal-box">
-                  <h3 class="text-lg font-bold">Hello!</h3>
-                  <p class="py-4">This modal works with anchor links</p>
+            <div class="modal" role="dialog" :id="`my_modal_${product.id}`">
+               <div class="max-w-md space-y-4 modal-box">
+                  <h3 class="text-lg font-bold">{{ product.name }}!</h3>
+                  <label
+                     class="flex items-center gap-2 input input-sm input-bordered">
+                     Số lượng
+                     <input
+                        type="number"
+                        class="grow"
+                        placeholder="Nhập số lượng"
+                        v-model="buyModel.amount" />
+                  </label>
+                  <label
+                     class="flex items-center gap-2 input input-sm input-bordered">
+                     Đơn giá
+                     <span class="badge badge-warning text-warning-content">
+                        {{ product.price }} đ</span
+                     >
+                  </label>
+                  <div class="divider" />
+                  <label
+                     class="flex items-center gap-2 input input-sm input-bordered">
+                     Thành tiền
+                     <span class="badge badge-warning text-warning-content">
+                        {{
+                           (
+                              parseInt(product.price) * buyModel.amount
+                           ).toLocaleString()
+                        }}
+                        đ</span
+                     >
+                  </label>
                   <div class="modal-action">
-                     <a href="#" class="btn">Yay!</a>
+                     <a href="#" class="btn btn-success text-success-content"
+                        >Mua!</a
+                     >
+                     <a href="#" class="btn btn-error text-error-content"
+                        >Hủy</a
+                     >
                   </div>
                </div>
             </div>

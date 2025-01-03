@@ -13,6 +13,12 @@ export const useApiUserService = () => {
       avatar: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp",
     };
   }
+
+  const updateProfile = async (form: UserModel) => {
+    const data = await axios.put('/auth/profile', form)
+    return data.data
+  }
+
   const userTransaction = () => {
     return ref([
       {
@@ -160,5 +166,5 @@ export const useApiUserService = () => {
     axios.post('/user/create', form)
   }
 
-  return { profile, userTransaction, userOrder, userHistory, register, getUsers }
+  return { profile, userTransaction, userOrder, userHistory, register, getUsers, updateProfile }
 }
