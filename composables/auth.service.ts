@@ -9,11 +9,6 @@ export const useAuthService = () => {
     return await axios.post("/auth/login", form).then(res => {
       var token = useCookie("authToken")
       token.value = res.data.token;
-      $toast({
-        title: "Login successful",
-        body: "You are now logged in",
-        type: "success",
-      });
       return res
     }).catch(err => {
       $toast("Login failed", {

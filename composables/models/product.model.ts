@@ -12,7 +12,22 @@ export type OtherProductModel = {
 export type ProductModel = {
   id: string;
   name: string;
-  price: string;
+  price: number;
   amount: number;
   description: string;
+  country: string;
+  categoryId: number;
+  created_at: string;
+}
+
+export type ProductModifiedModel = {
+  id: string;
+  name: string;
+  price: number;
+  amount: number;
+  description: string;
+  country: string;
+  categoryId: number;
+  created_at: string;
+  stock: number;
 }

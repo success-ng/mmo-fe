@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    Page: cashin
+    Page: cashin/success
   </div>
 </template>
 

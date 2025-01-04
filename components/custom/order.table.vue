@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { useApiOrderService } from "~/composables/api/order.service";
-import type { OrderModel } from "~/composables/models/order.model ";
+   import type { OrderModel } from "~/composables/models/order.model ";
 
-const orderService = useApiOrderService();
-const orders = ref([] as OrderModel[]);
-onMounted(() => {
-   orderService.index().then((response) => {
-      orders.value = response.data;
+   const { orders } = defineProps<{
+      orders: OrderModel[];
+   }>();
+   const orderLst = ref([] as OrderModel[]);
+   onMounted(() => {
+      orderLst.value = orders;
    });
-});
 </script>
 
 <template>
@@ -24,7 +23,7 @@ onMounted(() => {
       </thead>
       <tbody>
          <!-- row 1 -->
-         <tr v-for="order in orders">
+         <tr v-for="order in orderLst">
             <td>
                <p>{{ order.id }}</p>
             </td>

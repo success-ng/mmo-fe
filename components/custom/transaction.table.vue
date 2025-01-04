@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { useApiUserService } from '~/composables/api/user.service';
+   import { useApiUserService } from "~/composables/api/user.service";
+   import type { TransactionModel } from "~/composables/models/transaction.model ";
 
-const userService = useApiUserService();
+   const userService = useApiUserService();
 
-const transactions = userService.userTransaction();
+   const { txs: transactions } = defineProps<{
+      txs: TransactionModel[];
+   }>();
+
+   const txs = ref([] as TransactionModel[]);
+   onMounted(() => {
+      txs.value = transactions;
+   });
 </script>
 
 <template>
@@ -11,25 +19,29 @@ const transactions = userService.userTransaction();
       <!-- head -->
       <thead>
          <tr>
+            <th>#</th>
+            <th>User</th>
             <th>Số tiền</th>
             <th>Loại giao dịch</th>
-            <th>Loại biến động</th>
             <th>Ngày thực hiện</th>
             <th>Trạng thái</th>
          </tr>
       </thead>
       <tbody>
          <!-- row 1 -->
-         <tr v-for="transaction in transactions">
+         <tr v-for="tx in txs">
+            <td>{{ tx.id }}</td>
             <td>
-               <p>{{ transaction.amount }} đ</p>
+               {{ tx.userId }}
             </td>
             <td>
-               {{ transaction.paymentMethod }}
+               <p>{{ tx.amount }} đ</p>
             </td>
-            <td>{{ transaction.transactionType }}</td>
-            <td>{{ transaction.transactionDate }}</td>
-            <td>{{ transaction.status }}</td>
+            <td>
+               {{ tx.paymentMethod }}
+            </td>
+            <td>{{ tx.transactionDate }}</td>
+            <td>{{ tx.status }}</td>
             <th>
                <button class="btn btn-ghost btn-xs">details</button>
             </th>

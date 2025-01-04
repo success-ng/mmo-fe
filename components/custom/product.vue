@@ -1,12 +1,33 @@
 <script setup lang="ts">
+   import { useApiOrderService } from "~/composables/api/order.service";
+   import type { OrderModel } from "~/composables/models/order.model ";
    import type { ProductModel } from "~/composables/models/product.model";
    const { product } = defineProps<{
       product: ProductModel;
    }>();
-   const buyModel = ref({
-      id: product.id,
-      amount: 1,
+   const buyModel: Ref<OrderModel> = ref({} as OrderModel);
+   const router = useRouter();
+   onMounted(() => {
+      buyModel.value = {
+         productId: product.id,
+         quantity: 1,
+         totalAmount: parseInt(product.price),
+         id: 0,
+         orderDate: "",
+         price: parseInt(product.price),
+         status: "Created",
+         userId: 0,
+      };
    });
+   const orderService = useApiOrderService();
+   const onSubmit = () => {
+      buyModel.value.totalAmount =
+         parseInt(product.price) * buyModel.value.quantity;
+      orderService.save(buyModel.value).then((res) => {
+         router.push(`/payment/${res.id}`);
+      });
+      console.log(buyModel.value);
+   };
 </script>
 
 <template>
@@ -60,7 +81,7 @@
                         type="number"
                         class="grow"
                         placeholder="Nhập số lượng"
-                        v-model="buyModel.amount" />
+                        v-model="buyModel.quantity" />
                   </label>
                   <label
                      class="flex items-center gap-2 input input-sm input-bordered">
@@ -76,14 +97,17 @@
                      <span class="badge badge-warning text-warning-content">
                         {{
                            (
-                              parseInt(product.price) * buyModel.amount
+                              parseInt(product.price) * buyModel.quantity
                            ).toLocaleString()
                         }}
                         đ</span
                      >
                   </label>
                   <div class="modal-action">
-                     <a href="#" class="btn btn-success text-success-content"
+                     <a
+                        href="#"
+                        class="btn btn-success text-success-content"
+                        @click="onSubmit"
                         >Mua!</a
                      >
                      <a href="#" class="btn btn-error text-error-content"
