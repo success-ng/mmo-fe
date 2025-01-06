@@ -41,8 +41,8 @@
             <p>Phương thức thanh toán</p>
             <select class="w-full max-w-xs select select-bordered">
                <option value="bank">Ngân hàng nội địa</option>
-               <option value="momo">Ví MoMo</option>
-               <option value="zalo">ZaloPay</option>
+               <!-- <option value="momo">Ví MoMo</option>
+               <option value="zalo">ZaloPay</option> -->
             </select>
 
             <p class="mt-4">Số tiền muốn nạp</p>
