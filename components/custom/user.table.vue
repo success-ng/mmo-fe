@@ -5,12 +5,10 @@
    const userService = useApiUserService();
    const users: Ref<UserModel[]> = ref([]);
 
-   onMounted(async () => {
-      users.value = await userService.getUsers().then((res) => {
-         console.log(res);
-         return res;
+   onMounted(() => {
+      userService.getUsers().then((res) => {
+         users.value = res;
       });
-      console.log(users.value);
    });
 </script>
 

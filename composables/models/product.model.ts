@@ -13,11 +13,11 @@ export type ProductModel = {
   id: string;
   name: string;
   price: number;
-  amount: number;
+  stock: number;
   description: string;
   country: string;
   categoryId: number;
-  created_at: string;
+  createdAt: string;
 }
 
 export type ProductModifiedModel = {

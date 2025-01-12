@@ -97,6 +97,13 @@
             <td>{{ category.name }}</td>
             <td>{{ category.description }}</td>
             <td>{{ 0 }}</td>
+            <td>
+               <NuxtLink
+                  class="btn btn-primary btn-xs"
+                  :to="`/admin/category/${category.id}`"
+                  >Chi tiết</NuxtLink
+               >
+            </td>
          </tr>
       </tbody>
    </table>

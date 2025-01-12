@@ -16,7 +16,6 @@ export const useApiClonemupService = () => {
 
   const productCategory = async (): Promise<CategoryClonemupResponse> => {
     return await axios.get('/category/clonemup').then(res => {
-      console.log(res.data)
       return res.data
     }).catch(err => { return Promise.reject(err) })
   }

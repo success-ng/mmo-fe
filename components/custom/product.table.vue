@@ -1,44 +1,12 @@
 <script setup lang="ts">
-   import { useApiCategoryService } from "~/composables/api/category.service";
    import { useApiProductService } from "~/composables/api/product.service";
-   import type { CategoryModel } from "~/composables/models/category.model";
-   import type {
-      ProductModel,
-      ProductModifiedModel,
-   } from "~/composables/models/product.model";
-
-   const props = defineProps<{
+   import type { ProductModel } from "~/composables/models/product.model";
+   const { products } = defineProps<{
       products: ProductModel[];
    }>();
-   const { $toast } = useNuxtApp();
-   const productService = useApiProductService();
-   const categoryService = useApiCategoryService();
-   const categories = ref([] as CategoryModel[]);
-   const data: Ref<ProductModel[]> = ref([] as ProductModel[]);
+   const add = async () => {};
+   console.log(products);
    const isOpenModal = ref(false);
-   const newModel: Ref<ProductModifiedModel> = ref({} as ProductModifiedModel);
-   onMounted(() => {
-      data.value = props.products;
-      categoryService.index().then((res) => {
-         categories.value = res;
-      });
-   });
-
-   const fetch = () => {
-      productService.index().then((res) => {
-         data.value = res;
-      });
-   };
-   const onCreate = () => {
-      newModel.value.stock = 0;
-      productService.save(newModel.value).then((res) => {
-         $toast(`Tạo danh mục ${res.id}}`, {
-            type: "success",
-         });
-         isOpenModal.value = false;
-         fetch();
-      });
-   };
 </script>
 
 <template>
@@ -59,64 +27,7 @@
          <div class="modal">
             <div class="space-y-3 modal-box">
                <h3 class="text-lg font-bold">Tạo danh mục sản phẩm!</h3>
-               <form @submit.prevent="onCreate" class="space-y-3">
-                  <label class="flex items-center gap-2 input input-bordered">
-                     Tên
-                     <input
-                        type="text"
-                        class="grow"
-                        placeholder="Tên danh mục"
-                        v-model="newModel.name" />
-                  </label>
-                  <label class="flex items-center gap-2 input input-bordered">
-                     Giá
-                     <input
-                        type="number"
-                        class="grow"
-                        placeholder="Tên danh mục"
-                        v-model="newModel.price" />
-                  </label>
-                  <label class="flex items-center gap-2 input input-bordered">
-                     Quốc gia
-                     <input
-                        type="text"
-                        class="grow"
-                        placeholder="Tên danh mục"
-                        v-model="newModel.country" />
-                  </label>
-                  <label class="flex items-center gap-2 input input-bordered">
-                     Mô tả
-                     <input
-                        type="text"
-                        class="grow"
-                        placeholder="Tên danh mục"
-                        v-model="newModel.description" />
-                  </label>
-                  <label class="flex items-center gap-2">
-                     Danh mục
-                     <select
-                        class="flex-1 select select-bordered"
-                        v-model="newModel.categoryId">
-                        <option
-                           v-for="category in categories"
-                           :key="category.id"
-                           :value="category.id">
-                           {{ category.name }}
-                        </option>
-                     </select>
-                  </label>
-                  <div class="modal-action">
-                     <label for="create" class="btn btn-primary btn-sm">
-                        Tạo
-                     </label>
-                     <button id="create" type="submit" hidden="true"></button>
-                     <label
-                        for="create_category"
-                        class="btn btn-sm btn-error btn-outline">
-                        Hủy</label
-                     >
-                  </div>
-               </form>
+               <CustomProductForm :is-open-modal="isOpenModal" />
             </div>
             <label class="modal-backdrop" for="create_category">Close</label>
          </div>
@@ -134,12 +45,12 @@
          </tr>
       </thead>
       <tbody>
-         <tr v-for="product in data">
+         <tr v-for="product in products">
             <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
-            <td>{{ product.amount }}</td>
+            <td>{{ product.stock }}</td>
             <td>{{ product.price }}</td>
-            <td>{{ product.created_at }}</td>
+            <td>{{ product.createdAt }}</td>
             <td>{{ product.country }}</td>
          </tr>
       </tbody>

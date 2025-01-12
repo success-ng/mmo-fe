@@ -11,22 +11,20 @@
       buyModel.value = {
          productId: product.id,
          quantity: 1,
-         totalAmount: parseInt(product.price),
+         totalAmount: product.price,
          id: 0,
          orderDate: "",
-         price: parseInt(product.price),
+         price: product.price,
          status: "Created",
          userId: 0,
       };
    });
    const orderService = useApiOrderService();
    const onSubmit = () => {
-      buyModel.value.totalAmount =
-         parseInt(product.price) * buyModel.value.quantity;
+      buyModel.value.totalAmount = product.price * buyModel.value.quantity;
       orderService.save(buyModel.value).then((res) => {
          router.push(`/payment/${res.id}`);
       });
-      console.log(buyModel.value);
    };
 </script>
 
@@ -43,7 +41,7 @@
                   class="gap-2 badge badge-accent text-accent-content text-nowrap">
                   <Icon name="lucide:package-open" />
                   Còn lại:
-                  {{ product.amount }}
+                  {{ product.stock }}
                </span>
                <span
                   class="gap-2 badge badge-warning text-warning-content text-nowrap">
@@ -96,9 +94,7 @@
                      Thành tiền
                      <span class="badge badge-warning text-warning-content">
                         {{
-                           (
-                              parseInt(product.price) * buyModel.quantity
-                           ).toLocaleString()
+                           (product.price * buyModel.quantity).toLocaleString()
                         }}
                         đ</span
                      >

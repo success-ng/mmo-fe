@@ -16,14 +16,14 @@
    <div class="shadow-lg card card-compact bg-base-100">
       <div class="card-body">
          <h1 class="card-title">Thay đổi mật khẩu</h1>
-         <div class="grid grid-cols-3 gap-3">
+         <form @submit.prevent="" class="grid grid-cols-3 gap-3">
             <label for="">Mật khẩu hiện tại</label>
             <label for="">Mật khẩu mới</label>
             <label for="">Nhập lại mật khẩu mới</label>
-            <input type="password" name="" id="" class="input input-bordered" />
-            <input type="password" name="" id="" class="input input-bordered" />
-            <input type="password" name="" id="" class="input input-bordered" />
-         </div>
+            <input type="password_1" name="" class="input input-bordered" />
+            <input type="password" name="" class="input input-bordered" />
+            <input type="password" name="" class="input input-bordered" />
+         </form>
          <button class="btn btn-primary btn-md">Cập nhật</button>
       </div>
    </div>

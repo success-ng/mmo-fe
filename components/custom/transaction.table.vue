@@ -1,17 +1,9 @@
 <script setup lang="ts">
-   import { useApiUserService } from "~/composables/api/user.service";
    import type { TransactionModel } from "~/composables/models/transaction.model ";
-
-   const userService = useApiUserService();
 
    const { txs: transactions } = defineProps<{
       txs: TransactionModel[];
    }>();
-
-   const txs = ref([] as TransactionModel[]);
-   onMounted(() => {
-      txs.value = transactions;
-   });
 </script>
 
 <template>
@@ -29,7 +21,7 @@
       </thead>
       <tbody>
          <!-- row 1 -->
-         <tr v-for="tx in txs">
+         <tr v-for="tx in transactions">
             <td>{{ tx.id }}</td>
             <td>
                {{ tx.userId }}

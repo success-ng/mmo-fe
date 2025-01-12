@@ -6,6 +6,8 @@ export type TransactionModel = {
   status: string,
   transactionDate: string,
   paymentLink: string
+  orderCode: number
+  qrCode: string
 }
 
 export type CheckoutResponseModel = {

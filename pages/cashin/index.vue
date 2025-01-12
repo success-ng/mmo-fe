@@ -18,14 +18,16 @@
    // Gửi yêu cầu nạp tiền
    const submitCashIn = () => {
       transactionService
-         .cashIn({
-            amount: selectedAmount.value,
-            paymentMethod: "bank",
+         .credit({
             id: 0,
+            amount: selectedAmount.value,
+            paymentMethod: "string",
+            transactionDate: Date.now().toString(),
+            status: "PAID",
             userId: 0,
-            status: "",
-            transactionDate: "",
-            paymentLink: "",
+            paymentLink: "string",
+            qrCode: "string",
+            orderCode: 0,
          })
          .then((res) => {
             window.open(res.paymentLink, "_blank");

@@ -11,5 +11,11 @@ export const useApiCategoryService = () => {
   const save = async (model: CategoryModel) => {
     return await axios.post('/category/', model).then(res => res.data)
   }
-  return { index, save }
+
+  const get = async (id: number): Promise<CategoryModel> => {
+    return await axios.get(`/category/${id}`).then(res => {
+      return res.data
+    })
+  }
+  return { index, save, get }
 }

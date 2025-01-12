@@ -9,8 +9,8 @@
 
    onMounted(() => {
       productService.index().then((response) => {
-         console.log(response);
          products.value = response.data;
+         console.log(products.value);
       });
    });
 </script>

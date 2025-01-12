@@ -18,7 +18,7 @@
       </div>
       <ul class="flex gap-3">
          <li>
-            <NuxtLink to="/admin" class="btn btn-ghost">Nạp tiền</NuxtLink>
+            <NuxtLink to="/admin" class="btn btn-ghost">Admin</NuxtLink>
          </li>
          <li>
             <div class="dropdown dropdown-hover">

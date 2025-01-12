@@ -29,6 +29,7 @@ export const useApiUserService = () => {
         status: "Completed",
         transactionDate: "2024-12-20T15:45:00Z",
         transactionType: "Deposit",
+        orderCode: 0,
       },
       {
         id: 2,
@@ -38,6 +39,7 @@ export const useApiUserService = () => {
         status: "Pending",
         transactionDate: "2024-12-21T10:30:00Z",
         transactionType: "Expense",
+        orderCode: 0,
       },
       {
         id: 3,
@@ -47,6 +49,7 @@ export const useApiUserService = () => {
         status: "Failed",
         transactionDate: "2024-12-19T08:15:00Z",
         transactionType: "Expense",
+        orderCode: 0,
       },
       {
         id: 4,
@@ -65,6 +68,7 @@ export const useApiUserService = () => {
         status: "Completed",
         transactionDate: "2024-12-22T16:20:00Z",
         transactionType: "Expense",
+        orderCode: 0,
       },
     ])
   }
