@@ -1,18 +1,38 @@
 <script setup lang="ts">
    import { useApiProductService } from "~/composables/api/product.service";
    import type { ProductModel } from "~/composables/models/product.model";
+   import { ref } from "vue";
+   import { useRouter } from "vue-router";
+   const { $toast } = useNuxtApp();
+
    const { products } = defineProps<{
       products: ProductModel[];
    }>();
-   const add = async () => {};
-   console.log(products);
+   const productService = useApiProductService();
+   const router = useRouter();
    const isOpenModal = ref(false);
+   const pi = ref({
+      value: "",
+      productId: 0,
+   });
+   const isOpen = ref(false);
+
+   const submit = () => {
+      productService.add(pi.value).then(() => {
+         $toast(`Tạo sản phẩm`, {
+            type: "success",
+            onClose: () => {
+               router.go(0);
+            },
+         });
+      });
+   };
 </script>
 
 <template>
    <div class="flex justify-between">
-      <div class=""></div>
-      <div class="">
+      <div></div>
+      <div>
          <!-- The button to open modal -->
          <label for="create_category" class="btn btn-sm btn-primary"
             >Thêm danh mục</label
@@ -40,18 +60,59 @@
             <th>Tên</th>
             <th>Số lượng</th>
             <th>Giá</th>
-            <th>Ngày tạo</th>
             <th>Quốc gia</th>
+            <th>Ngày tạo</th>
          </tr>
       </thead>
       <tbody>
-         <tr v-for="product in products">
+         <tr v-for="product in products" :key="product.id">
             <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
             <td>{{ product.stock }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.createdAt }}</td>
+            <td>{{ product.price.toLocaleString() }}</td>
             <td>{{ product.country }}</td>
+            <td>{{ product.createdAt }}</td>
+            <td>
+               <label
+                  for="my_modal_7"
+                  class="btn btn-primary btn-sm"
+                  @click="pi.productId = product.id"
+                  >Thêm sản phẩm</label
+               >
+
+               <input
+                  type="checkbox"
+                  id="my_modal_7"
+                  class="modal-toggle"
+                  v-model="isOpen" />
+               <div class="modal" role="dialog">
+                  <div class="space-y-3 modal-box">
+                     <label
+                        class="flex items-center gap-2 input input-bordered">
+                        Tài khoản:
+                        <input
+                           type="text"
+                           class="grow"
+                           placeholder="..."
+                           v-model="pi.value" />
+                     </label>
+                     <div class="modal-action">
+                        <label
+                           class="btn btn-sm btn-outline btn-primary"
+                           for="my_modal_7"
+                           @click="submit()">
+                           Thêm sản phẩm
+                        </label>
+                        <label
+                           class="btn btn-sm btn-outline btn-error"
+                           for="my_modal_7"
+                           >Close</label
+                        >
+                     </div>
+                  </div>
+                  <label class="modal-backdrop" for="my_modal_7">Close</label>
+               </div>
+            </td>
          </tr>
       </tbody>
    </table>

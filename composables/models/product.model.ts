@@ -10,7 +10,7 @@ export type OtherProductModel = {
 }
 
 export type ProductModel = {
-  id: string;
+  id: number;
   name: string;
   price: number;
   stock: number;
@@ -21,7 +21,7 @@ export type ProductModel = {
 }
 
 export type ProductModifiedModel = {
-  id: string;
+  id: number;
   name: string;
   price: number;
   amount: number;

@@ -9,7 +9,7 @@
 
    onMounted(() => {
       productService.index().then((response) => {
-         products.value = response.data;
+         products.value = response;
          console.log(products.value);
       });
    });

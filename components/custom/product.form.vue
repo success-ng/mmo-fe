@@ -2,19 +2,24 @@
    import { useApiCategoryService } from "~/composables/api/category.service";
    import { useApiProductService } from "~/composables/api/product.service";
    import type { CategoryModel } from "~/composables/models/category.model";
-   import type { ProductModifiedModel } from "~/composables/models/product.model";
+   import type {
+      ProductModel,
+      ProductModifiedModel,
+   } from "~/composables/models/product.model";
    const productService = useApiProductService();
    const categoryService = useApiCategoryService();
-
+   const router = useRouter();
    const { $toast } = useNuxtApp();
-
    const categories = ref([] as CategoryModel[]);
-   const newModel: Ref<ProductModifiedModel> = ref({} as ProductModifiedModel);
+   const newModel: Ref<ProductModel> = ref({} as ProductModel);
    const onCreate = () => {
       newModel.value.stock = 0;
       productService.save(newModel.value).then((res) => {
          $toast(`Tạo sản phẩm ${res.id}}`, {
             type: "success",
+            onClose: () => {
+               router.go(0);
+            },
          });
       });
    };
