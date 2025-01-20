@@ -36,7 +36,7 @@
 </script>
 
 <template>
-   <section class="container py-10 mx-auto">
+   <section class="space-y-4">
       <div class="shadow-lg card card-compact bg-base-100">
          <div class="card-body">
             <h2 class="text-xl card-title">Nạp tiền</h2>
