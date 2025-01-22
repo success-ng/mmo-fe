@@ -92,6 +92,10 @@
          </tr>
       </thead>
       <tbody>
+         <tr v-if="categories.length == 0">
+            <td colspan="6" class="italic text-center">No record !!!!</td>
+         </tr>
+
          <tr v-for="category in categories">
             <td>{{ category.id }}</td>
             <td>{{ category.name }}</td>

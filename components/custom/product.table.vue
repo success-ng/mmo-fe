@@ -65,6 +65,10 @@
          </tr>
       </thead>
       <tbody>
+         <tr v-if="products.length == 0">
+            <td colspan="6" class="italic text-center">No record !!!!</td>
+         </tr>
+
          <tr v-for="product in products" :key="product.id">
             <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>

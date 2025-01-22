@@ -1,5 +1,6 @@
 import { useCoreAxiosInstance } from "../core/axios.instance"
 import type { RegisterForm } from "../forms/register.form"
+import type { OrderModel } from "../models/order.model "
 import type { UserHistoryModel } from "../models/user-history.model "
 import type { UserModel } from "../models/user.model"
 
@@ -72,8 +73,8 @@ export const useApiUserService = () => {
       },
     ])
   }
-  const userOrder = () => {
-    return ref([
+  const userOrder = (): OrderModel[] => {
+    return [
       {
         id: 1,
         price: 50.0,
@@ -124,7 +125,7 @@ export const useApiUserService = () => {
         userId: 105,
         totalAmount: 60.0 * 5,
       },
-    ])
+    ]
   }
   const userHistory = () => {
     return ref<UserHistoryModel[]>([

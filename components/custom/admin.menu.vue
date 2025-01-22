@@ -40,6 +40,7 @@
 
 <template>
    <ul class="sticky top-3 menu bg-base-100 rounded-box">
+      <li class="py-2 font-bold text-center">Admin menu</li>
       <li v-for="link in links">
          <NuxtLink :to="link.to">
             <Icon :name="link.icon" />

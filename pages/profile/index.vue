@@ -1,14 +1,16 @@
 <script setup lang="ts">
    import { useApiTransactionService } from "~/composables/api/transaction.service";
    import { useApiUserService } from "~/composables/api/user.service";
+   import type { OrderModel } from "~/composables/models/order.model ";
    import type { TransactionModel } from "~/composables/models/transaction.model ";
    import type { UserModel } from "~/composables/models/user.model";
    const userService = useApiUserService();
    const transactionService = useApiTransactionService();
    const txs: Ref<TransactionModel[]> = ref([] as TransactionModel[]);
-   const orders = userService.userOrder();
+   const orders = ref<OrderModel[]>([]);
    const user: Ref<UserModel> = ref({} as UserModel);
    onMounted(async () => {
+      orders.value = userService.userOrder();
       txs.value = await transactionService.myTxs();
       console.log(txs.value);
       user.value = await userService.profile();
@@ -139,7 +141,7 @@
       <div class="card-body">
          <p class="card-title">Lịch sử mua hàng</p>
          <div class="overflow-x-auto">
-            <CustomOrderTable />
+            <CustomOrderTable :orders="orders" />
          </div>
       </div>
    </div>

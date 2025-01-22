@@ -23,6 +23,9 @@
       </thead>
       <tbody>
          <!-- row 1 -->
+         <tr v-if="orderLst.length == 0">
+            <td colspan="4" class="italic text-center">No record !!!!</td>
+         </tr>
          <tr v-for="order in orderLst">
             <td>
                <p>{{ order.id }}</p>

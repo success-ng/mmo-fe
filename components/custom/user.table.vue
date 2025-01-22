@@ -1,15 +1,7 @@
 <script setup lang="ts">
-   import { useApiUserService } from "~/composables/api/user.service";
    import type { UserModel } from "~/composables/models/user.model";
 
-   const userService = useApiUserService();
-   const users: Ref<UserModel[]> = ref([]);
-
-   onMounted(() => {
-      userService.getUsers().then((res) => {
-         users.value = res;
-      });
-   });
+   const { users } = defineProps<{ users: UserModel[] }>();
 </script>
 
 <template>
@@ -19,9 +11,10 @@
          <thead>
             <tr>
                <th>
-                  <label>
+                  #
+                  <!-- <label>
                      <input type="checkbox" class="checkbox" />
-                  </label>
+                  </label> -->
                </th>
                <th>Tên</th>
                <th>Liên hệ</th>
@@ -33,11 +26,18 @@
          </thead>
          <tbody>
             <!-- row 1 -->
+            <tr v-if="users.length == 0">
+               <td colspan="6" class="italic text-center">No record !!!!</td>
+            </tr>
+
             <tr v-for="user in users" :key="user.id">
                <th>
-                  <label>
+                  <span class="italic">
+                     {{ user.id }}
+                  </span>
+                  <!-- <label>
                      <input type="checkbox" class="checkbox" />
-                  </label>
+                  </label> -->
                </th>
                <td>
                   <div class="flex items-center gap-3">
@@ -56,8 +56,10 @@
                      </div>
                   </div>
                </td>
-               <td>
-                  {{ user.email }}
+               <td class="space-y-2">
+                  <span class="badge badge-ghost badge-sm">
+                     {{ user.email }}
+                  </span>
                   <br />
                   <span class="badge badge-ghost badge-sm">{{
                      user.phone
@@ -74,7 +76,7 @@
                   {{ user.role }}
                </td>
                <td>
-                  <div class="flex justify-center">
+                  <div class="flex">
                      <span class="badge badge-ghost">
                         {{ user.balance | 0 }}
                         /

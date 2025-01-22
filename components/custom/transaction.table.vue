@@ -20,6 +20,10 @@
          </tr>
       </thead>
       <tbody>
+         <tr v-if="transactions.length == 0">
+            <td colspan="6" class="italic text-center">No record !!!!</td>
+         </tr>
+
          <!-- row 1 -->
          <tr v-for="tx in transactions">
             <td>{{ tx.id }}</td>
