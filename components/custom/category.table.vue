@@ -19,13 +19,20 @@
    const newCategory: Ref<CategoryModel> = ref({} as CategoryModel);
 
    const onCreate = () => {
-      categoryService.save(newCategory.value).then((res) => {
-         $toast(`Tạo danh mục ${res.id}}`, {
-            type: "success",
+      categoryService
+         .save(newCategory.value)
+         .then((res) => {
+            $toast(`Tạo danh mục ${res.id}}`, {
+               type: "success",
+            });
+            isOpenModal.value = false;
+            fetch();
+         })
+         .catch((err) => {
+            $toast(`Lỗi tạo danh mục`, {
+               type: "error",
+            });
          });
-         isOpenModal.value = false;
-         fetch();
-      });
    };
 </script>
 
@@ -66,6 +73,7 @@
                   </label>
                   <div class="modal-action">
                      <label for="create" class="btn btn-primary btn-sm">
+                        Tạo
                      </label>
                      <button id="create" type="submit" hidden="true">
                         Tạo

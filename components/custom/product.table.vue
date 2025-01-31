@@ -35,7 +35,7 @@
       <div>
          <!-- The button to open modal -->
          <label for="create_category" class="btn btn-sm btn-primary"
-            >Thêm danh mục</label
+            >Thêm sản phẩm</label
          >
 
          <!-- Put this part before </body> tag -->
@@ -91,12 +91,13 @@
                   v-model="isOpen" />
                <div class="modal" role="dialog">
                   <div class="space-y-3 modal-box">
-                     <label
-                        class="flex items-center gap-2 input input-bordered">
-                        Tài khoản:
-                        <input
+                     <label class="form-control">
+                        <div class="label">
+                           <span class="label-text">Via</span>
+                        </div>
+                        <textarea
                            type="text"
-                           class="grow"
+                           class="h-24 textarea textarea-bordered"
                            placeholder="..."
                            v-model="pi.value" />
                      </label>

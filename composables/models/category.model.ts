@@ -5,4 +5,5 @@ export type CategoryModel = {
   name: string,
   description: string,
   products: ProductModel[]
+  icon: string;
 }

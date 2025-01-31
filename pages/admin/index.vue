@@ -1,12 +1,34 @@
 <script setup lang="ts">
+   import { useApiSettingService } from "~/composables/api/setting.service";
+   import type { SettingModel } from "~/composables/models/setting.model";
+
    definePageMeta({
       layout: "admin",
    });
-   const users = 3;
+   const { $toast } = useNuxtApp();
+   const settingService = useApiSettingService();
+   const intro = ref<SettingModel>({} as SettingModel);
+
    const paid = 1000000;
    const deposited = 1000000;
    const product = 10;
    const selled = 10;
+   const users = 3;
+
+   onMounted(() => {
+      settingService.getByName("INTRO").then((res) => {
+         intro.value = res;
+      });
+   });
+
+   const onsubmit = () => {
+      settingService.update(intro.value).then((result) => {
+         intro.value = result;
+         $toast("Cập nhật thành công", {
+            type: "success",
+         });
+      });
+   };
 </script>
 
 <template>
@@ -19,9 +41,10 @@
                <p>Nội dung trang chính:</p>
                <textarea
                   class="w-full h-32 textarea input-bordered"
-                  placeholder="Nhập nội dung"></textarea>
+                  placeholder="Nhập nội dung"
+                  v-model="intro.val"></textarea>
             </label>
-            <button class="btn btn-primary">Lưu</button>
+            <button class="btn btn-primary" @click="onsubmit">Lưu</button>
          </div>
       </div>
       <div class="grid grid-cols-3 gap-3">

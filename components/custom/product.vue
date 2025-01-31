@@ -1,28 +1,22 @@
 <script setup lang="ts">
    import { useApiOrderService } from "~/composables/api/order.service";
+   import type { BuyModel } from "~/composables/models/buy.model";
    import type { OrderModel } from "~/composables/models/order.model ";
    import type { ProductModel } from "~/composables/models/product.model";
    const { product } = defineProps<{
       product: ProductModel;
    }>();
-   const buyModel: Ref<OrderModel> = ref({} as OrderModel);
+   const buyModel: Ref<BuyModel> = ref({} as BuyModel);
    const router = useRouter();
    onMounted(() => {
       buyModel.value = {
          productId: product.id,
          quantity: 1,
-         totalAmount: product.price,
-         id: 0,
-         orderDate: "",
-         price: product.price,
-         status: "Created",
-         userId: 0,
       };
    });
    const orderService = useApiOrderService();
    const onSubmit = () => {
-      buyModel.value.totalAmount = product.price * buyModel.value.quantity;
-      orderService.save(buyModel.value).then((res) => {
+      orderService.buy(buyModel.value).then((res) => {
          router.push(`/payment/${res.id}`);
       });
    };
@@ -52,9 +46,13 @@
                <pre class="flex-1 font-sans text-dark text-wrap">{{
                   product.description
                }}</pre>
+               <p>
+                  - Quốc gia <Icon name="fa6-solid:earth-asia" /> :
+                  {{ product.country }}
+               </p>
                <!-- <p class="overflow-hidden text-nowrap">{{ product.description }}</p> -->
                <!-- <div class="my-0 divider" /> -->
-               <p>- Change thông tin</p>
+               <p>- Change thông tin <Icon name="fa6-solid:pen-to-square" /></p>
                <!-- <div class="my-0 divider" /> -->
                <p>- Hỗ trợ backup</p>
                <!-- <div class="">

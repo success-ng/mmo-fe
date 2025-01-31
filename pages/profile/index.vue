@@ -7,12 +7,14 @@
    const userService = useApiUserService();
    const transactionService = useApiTransactionService();
    const txs: Ref<TransactionModel[]> = ref([] as TransactionModel[]);
-   const orders = ref<OrderModel[]>([]);
+   const orders = ref<OrderModel[]>([] as OrderModel[]);
    const user: Ref<UserModel> = ref({} as UserModel);
    onMounted(async () => {
-      orders.value = userService.userOrder();
+      userService.userOrder().then((res) => {
+         orders.value = res;
+         console.log(orders.value);
+      });
       txs.value = await transactionService.myTxs();
-      console.log(txs.value);
       user.value = await userService.profile();
    });
 

@@ -73,59 +73,9 @@ export const useApiUserService = () => {
       },
     ])
   }
-  const userOrder = (): OrderModel[] => {
-    return [
-      {
-        id: 1,
-        price: 50.0,
-        quantity: 2,
-        productId: "P12345",
-        status: "Completed",
-        orderDate: "2024-12-20T15:45:00Z",
-        userId: 101,
-        totalAmount: 50.0 * 2,
-      },
-      {
-        id: 2,
-        price: 25.5,
-        quantity: 1,
-        productId: "P67890",
-        status: "Pending",
-        orderDate: "2024-12-21T10:30:00Z",
-        userId: 102,
-        totalAmount: 25.5 * 1,
-      },
-      {
-        id: 3,
-        price: 100.0,
-        quantity: 3,
-        productId: "P54321",
-        status: "Failed",
-        orderDate: "2024-12-19T08:15:00Z",
-        userId: 103,
-        totalAmount: 100.0 * 3,
-      },
-      {
-        id: 4,
-        price: 75.75,
-        quantity: 4,
-        productId: "P98765",
-        status: "Completed",
-        orderDate: "2024-12-22T14:00:00Z",
-        userId: 104,
-        totalAmount: 75.75 * 4,
-      },
-      {
-        id: 5,
-        price: 60.0,
-        quantity: 5,
-        productId: "P45678",
-        status: "Completed",
-        orderDate: "2024-12-22T16:20:00Z",
-        userId: 105,
-        totalAmount: 60.0 * 5,
-      },
-    ]
+  const userOrder = async (): Promise<OrderModel[]> => {
+    const data = await axios.get('/order/user');
+    return data.data;
   }
   const userHistory = () => {
     return ref<UserHistoryModel[]>([
