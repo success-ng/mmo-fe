@@ -1,7 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+   const router = useRouter();
+   onMounted(() => {
+      setTimeout(() => {
+         router.push("/profile");
+      }, 2000);
+   });
+</script>
 
 <template>
-   <section class="flex justify-center">
+   <section class="flex items-center justify-center h-full">
       <div class="max-w-6xl card bg-base-100">
          <div class="items-center align-middle card-body">
             <Icon name="fa6-regular:circle-check" size="50" class="colo" />

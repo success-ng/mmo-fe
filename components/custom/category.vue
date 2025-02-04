@@ -51,11 +51,11 @@
          </figure>
          <span class="text-neutral-content">{{ category.name }}</span>
       </div>
-      <div class="grid gap-8 md:grid-cols-4">
+      <!-- <div class="grid gap-8 md:grid-cols-4">
          <CustomProduct
             :product="product"
             v-for="product in category.products" />
-      </div>
+      </div> -->
    </div>
 </template>
 

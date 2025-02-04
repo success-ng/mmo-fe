@@ -14,7 +14,7 @@
 </script>
 
 <template>
-   <table class="table">
+   <table class="table" id="order-table">
       <!-- head -->
       <thead>
          <tr>

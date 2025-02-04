@@ -30,11 +30,9 @@
    };
    const addProduct = () => {
       productService.add(pi.value).then(() => {
+         fetch();
          $toast(`Thêm sản phẩm`, {
             type: "success",
-            onClose: () => {
-               router.go(0);
-            },
          });
       });
    };

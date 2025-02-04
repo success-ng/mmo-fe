@@ -125,7 +125,7 @@
                </span>
             </div>
             <div class="justify-center card-body">
-               <h3 class="text-current/20">Số tiền đã nạp trong tháng trước</h3>
+               <h3 class="text-current/20">Số tiền đã nạp trong tháng này</h3>
                <p class="text-3xl font-bold">
                   {{ getAnalysis(analysis, "txsThisMonth") }}
                </p>

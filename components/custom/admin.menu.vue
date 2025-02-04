@@ -11,6 +11,11 @@
          to: "/admin/user",
       },
       {
+         name: "Danh mục",
+         icon: "fa6-solid:clipboard-list",
+         to: "/admin/category",
+      },
+      {
          name: "Sản phẩm",
          icon: "fa6-solid:user",
          to: "/admin/product",
@@ -24,11 +29,6 @@
          name: "Đơn hàng",
          icon: "fa6-solid:clock-rotate-left",
          to: "/admin/order",
-      },
-      {
-         name: "Danh mục",
-         icon: "fa6-solid:clipboard-list",
-         to: "/admin/category",
       },
       {
          to: "/auth",

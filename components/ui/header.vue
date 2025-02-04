@@ -20,19 +20,6 @@
          <li>
             <NuxtLink to="/admin" class="btn btn-ghost">Admin</NuxtLink>
          </li>
-         <li>
-            <div class="dropdown dropdown-hover">
-               <div tabindex="0" role="button" class="btn-ghost btn">Hover</div>
-               <ul
-                  tabindex="0"
-                  class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                  <li>
-                     <NuxtLink>Item 1</NuxtLink>
-                  </li>
-                  <li><a>Item 2</a></li>
-               </ul>
-            </div>
-         </li>
       </ul>
       <div class="flex-none gap-2">
          <MaterialSwitchTheme />
