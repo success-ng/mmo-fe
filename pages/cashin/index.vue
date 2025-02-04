@@ -34,6 +34,7 @@
             paymentLink: "string",
             qrCode: "string",
             orderCode: 0,
+            redirectUrl: "http://localhost:3000/cashin",
          })
          .then((res) => {
             window.open(res.paymentLink, "_blank");

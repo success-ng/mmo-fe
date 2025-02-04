@@ -40,7 +40,7 @@
             v-for="product in category.products" />
       </div>
    </div>
-   <!-- <div
+   <div
       class="space-y-3"
       v-for="category in clonemup_categories.categories"
       :key="category.id">
@@ -56,7 +56,7 @@
             :product="product"
             v-for="product in category.products" />
       </div>
-   </div> -->
+   </div>
 </template>
 
 <style scoped></style>

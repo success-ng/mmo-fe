@@ -7,6 +7,7 @@ export type TransactionModel = {
   transactionDate: string,
   paymentLink: string
   orderCode: number
+  redirectUrl: string
   qrCode: string
 }
 
