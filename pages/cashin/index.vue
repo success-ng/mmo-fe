@@ -1,16 +1,22 @@
 <script setup lang="ts">
    import { ref } from "vue";
    import { useApiTransactionService } from "~/composables/api/transaction.service";
+   import { useApiUserService } from "~/composables/api/user.service";
 
-   // Danh sách các số tiền nạp
+   const transactionService = useApiTransactionService();
+   const userService = useApiUserService();
+
    const cashInAmt = [
       5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000,
    ];
-   const transactionService = useApiTransactionService();
-   // Lưu trữ số tiền đã chọn
+
    const selectedAmount = ref<number>(0);
 
-   // Xử lý khi người dùng chọn số tiền
+   onMounted(() => {
+      userService.profile().then((res) => {
+         console.log(res);
+      });
+   });
    const selectAmount = (amt: number) => {
       selectedAmount.value = amt;
    };

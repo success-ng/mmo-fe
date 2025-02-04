@@ -1,8 +1,11 @@
 <script setup lang="ts">
    import { useApiProductService } from "~/composables/api/product.service";
+   import { useApiUserService } from "~/composables/api/user.service";
    import type { ProductModel } from "~/composables/models/product.model";
    const products: Ref<ProductModel[]> = ref([] as ProductModel[]);
    const productService = useApiProductService();
+
+   const userServuce = useApiUserService();
    definePageMeta({
       layout: "admin",
    });
@@ -14,10 +17,10 @@
    };
 
    onMounted(() => {
-      productService.index().then((response) => {
-         products.value = response;
-         console.log(products.value);
+      userServuce.getUsers().then((res) => {
+         console.log(res);
       });
+      fetch();
    });
 </script>
 

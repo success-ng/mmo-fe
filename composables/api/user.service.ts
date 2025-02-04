@@ -20,58 +20,14 @@ export const useApiUserService = () => {
     return data.data
   }
 
-  const userTransaction = () => {
-    return ref([
-      {
-        id: 1,
-        accountId: 101,
-        amount: 250.5,
-        paymentMethod: "Credit Card",
-        status: "Completed",
-        transactionDate: "2024-12-20T15:45:00Z",
-        transactionType: "Deposit",
-        orderCode: 0,
-      },
-      {
-        id: 2,
-        accountId: 102,
-        amount: 120.0,
-        paymentMethod: "PayPal",
-        status: "Pending",
-        transactionDate: "2024-12-21T10:30:00Z",
-        transactionType: "Expense",
-        orderCode: 0,
-      },
-      {
-        id: 3,
-        accountId: 103,
-        amount: 75.25,
-        paymentMethod: "Bank Transfer",
-        status: "Failed",
-        transactionDate: "2024-12-19T08:15:00Z",
-        transactionType: "Expense",
-        orderCode: 0,
-      },
-      {
-        id: 4,
-        accountId: 101,
-        amount: 500.0,
-        paymentMethod: "Debit Card",
-        status: "Completed",
-        transactionDate: "2024-12-22T14:00:00Z",
-        transactionType: "Deposit",
-      },
-      {
-        id: 5,
-        accountId: 104,
-        amount: 320.75,
-        paymentMethod: "Cryptocurrency",
-        status: "Completed",
-        transactionDate: "2024-12-22T16:20:00Z",
-        transactionType: "Expense",
-        orderCode: 0,
-      },
-    ])
+  const changePassword = async (form: { currentPassword: string, newPassword: string }) => {
+    const data = await axios.put('/auth/change-password', form)
+    return data.data
+  }
+
+  const userTransaction = async () => {
+    const data = await axios.get('/transaction/my-txs');
+    return data.data;
   }
   const userOrder = async (): Promise<OrderModel[]> => {
     const data = await axios.get('/order/user');
@@ -121,5 +77,9 @@ export const useApiUserService = () => {
     axios.post('/user/create', form)
   }
 
-  return { profile, userTransaction, userOrder, userHistory, register, getUsers, updateProfile }
+  const logout = async () => {
+    const token = useCookie("authToken")
+    token.value = undefined
+  }
+  return { profile, userTransaction, userOrder, userHistory, register, getUsers, updateProfile, changePassword, logout }
 }

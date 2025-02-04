@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+   import { useApiUserService } from "~/composables/api/user.service";
+
+   const userService = useApiUserService();
+   onMounted(() => {
+      userService.logout().then((res) => {
+         console.log(res);
+      });
+   });
+</script>
 
 <template>
    <section class="flex items-center justify-center space-y-4">
