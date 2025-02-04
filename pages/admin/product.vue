@@ -7,6 +7,12 @@
       layout: "admin",
    });
 
+   const fetch = () => {
+      productService.index().then((response) => {
+         products.value = response;
+      });
+   };
+
    onMounted(() => {
       productService.index().then((response) => {
          products.value = response;
@@ -20,7 +26,7 @@
       <div class="card-body">
          <h3 class="card-title">Sản phẩm</h3>
          <div class="overflow-x-auto">
-            <CustomProductTable :products="products" />
+            <CustomProductTable :products="products" :fetch="fetch" />
          </div>
       </div>
    </section>

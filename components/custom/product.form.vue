@@ -2,27 +2,15 @@
    import { useApiCategoryService } from "~/composables/api/category.service";
    import { useApiProductService } from "~/composables/api/product.service";
    import type { CategoryModel } from "~/composables/models/category.model";
-   import type {
-      ProductModel,
-      ProductModifiedModel,
-   } from "~/composables/models/product.model";
-   const productService = useApiProductService();
+   import type { ProductModel } from "~/composables/models/product.model";
+
+   const { isOpenModal, onCreate } = defineProps<{
+      isOpenModal: boolean;
+      onCreate: (model: ProductModel) => void;
+   }>();
    const categoryService = useApiCategoryService();
-   const router = useRouter();
-   const { $toast } = useNuxtApp();
    const categories = ref([] as CategoryModel[]);
    const newModel: Ref<ProductModel> = ref({} as ProductModel);
-   const onCreate = () => {
-      newModel.value.stock = 0;
-      productService.save(newModel.value).then((res) => {
-         $toast(`Tạo sản phẩm ${res.id}}`, {
-            type: "success",
-            onClose: () => {
-               router.go(0);
-            },
-         });
-      });
-   };
    onMounted(() => {
       categoryService.index().then((res) => {
          categories.value = res;
@@ -30,7 +18,7 @@
    });
 </script>
 <template>
-   <form @submit.prevent="onCreate" class="space-y-3">
+   <form @submit.prevent="onCreate(newModel)" class="space-y-3">
       <label class="flex items-center gap-2 input input-bordered">
          Tên
          <input

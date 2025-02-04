@@ -10,12 +10,7 @@
          <!-- head -->
          <thead>
             <tr>
-               <th>
-                  #
-                  <!-- <label>
-                     <input type="checkbox" class="checkbox" />
-                  </label> -->
-               </th>
+               <th>#</th>
                <th>Tên</th>
                <th>Liên hệ</th>
                <th>Hoạt động</th>

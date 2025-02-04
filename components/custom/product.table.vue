@@ -5,8 +5,9 @@
    import { useRouter } from "vue-router";
    const { $toast } = useNuxtApp();
 
-   const { products } = defineProps<{
+   const { products, fetch } = defineProps<{
       products: ProductModel[];
+      fetch: () => void;
    }>();
    const productService = useApiProductService();
    const router = useRouter();
@@ -17,9 +18,19 @@
    });
    const isOpen = ref(false);
 
-   const submit = () => {
+   const onCreate = (model: ProductModel) => {
+      model.stock = 0;
+      productService.save(model).then((res) => {
+         isOpenModal.value = false;
+         fetch();
+         $toast(`Tạo sản phẩm ${res.id}}`, {
+            type: "success",
+         });
+      });
+   };
+   const addProduct = () => {
       productService.add(pi.value).then(() => {
-         $toast(`Tạo sản phẩm`, {
+         $toast(`Thêm sản phẩm`, {
             type: "success",
             onClose: () => {
                router.go(0);
@@ -47,7 +58,9 @@
          <div class="modal">
             <div class="space-y-3 modal-box">
                <h3 class="text-lg font-bold">Tạo danh mục sản phẩm!</h3>
-               <CustomProductForm :is-open-modal="isOpenModal" />
+               <CustomProductForm
+                  :is-open-modal="isOpenModal"
+                  :onCreate="onCreate" />
             </div>
             <label class="modal-backdrop" for="create_category">Close</label>
          </div>
@@ -81,8 +94,8 @@
                   for="my_modal_7"
                   class="btn btn-primary btn-sm"
                   @click="pi.productId = product.id"
-                  >Thêm sản phẩm</label
-               >
+                  >Thêm
+               </label>
 
                <input
                   type="checkbox"
@@ -105,7 +118,7 @@
                         <label
                            class="btn btn-sm btn-outline btn-primary"
                            for="my_modal_7"
-                           @click="submit()">
+                           @click="addProduct()">
                            Thêm sản phẩm
                         </label>
                         <label
