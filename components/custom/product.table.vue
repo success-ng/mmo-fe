@@ -10,7 +10,6 @@
       fetch: () => void;
    }>();
    const productService = useApiProductService();
-   const router = useRouter();
    const isOpenModal = ref(false);
    const pi = ref({
       value: "",

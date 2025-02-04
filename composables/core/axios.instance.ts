@@ -1,10 +1,10 @@
 import axios from "axios";
-import { toast } from "vue3-toastify";
 
 export const useCoreAxiosInstance = () => {
+  const config = useRuntimeConfig();
   const axiosInstance = axios.create({
-    baseURL: process.env.BASE_URL || "http://103.167.89.227:8081/api",
-    // baseURL: process.env.BASE_URL || "http://localhost:8081/api", 
+    // baseURL: config.public.base_url || "http://103.167.89.227:8081/api",
+    baseURL: config.public.base_url || "http://localhost:8081/api",
     timeout: 10000, // Thời gian timeout
     headers: {
       "Content-Type": "application/json",
