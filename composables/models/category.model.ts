@@ -6,4 +6,5 @@ export type CategoryModel = {
   description: string,
   products: ProductModel[]
   icon: string;
+  isEdit: boolean;
 }

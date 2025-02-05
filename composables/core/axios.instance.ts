@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const useCoreAxiosInstance = () => {
+  const router = useRouter();
   const config = useRuntimeConfig();
   const axiosInstance = axios.create({
     // baseURL: config.public.base_url || "http://103.167.89.227:8081/api",
@@ -35,10 +36,15 @@ export const useCoreAxiosInstance = () => {
     },
     (error) => {
       // Xử lý lỗi từ phản hồi
-      if (error.response?.status === 401 || error.response?.status === 403) {
+      if (error.response?.status === 401) {
         // Ví dụ: Điều hướng đến trang đăng nhập nếu token hết hạn
-        const router = useRouter();
         router.push("/auth");
+      } else if (error.response?.status === 403) {
+        router.push("/403");
+      }
+      else if (error.code === "ECONNABORTED" || error.message === "Network Error") {
+        // Nếu lỗi kết nối mạng (server không phản hồi)
+        router.push("/500");
       }
       // toast.error(`Request failed! Status: ${error.response?.status}`);
       return Promise.reject(error);

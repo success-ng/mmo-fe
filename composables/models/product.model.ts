@@ -16,18 +16,7 @@ export type ProductModel = {
   stock: number;
   description: string;
   country: string;
-  categoryId: number;
+  categoryID: number;
   createdAt: string;
-}
-
-export type ProductModifiedModel = {
-  id: number;
-  name: string;
-  price: number;
-  amount: number;
-  description: string;
-  country: string;
-  categoryId: number;
-  created_at: string;
-  stock: number;
+  isEdit: boolean;
 }

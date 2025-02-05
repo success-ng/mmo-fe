@@ -55,7 +55,7 @@
          Danh mục
          <select
             class="flex-1 select select-bordered"
-            v-model="newModel.categoryId">
+            v-model="newModel.categoryID">
             <option
                v-for="category in categories"
                :key="category.id"

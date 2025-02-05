@@ -1,6 +1,9 @@
 <script setup lang="ts">
    import type { LoginForm } from "~/composables/forms/login.form";
 
+   const { change } = defineProps<{
+      change: () => void;
+   }>();
    const router = useRouter();
    const authService = useAuthService();
    const loginForm = ref<LoginForm>({
@@ -46,9 +49,12 @@
          </button>
          <p class="flex-none text-center">
             Bạn chưa có tài khoản?
-            <a href="" class="btn btn-primary btn-sm btn-ghost text-primary"
-               >Đăng ký ngay</a
-            >
+            <button
+               type="reset"
+               @click="change"
+               class="btn btn-primary btn-sm btn-ghost text-primary">
+               Đăng ký ngay
+            </button>
          </p>
       </div>
    </form>

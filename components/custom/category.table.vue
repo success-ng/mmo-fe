@@ -4,7 +4,6 @@
 
    const categoryService = useApiCategoryService();
    const categories = ref([] as CategoryModel[]);
-   const router = useRouter();
    const { $toast } = useNuxtApp();
 
    const fetch = () => {
@@ -17,6 +16,25 @@
       fetch();
    });
    const newCategory: Ref<CategoryModel> = ref({} as CategoryModel);
+
+   const save = (model: CategoryModel) => {
+      if (model.isEdit) {
+         categoryService
+            .save(model)
+            .then(() => {
+               fetch();
+               $toast(`Cập nhật danh mục ${model.id}`, {
+                  type: "success",
+               });
+            })
+            .catch((err) => {
+               $toast(err.message, {
+                  type: "error",
+               });
+            });
+      }
+      model.isEdit = !model.isEdit;
+   };
 
    const onCreate = () => {
       categoryService
@@ -90,7 +108,7 @@
          </div>
       </div>
    </div>
-   <table class="table table-zebra table-pin-rows table-pin-cols">
+   <table class="table table-pin-rows table-pin-cols">
       <thead>
          <tr>
             <th>#</th>
@@ -106,15 +124,30 @@
 
          <tr v-for="category in categories">
             <td>{{ category.id }}</td>
-            <td>{{ category.name }}</td>
-            <td>{{ category.description }}</td>
-            <td>{{ 0 }}</td>
             <td>
+               <input
+                  type="text"
+                  v-model="category.name"
+                  :disabled="!category.isEdit"
+                  class="input input-xs input-bordered disabled:text-base-content" />
+            </td>
+            <td>
+               <input
+                  type="text"
+                  v-model="category.description"
+                  :disabled="!category.isEdit"
+                  class="input input-xs input-bordered disabled:text-base-content" />
+            </td>
+            <td>{{ 0 }}</td>
+            <td class="space-x-3">
                <NuxtLink
                   class="btn btn-primary btn-xs"
                   :to="`/admin/category/${category.id}`"
                   >Chi tiết</NuxtLink
                >
+               <button class="btn btn-accent btn-xs" @click="save(category)">
+                  {{ category.isEdit ? "Lưu" : "Sửa" }}
+               </button>
             </td>
          </tr>
       </tbody>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-   import { useApiUserService } from "~/composables/api/user.service";
    import { useCoreAxiosInstance } from "~/composables/core/axios.instance";
    import type { RegisterForm } from "~/composables/forms/register.form";
-   const router = useRouter();
-   const userService = useApiUserService();
+   const { $toast } = useNuxtApp();
+   const { change } = defineProps<{
+      change: () => void;
+   }>();
 
    const registerForm = ref<RegisterForm>({
       username: "",
@@ -16,11 +17,12 @@
    const confirmPassword = ref("");
    const axios = useCoreAxiosInstance();
    const OnSubmit = async (event: Event) => {
-      event.preventDefault(); // Ngăn chặn làm mới trang
-      // Kiểm tra các giá trị đầu vào
+      event.preventDefault();
       registerForm.value.rewritePassword = confirmPassword.value;
-      if (registerForm.value.password !== confirmPassword.value) {
-         alert("Mật khẩu xác nhận không khớp!");
+      if (registerForm.value.password !== registerForm.value.rewritePassword) {
+         $toast("Mật khẩu xác nhận không khớp!", {
+            type: "error",
+         });
          return;
       }
       if (
@@ -28,18 +30,22 @@
          !registerForm.value.username ||
          !registerForm.value.password
       ) {
-         alert("Vui lòng điền đầy đủ thông tin!");
-         return;
+         $toast("Vui lòng điền đầy đủ thông tin!", {
+            type: "error",
+         });
       }
       axios
          .post("/auth/register", registerForm.value)
          .then((response) => {
-            alert("Đăng ký thành công!");
-            router.push("/");
+            $toast("Đăng ký thành công!\nVui lòng đăng nhập!", {
+               type: "success",
+            });
          })
          .catch((error) => {
             console.error("Lỗi:", error);
-            alert("Có lỗi xảy ra trong quá trình đăng ký. Vui lòng thử lại.");
+            $toast("Có lỗi xảy ra trong quá trình đăng ký. Vui lòng thử lại.", {
+               type: "error",
+            });
          });
    };
 </script>
@@ -99,9 +105,12 @@
          <button type="submit" class="w-full btn btn-primary">Đăng ký</button>
          <p class="flex-none text-center">
             Bạn đã có tài khoản?
-            <a href="" class="btn btn-primary btn-sm btn-ghost text-primary"
-               >Đăng nhập ngay</a
-            >
+            <button
+               @click="change"
+               type="reset"
+               class="btn btn-primary btn-sm btn-ghost text-primary">
+               Đăng nhập ngay
+            </button>
          </p>
       </div>
    </form>

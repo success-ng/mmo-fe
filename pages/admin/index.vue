@@ -1,4 +1,6 @@
 <script setup lang="ts">
+   import { QuillEditor } from "@vueup/vue-quill";
+   import "@vueup/vue-quill/dist/vue-quill.snow.css";
    import { useApiAnalysisService } from "~/composables/api/analysis.service";
    import { useApiSettingService } from "~/composables/api/setting.service";
    import {
@@ -13,7 +15,7 @@
    const { $toast } = useNuxtApp();
    const settingService = useApiSettingService();
    const analysisService = useApiAnalysisService();
-
+   const content = ref("<p>Đây là nội dung mặc định!</p>");
    const intro = ref<SettingModel>({} as SettingModel);
    const analysis = ref<AnalysisModel[]>([] as AnalysisModel[]);
    onMounted(() => {
@@ -40,13 +42,22 @@
       <div class="card card-compact bg-base-100">
          <div class="card-body">
             <h3 class="card-title">Bảng điều khiển</h3>
-            <p>Chào mừng bạn đến với bảng điều khiển</p>
             <label>
-               <p>Nội dung trang chính:</p>
-               <textarea
+               <p>Nội dung giới thiệu:</p>
+               <!-- <textarea
                   class="w-full h-32 textarea input-bordered"
                   placeholder="Nhập nội dung"
-                  v-model="intro.val"></textarea>
+                  v-model="intro.val"></textarea> -->
+               <div class="">
+                  <ClientOnly fallback-tag="div" fallback="Loading...">
+                     <QuillEditor
+                        content-type="html"
+                        toolbar="full"
+                        class="textarea input-bordered"
+                        v-model:content="intro.val">
+                     </QuillEditor>
+                  </ClientOnly>
+               </div>
             </label>
             <button class="btn btn-primary" @click="onsubmit">Lưu</button>
          </div>

@@ -20,11 +20,11 @@
          icon: "fa6-solid:user-shield",
          name: "Bảo mât",
       },
-      {
-         to: "/profile/history",
-         icon: "fa6-solid:clock-rotate-left",
-         name: "Lịch sử",
-      },
+      // {
+      //    to: "/profile/history",
+      //    icon: "fa6-solid:clock-rotate-left",
+      //    name: "Lịch sử",
+      // },
       {
          to: "/auth",
          icon: "fa6-solid:right-from-bracket",
