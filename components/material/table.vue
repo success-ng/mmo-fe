@@ -1,7 +1,8 @@
 <script setup lang="ts">
    import type { TableProps } from "~/composables/types/table.type";
 
-   const { fetch, data, columns } = defineProps<TableProps>();
+   const { fetch, edit, create, remove, data, columns } =
+      defineProps<TableProps<any>>();
 </script>
 
 <template>
@@ -24,7 +25,19 @@
          </tr>
          <tr v-for="(row, index) in data">
             <td v-for="(col, key) in columns" :key="key">
-               {{ row[col.key] }}
+               <input
+                  type="text"
+                  v-model="row[col.key]"
+                  :disabled="!row.isEdit"
+                  class="input input-xs disabled:text-base-content" />
+            </td>
+            <td>
+               <button class="btn btn-accent btn-xs" @click="edit(row)">
+                  {{ row.isEdit ? "Lưu" : "Sửa" }}
+               </button>
+               <button class="btn btn-error btn-xs" @click="remove(row)">
+                  Xóa
+               </button>
             </td>
          </tr>
       </tbody>
