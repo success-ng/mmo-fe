@@ -138,7 +138,7 @@
                   :disabled="!category.isEdit"
                   class="input input-xs input-bordered disabled:text-base-content" />
             </td>
-            <td>{{ 0 }}</td>
+            <td>{{ category.products.length }}</td>
             <td class="space-x-3">
                <NuxtLink
                   class="btn btn-primary btn-xs"
