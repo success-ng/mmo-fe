@@ -1,6 +1,4 @@
-<script setup lang="ts">
-   // const themeMode = useColorMode();
-</script>
+<script setup lang="ts"></script>
 
 <template>
    <nav class="items-center justify-between shadow-xl navbar bg-base-100">

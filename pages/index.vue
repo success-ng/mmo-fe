@@ -1,4 +1,5 @@
 <script setup lang="ts">
+   import { Quill } from "@vueup/vue-quill";
    import { useApiSettingService } from "~/composables/api/setting.service";
    import type { SettingModel } from "~/composables/models/setting.model";
 
@@ -15,12 +16,8 @@
 <template>
    <section class="space-y-4">
       <div class="p-10 card bg-base-100">
-         <pre class="font-sans text-base text text-pretty">
-            {{ intro.val }}
-         </pre>
+         <div class="" v-html="intro.val"></div>
       </div>
       <CustomCategory />
-      <!-- <div class="p-10 space-y-4 card bg-base-100 text-base-content">
-      </div> -->
    </section>
 </template>

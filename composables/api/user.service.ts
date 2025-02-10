@@ -33,7 +33,7 @@ export const useApiUserService = () => {
     const data = await axios.get('/order/user');
     return data.data;
   }
-  const userHistory = () => {
+  const userHistory = async () => {
     return ref<UserHistoryModel[]>([
       {
         id: 1,
