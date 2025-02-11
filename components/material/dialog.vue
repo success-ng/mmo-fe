@@ -1,33 +1,48 @@
 <script setup lang="ts">
-   const { onClose, onOpen } = defineProps<{
-      onClose: () => void;
-      onOpen: () => void;
+   const { onClose, onOpen, onSave } = defineProps<{
+      class?: any;
+      title: string;
+      showModal?: boolean;
+      onClose?: () => void;
+      onOpen?: () => void;
+      onSave: () => void;
    }>();
-   const isOpen = ref(false);
 
-   const open = () => {
-      isOpen.value = true;
-      onOpen();
-   };
+   const showModal = ref(false);
+
+   // const open = () => {
+   //    if (onOpen) onOpen();
+   //    showModal.value = !showModal.value;
+   // };
 
    const close = () => {
-      isOpen.value = false;
-      onClose();
+      if (onClose) onClose();
+      showModal.value = !showModal.value;
+   };
+
+   const save = () => {
+      onSave();
+      showModal.value = !showModal.value;
    };
 </script>
-<template>
-   <input
-      type="checkbox"
-      id="my_modal_7"
-      class="modal-toggle"
-      v-model="isOpen" />
 
-   <div v-if="isOpen" class="modal" role="dialog">
+<template>
+   <!-- <button :class="class" @click="open">
+      <slot name="btn-content">Toggle modal</slot>
+   </button> -->
+   <div class="modal" :class="{ 'modal-open': showModal }">
       <div class="modal-box">
-         <h3 class="text-lg font-bold">Hello!</h3>
-         <p class="py-4">This modal works with a hidden checkbox!</p>
-         <button class="btn btn-primary" @click="close">Close</button>
+         <h3 class="text-lg font-bold">{{ title }}</h3>
+         <slot name="modal-content">
+            <p class="py-4">Content</p>
+         </slot>
+         <div class="modal-action">
+            <button class="btn btn-success" @click="save">Save</button>
+            <button class="btn btn-error" @click="close">Close</button>
+         </div>
       </div>
-      <div class="modal-backdrop" @click="close"></div>
+      <form method="dialog" class="modal-backdrop">
+         <button @click="close">close</button>
+      </form>
    </div>
 </template>

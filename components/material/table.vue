@@ -17,6 +17,8 @@
 
    const isOpenDialog: Ref<boolean> = ref(false as boolean);
 
+   const save = () => {};
+
    const editModel = (model: any) => {
       if (model.isEdit && edit) {
          edit(model);
@@ -27,6 +29,12 @@
    const openDialog = (model: any) => {
       isOpenDialog.value = !isOpenDialog.value;
    };
+
+   const showModal = ref(false);
+
+   function toggleModal(): void {
+      showModal.value = !showModal.value;
+   }
 </script>
 
 <template>
@@ -87,12 +95,14 @@
                   </td>
                   <td>
                      <div class="flex gap-3">
-                        <button
-                           v-if="show"
+                        <MaterialDialog
+                           title="User"
                            class="btn btn-info btn-sm"
-                           @click="openDialog(row)">
-                           <Icon name="fa6-solid:eye" />
-                        </button>
+                           :on-save="save">
+                           <template #btn-content>
+                              <Icon name="fa6-solid:eye" />
+                           </template>
+                        </MaterialDialog>
                         <button
                            v-if="edit"
                            class="btn btn-sm"
@@ -138,16 +148,6 @@
          </table>
       </div>
    </div>
-   <!-- <MaterialDialog :is-open="isOpenDialog" @close="openDialog">
-      <template v-slot:default>
-         <div class="modal-box">
-            <h3 class="text-lg font-bold">Hello!</h3>
-            <p class="py-4">This modal works with a hidden checkbox!</p>
-            <button class="btn btn-primary" @click="openDialog">Close</button>
-         </div>
-         <div class="modal-backdrop" @click="openDialog"></div>
-      </template>
-   </MaterialDialog> -->
 </template>
 
 <style scoped></style>
