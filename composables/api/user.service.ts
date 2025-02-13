@@ -33,6 +33,11 @@ export const useApiUserService = () => {
     const data = await axios.get('/order/user');
     return data.data;
   }
+
+  const create = async (form: UserModel): Promise<UserModel> => {
+    const data = await axios.post('/user/create', form);
+    return data.data;
+  }
   const userHistory = async () => {
     return ref<UserHistoryModel[]>([
       {
@@ -81,5 +86,5 @@ export const useApiUserService = () => {
     const token = useCookie("authToken")
     token.value = undefined
   }
-  return { profile, userTransaction, userOrder, userHistory, register, getUsers, updateProfile, changePassword, logout }
+  return { profile, userTransaction, userOrder, userHistory, register, getUsers, updateProfile, changePassword, logout, create }
 }

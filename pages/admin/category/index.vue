@@ -15,6 +15,7 @@
       { key: "id", label: "#" },
       { key: "name", label: "Tên" },
       { key: "description", label: "Mô tả" },
+      { key: "productCount", label: "Sản phẩm" },
    ];
 
    const router = useRouter();
@@ -41,10 +42,6 @@
    const remove = async (id: number) => {
       await categoryService.remove(id);
    };
-
-   onMounted(() => {
-      fetch();
-   });
 </script>
 
 <template>
@@ -59,6 +56,16 @@
          :edit="edit"
          :remove="remove"
          :columns="columns">
+         <template #id="{ row }">
+            <span class="font-bold">
+               {{ row.id }}
+            </span>
+         </template>
+         <template #productCount="{ row }">
+            <span class="font-bold badge badge-md badge-secondary">
+               {{ row.products.length }}
+            </span>
+         </template>
       </MaterialTable>
    </section>
 </template>

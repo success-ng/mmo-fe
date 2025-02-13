@@ -4,8 +4,8 @@ export const useCoreAxiosInstance = () => {
   const router = useRouter();
   const config = useRuntimeConfig();
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:8081/api",
-    // baseURL: config.public.base_url || "http://localhost:8081/api",
+    // baseURL: "http://localhost/api",
+    baseURL: config.public.base_url || "http://localhost:8081/api",
     timeout: 10000, // Thời gian timeout
     headers: {
       "Content-Type": "application/json",

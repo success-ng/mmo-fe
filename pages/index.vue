@@ -14,7 +14,7 @@
 </script>
 
 <template>
-   <section class="space-y-4">
+   <section class="space-y-3">
       <div class="p-10 card bg-base-100">
          <div class="" v-html="intro.val"></div>
       </div>

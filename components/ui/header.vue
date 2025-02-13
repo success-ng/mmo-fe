@@ -6,10 +6,7 @@
          <!-- <a class="text-xl btn btn-ghost">daisyUI</a> -->
          <NuxtLink class="text-xl btn btn-ghost" to="/">
             <figure class="w-12">
-               <img
-                  src="/public/images/3a4bfe3d-5773-4f82-a8ca-4a43baa95383.jpg"
-                  alt=""
-                  height="18" />
+               <img src="/public/images/icon.png" alt="" height="18" />
             </figure>
             ViaClone68
          </NuxtLink>

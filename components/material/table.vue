@@ -73,7 +73,7 @@
                   <th v-for="(col, index) in columns">
                      {{ col.label }}
                   </th>
-                  <th>Action</th>
+                  <th v-if="create || edit || remove">Action</th>
                </tr>
             </thead>
             <tbody>
@@ -91,7 +91,9 @@
                      <p class="text-center text-primary">No record !!!</p>
                   </td>
                </tr>
-               <tr v-if="!isLoading" class="border-b-2 border-base-300">
+               <tr
+                  v-if="!isLoading && create"
+                  class="border-b-2 border-base-300">
                   <td :colspan="columns.length + 1">
                      <div class="flex justify-center">
                         <button
@@ -113,7 +115,7 @@
                            class="input input-sm disabled:text-base-content input-bordered" />
                      </slot>
                   </td>
-                  <td>
+                  <td v-if="create || edit || remove">
                      <div class="flex gap-3">
                         <button
                            v-if="show"

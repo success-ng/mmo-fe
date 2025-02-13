@@ -2,37 +2,69 @@
    import { useApiProductService } from "~/composables/api/product.service";
    import { useApiUserService } from "~/composables/api/user.service";
    import type { ProductModel } from "~/composables/models/product.model";
-   const products: Ref<ProductModel[]> = ref([] as ProductModel[]);
+   const data: Ref<ProductModel[]> = ref([] as ProductModel[]);
    const productService = useApiProductService();
 
-   const userServuce = useApiUserService();
+   const userService = useApiUserService();
    definePageMeta({
       layout: "admin",
    });
 
-   const fetch = () => {
+   const router = useRouter();
+   const fetch = async () => {
+      loading.value = true;
       productService.index().then((response) => {
-         products.value = response;
+         loading.value = false;
+         data.value = response;
       });
    };
 
+   const create = async () => {
+      router.push("/admin/product/create");
+   };
+
+   const update = async (model: ProductModel) => {
+      router.push(`/admin/product/${model.id}`);
+   };
+   const loading = ref(true);
+
    onMounted(() => {
-      userServuce.getUsers().then((res) => {
+      userService.getUsers().then((res) => {
          console.log(res);
       });
-      fetch();
    });
+   const columns = [
+      { key: "id", label: "#" },
+      { key: "country", label: "Quốc gia" },
+      { key: "name", label: "Tên" },
+      { key: "categoryID", label: "Danh mục" },
+      { key: "price", label: "Giá" },
+      { key: "stock", label: "Số lượng" },
+      { key: "createdAt", label: "Ngày tạo" },
+   ];
 </script>
 
 <template>
-   <section class="card card-compact bg-base-100">
-      <div class="card-body">
-         <h3 class="card-title">Sản phẩm</h3>
-         <div class="overflow-x-auto">
-            <CustomProductTable :products="products" :fetch="fetch" />
-         </div>
-      </div>
-   </section>
+   <MaterialTable
+      :fetch="fetch"
+      :data="data"
+      :create="create"
+      :edit="update"
+      :is-loading="loading"
+      :columns="columns">
+      <template #id="{ row }">
+         <span class="font-bold">{{ row.id }}</span>
+      </template>
+      <template #stock="{ row }">
+         <span class="font-bold badge badge-secondary">{{ row.stock }}</span>
+      </template>
+      <template #categoryID="{ row }">
+         <span class="font-bold badge badge-primary">{{ row.categoryID }}</span>
+      </template>
+      <template #createdAt="{ row }">
+         {{ row.createdAt }}
+      </template>
+   </MaterialTable>
 </template>
 
 <style scoped></style>

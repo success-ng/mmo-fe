@@ -13,7 +13,7 @@
    const login = async () => {
       try {
          await authService.login(loginForm.value);
-         router.push("/");
+         router.back();
       } catch (error) {
          console.error(error);
       }

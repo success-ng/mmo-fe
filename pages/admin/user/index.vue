@@ -6,7 +6,7 @@
       layout: "admin",
    });
    const userService = useApiUserService();
-
+   const router = useRouter();
    const users: Ref<UserModel[]> = ref<UserModel[]>([]);
    const isLoading = ref(true);
    const fetch = async () => {
@@ -17,6 +17,10 @@
       });
    };
 
+   const create = async () => {
+      router.push("/admin/user/create");
+   };
+
    const columns = [
       { key: "id", label: "#" },
       { key: "name", label: "Tên" },
@@ -24,6 +28,7 @@
       { key: "active", label: "Hoạt động" },
       { key: "role", label: "Vai trò" },
       { key: "amount", label: "Số dư/Nạp/Thanh toán" },
+      { key: "discount", label: "Giảm giá" },
    ];
 </script>
 
@@ -34,7 +39,13 @@
          :is-loading="isLoading"
          :data="users"
          :columns="columns"
-         :fetch="fetch">
+         :fetch="fetch"
+         :create="create">
+         <template #id="{ row }">
+            <span class="font-bold">
+               {{ row.id }}
+            </span>
+         </template>
          <template #name="{ row }">
             <div class="flex items-center gap-3">
                <div class="avatar">
@@ -80,6 +91,9 @@
                /
                {{ row.deposited | 0 }}
             </span>
+         </template>
+         <template #discount="{ row }">
+            <span class="badge badge-ghost"> {{ row.discount | 0 }} % </span>
          </template>
       </MaterialTable>
    </section>

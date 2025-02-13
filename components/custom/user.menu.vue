@@ -34,11 +34,14 @@
 </script>
 
 <template>
-   <ul class="sticky top-3 menu bg-base-100 rounded-box">
+   <ul
+      class="sticky flex flex-row justify-between top-3 menu bg-base-100 rounded-box md:block">
       <li v-for="link in links">
          <NuxtLink :to="link.to">
             <Icon :name="link.icon" />
-            {{ link.name }}
+            <span class="hidden md:block">
+               {{ link.name }}
+            </span>
          </NuxtLink>
       </li>
    </ul>

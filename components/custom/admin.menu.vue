@@ -44,7 +44,9 @@
       <li v-for="link in links">
          <NuxtLink :to="link.to">
             <Icon :name="link.icon" />
-            {{ link.name }}
+            <span class="hidden md:block">
+               {{ link.name }}
+            </span>
          </NuxtLink>
       </li>
    </ul>

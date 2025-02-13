@@ -39,7 +39,7 @@
             v-for="product in category.products" />
       </div>
    </div>
-   <div
+   <!-- <div
       class="space-y-3"
       v-for="category in clonemup_categories.categories"
       :key="category.id">
@@ -50,12 +50,7 @@
          </figure>
          <span class="text-neutral-content">{{ category.name }}</span>
       </div>
-      <!-- <div class="grid gap-8 md:grid-cols-4">
-         <CustomProduct
-            :product="product"
-            v-for="product in category.products" />
-      </div> -->
-   </div>
+   </div> -->
 </template>
 
 <style scoped></style>
