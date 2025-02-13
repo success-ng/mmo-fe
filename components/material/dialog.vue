@@ -10,10 +10,10 @@
 
    const showModal = ref(false);
 
-   // const open = () => {
-   //    if (onOpen) onOpen();
-   //    showModal.value = !showModal.value;
-   // };
+   const open = () => {
+      if (onOpen) onOpen();
+      showModal.value = !showModal.value;
+   };
 
    const close = () => {
       if (onClose) onClose();
@@ -27,9 +27,9 @@
 </script>
 
 <template>
-   <!-- <button :class="class" @click="open">
+   <button :class="class" @click="open">
       <slot name="btn-content">Toggle modal</slot>
-   </button> -->
+   </button>
    <div class="modal" :class="{ 'modal-open': showModal }">
       <div class="modal-box">
          <h3 class="text-lg font-bold">{{ title }}</h3>

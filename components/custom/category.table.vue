@@ -20,7 +20,7 @@
    const save = (model: CategoryModel) => {
       if (model.isEdit) {
          categoryService
-            .save(model)
+            .create(model)
             .then(() => {
                fetch();
                $toast(`Cập nhật danh mục ${model.id}`, {
@@ -38,7 +38,7 @@
 
    const onCreate = () => {
       categoryService
-         .save(newCategory.value)
+         .create(newCategory.value)
          .then((res) => {
             $toast(`Tạo danh mục ${res.id}}`, {
                type: "success",

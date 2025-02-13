@@ -8,21 +8,80 @@
    const userService = useApiUserService();
 
    const users: Ref<UserModel[]> = ref<UserModel[]>([]);
-   onMounted(() => {
+   const isLoading = ref(true);
+   const fetch = async () => {
+      isLoading.value = true;
       userService.getUsers().then((res) => {
          users.value = res;
+         isLoading.value = false;
       });
-   });
+   };
+
+   const columns = [
+      { key: "id", label: "#" },
+      { key: "name", label: "Tên" },
+      { key: "contact", label: "Liên hệ" },
+      { key: "active", label: "Hoạt động" },
+      { key: "role", label: "Vai trò" },
+      { key: "amount", label: "Số dư/Nạp/Thanh toán" },
+   ];
 </script>
 
 <template>
    <section class="space-y-6">
-      <div class="card card-compact bg-base-100">
-         <div class="card-body">
-            <h3 class="card-title">Người dùng</h3>
-            <CustomUserTable :users="users" />
-         </div>
-      </div>
+      <MaterialTable
+         title="Danh sách người dùng"
+         :is-loading="isLoading"
+         :data="users"
+         :columns="columns"
+         :fetch="fetch">
+         <template #name="{ row }">
+            <div class="flex items-center gap-3">
+               <div class="avatar">
+                  <div class="w-12 h-12 mask mask-squircle">
+                     <img
+                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                        alt="Avatar Tailwind CSS Component" />
+                  </div>
+               </div>
+               <div>
+                  <div class="font-bold">{{ row.fullname }}</div>
+                  <div class="text-sm opacity-50">
+                     {{ row.username }}
+                  </div>
+               </div>
+            </div>
+         </template>
+         <template #contact="{ row }">
+            <span class="badge badge-ghost badge-sm">
+               {{ row.email }}
+            </span>
+            <br />
+            <span class="badge badge-ghost badge-sm">{{ row.phone }}</span>
+         </template>
+         <template #active="{ row }">
+            <div
+               class="space-x-1 badge badge-outline badge-md"
+               :class="[row.enabled ? `badge-success` : `badge-error`]">
+               <Icon
+                  name="fa6-solid:circle"
+                  :class="[row.enabled ? `text-success` : `text-error`]"
+                  size="10" />
+               <span>
+                  {{ row.enabled ? "Active" : "Inactive" }}
+               </span>
+            </div>
+         </template>
+         <template #amount="{ row }">
+            <span class="badge badge-ghost">
+               {{ row.balance | 0 }}
+               /
+               {{ row.paid | 0 }}
+               /
+               {{ row.deposited | 0 }}
+            </span>
+         </template>
+      </MaterialTable>
    </section>
 </template>
 

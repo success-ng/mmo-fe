@@ -28,7 +28,12 @@
       orderService
          .buy(buyModel.value)
          .then((res) => {
-            router.push(`/payment/${res.id}`);
+            router.push({
+               path: `/payment/${res.id}`,
+               query: {
+                  productString: res.via,
+               },
+            });
          })
          .catch((err: AxiosError) => {
             const data = err.response?.data as {

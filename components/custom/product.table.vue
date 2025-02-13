@@ -37,7 +37,7 @@
    };
    const onCreate = (model: ProductModel) => {
       model.stock = 0;
-      productService.save(model).then((res) => {
+      productService.create(model).then((res) => {
          isOpenModal.value = false;
          fetch();
          $toast(`Tạo sản phẩm ${res.id}}`, {

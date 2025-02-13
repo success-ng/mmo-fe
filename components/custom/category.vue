@@ -18,7 +18,6 @@
       });
       categoryService.index().then((res) => {
          categories.value = res;
-         console.log(categories.value);
       });
    });
 </script>
