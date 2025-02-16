@@ -48,7 +48,7 @@
                   class="w-full h-32 textarea input-bordered"
                   placeholder="Nhập nội dung"
                   v-model="intro.val"></textarea> -->
-               <div class="">
+               <div>
                   <ClientOnly fallback-tag="div" fallback="Loading...">
                      <QuillEditor
                         content-type="html"

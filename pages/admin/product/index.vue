@@ -5,7 +5,6 @@
    const data: Ref<ProductModel[]> = ref([] as ProductModel[]);
    const productService = useApiProductService();
 
-   const userService = useApiUserService();
    definePageMeta({
       layout: "admin",
    });
@@ -23,16 +22,11 @@
       router.push("/admin/product/create");
    };
 
-   const update = async (model: ProductModel) => {
-      router.push(`/admin/product/${model.id}`);
+   const update = async (id: number) => {
+      router.push(`/admin/product/${id}`);
    };
    const loading = ref(true);
 
-   onMounted(() => {
-      userService.getUsers().then((res) => {
-         console.log(res);
-      });
-   });
    const columns = [
       { key: "id", label: "#" },
       { key: "country", label: "Quốc gia" },
@@ -49,7 +43,7 @@
       :fetch="fetch"
       :data="data"
       :create="create"
-      :edit="update"
+      :show="update"
       :is-loading="loading"
       :columns="columns">
       <template #id="{ row }">

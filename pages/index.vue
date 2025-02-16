@@ -1,8 +1,8 @@
 <script setup lang="ts">
-   import { Quill } from "@vueup/vue-quill";
    import { useApiSettingService } from "~/composables/api/setting.service";
    import type { SettingModel } from "~/composables/models/setting.model";
-
+   // import "@vueup/vue-quill/dist/vue-quill.snow.css";
+   import "~/assets/css/main.css";
    const settingService = useApiSettingService();
    const intro = ref<SettingModel>({} as SettingModel);
 

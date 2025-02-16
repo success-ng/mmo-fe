@@ -35,7 +35,7 @@
 
 <template>
    <ul
-      class="sticky flex flex-row justify-between top-3 menu bg-base-100 rounded-box md:block">
+      class="sticky flex flex-row justify-between drop-shadow-lg top-3 menu menu-md bg-base-100 rounded-box md:block">
       <li v-for="link in links">
          <NuxtLink :to="link.to">
             <Icon :name="link.icon" />

@@ -70,9 +70,9 @@
                </span>
             </div>
             <div class="">
-               <pre class="flex-1 font-sans text-dark text-wrap">{{
-                  product.description
-               }}</pre>
+               <div
+                  class="flex-1 font-sans text-dark text-wrap"
+                  v-html="product.description" />
                <p>
                   - Quốc gia <Icon name="fa6-solid:earth-asia" /> :
                   {{ product.country }}

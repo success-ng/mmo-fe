@@ -9,22 +9,34 @@
    const id = route.params.id;
    const category = ref({});
    const products = ref([]);
+   const isLoading = ref(true);
    const categoryService = useApiCategoryService();
-   onMounted(() => {
+   const fetch = async () => {
       categoryService.get(id).then((res) => {
          products.value = res.products;
          category.value = res;
       });
-   });
+   };
+   const columns = [
+      { key: "id", label: "#" },
+      { key: "name", label: "Tên" },
+      { key: "price", label: "Giá" },
+      { key: "stock", label: "Số lượng" },
+      { key: "createdAt", label: "Ngày tạo" },
+   ];
 </script>
 
 <template>
    <section>
-      <div class="card card-compact bg-base-100">
-         <div class="card-body">
-            <div class="card-title">Danh mục sản phẩm: {{ category.name }}</div>
-            <CustomProductTable :products="products" />
-         </div>
-      </div>
+      <MaterialTable
+         :title="`Danh sách sản phẩm trong: ${category.name}`"
+         :fetch="fetch"
+         :is-loading="isLoading"
+         :columns="columns"
+         :data="products">
+         <template #id="{ row }">
+            <span class="font-bold">{{ row.id }}</span>
+         </template>
+      </MaterialTable>
    </section>
 </template>

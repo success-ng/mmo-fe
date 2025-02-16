@@ -7,21 +7,52 @@
    });
    const transactionService = useApiTransactionService();
    const txs: Ref<TransactionModel[]> = ref([] as TransactionModel[]);
-   onMounted(() => {
+   const isLoading = ref(true);
+   const fetch = async () => {
+      isLoading.value = true;
       transactionService.txs().then((res) => {
+         isLoading.value = false;
          txs.value = res;
       });
-   });
+   };
+   const columns = [
+      { key: "id", label: "#" },
+      { key: "userId", label: "User Id" },
+      { key: "amount", label: "Số tiền" },
+      { key: "paymentMethod", label: "Loại giao dịch" },
+      { key: "status", label: "Trạng thái" },
+      { key: "transactionDate", label: "Ngày giao dịch" },
+   ];
 </script>
 
 <template>
-   <section class="space-y-6">
-      <div class="card card-compact bg-base-100">
-         <div class="card-body">
-            <h3 class="card-title">Giao dịch</h3>
-            <CustomTransactionTable :txs="txs" />
-         </div>
-      </div>
+   <section>
+      <MaterialTable
+         :data="txs"
+         :columns="columns"
+         :fetch="fetch"
+         :is-loading="isLoading">
+         <template #id="{ row }">
+            <span class="font-bold">{{ row.id }}</span>
+         </template>
+         <template #userId="{ row }">
+            <span class="font-bold">{{ row.userId }}</span>
+         </template>
+         <template #status="{ row }">
+            <span class="font-bold badge badge-secondary">{{
+               row.status
+            }}</span>
+         </template>
+         <template #amount="{ row }">
+            <span class="font-bold">{{ row.amount }} đ</span>
+         </template>
+         <template #paymentMethod="{ row }">
+            <span class="font-bold">{{ row.paymentMethod }}</span>
+         </template>
+         <template #transactionDate="{ row }">
+            <span class="font-bold">{{ row.transactionDate }}</span>
+         </template>
+      </MaterialTable>
    </section>
 </template>
 
