@@ -56,11 +56,6 @@
          :edit="edit"
          :remove="remove"
          :columns="columns">
-         <template #id="{ row }">
-            <span class="font-bold">
-               {{ row.id }}
-            </span>
-         </template>
          <template #productCount="{ row }">
             <span class="font-bold badge badge-md badge-secondary">
                {{ row.products.length }}

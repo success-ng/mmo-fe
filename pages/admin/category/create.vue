@@ -8,7 +8,7 @@
       <div class="card card-compact bg-base-100">
          <div class="card-body">
             <h3 class="card-title">Create</h3>
-            <CustomCategoryForm></CustomCategoryForm>
+            <CustomCategoryForm />
          </div>
       </div>
    </section>

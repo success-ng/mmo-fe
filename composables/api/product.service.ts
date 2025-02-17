@@ -13,7 +13,7 @@ export const useApiProductService = () => {
     const data = await axios.get(`${prefix}/${id}`)
     return data.data
   }
-  const save = async (body: ProductModel) => {
+  const update = async (body: ProductModel) => {
     const data = await axios.put(`${prefix}/`, body)
     return data.data;
   }
@@ -27,5 +27,5 @@ export const useApiProductService = () => {
     return data.data;
   }
 
-  return { index, get, save, add, create }
+  return { index, get, update, add, create }
 }

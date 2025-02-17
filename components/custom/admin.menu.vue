@@ -6,6 +6,11 @@
          to: "/admin/",
       },
       {
+         name: "Cài đặt",
+         icon: "fa6-solid:wrench",
+         to: "/admin/setting",
+      },
+      {
          name: "Người dùng",
          icon: "fa6-solid:users",
          to: "/admin/user",

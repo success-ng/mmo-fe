@@ -38,53 +38,29 @@ export const useApiUserService = () => {
     const data = await axios.post('/user/create', form);
     return data.data;
   }
-  const userHistory = async () => {
-    return ref<UserHistoryModel[]>([
-      {
-        id: 1,
-        createAt: "2024-12-22T16:20:00Z",
-        action: "Create an account",
-        ip: "42.113.220.25",
-      },
-      {
-        id: 2,
-        createAt: "2024-12-23T09:15:00Z",
-        action: "Login",
-        ip: "192.168.1.15",
-      },
-      {
-        id: 3,
-        createAt: "2024-12-23T10:05:00Z",
-        action: "Update profile",
-        ip: "203.113.112.45",
-      },
-      {
-        id: 4,
-        createAt: "2024-12-24T08:30:00Z",
-        action: "Change password",
-        ip: "202.54.1.5",
-      },
-      {
-        id: 5,
-        createAt: "2024-12-24T12:45:00Z",
-        action: "Logout",
-        ip: "42.113.220.25",
-      },
-    ]);
-  }
-
   const getUsers = async (): Promise<UserModel[]> => {
     const data = await axios.get('/user/')
     return data.data
   }
 
-  const register = (form: RegisterForm) => {
-    axios.post('/user/create', form)
+  const register = async (form: RegisterForm): Promise<UserModel> => {
+    const data = await axios.post('/user/create', form)
+    return data.data;
+  }
+
+  const get = async (id: number) => {
+    const data = await axios.get(`/user/${id}`)
+    return data.data
+  }
+
+  const update = async (form: UserModel) => {
+    const data = await axios.put(`/user`, form)
+    return data.data
   }
 
   const logout = async () => {
     const token = useCookie("authToken")
     token.value = undefined
   }
-  return { profile, userTransaction, userOrder, userHistory, register, getUsers, updateProfile, changePassword, logout, create }
+  return { profile, userTransaction, userOrder, get, register, update, getUsers, updateProfile, changePassword, logout, create }
 }

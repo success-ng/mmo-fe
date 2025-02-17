@@ -17,6 +17,10 @@
       });
    };
 
+   const show = async (id: number) => {
+      router.push(`/admin/user/${id}`);
+   };
+
    const create = async () => {
       router.push("/admin/user/create");
    };
@@ -40,12 +44,8 @@
          :data="users"
          :columns="columns"
          :fetch="fetch"
+         :show="show"
          :create="create">
-         <template #id="{ row }">
-            <span class="font-bold">
-               {{ row.id }}
-            </span>
-         </template>
          <template #name="{ row }">
             <div class="flex items-center gap-3">
                <div class="avatar">

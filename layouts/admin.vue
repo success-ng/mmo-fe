@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+   const router = useRouter();
+</script>
 
 <template>
    <div class="flex flex-col h-dvh bg-base-300">
@@ -12,6 +14,16 @@
                </aside>
                <div class="flex-1 space-y-3">
                   <slot />
+                  <div class="flex justify-between">
+                     <button @click="router.back()" class="btn btn-border">
+                        <Icon name="fa6-solid:arrow-left" />
+                        Back
+                     </button>
+                     <button @click="router.forward()" class="btn btn-border">
+                        <Icon name="fa6-solid:arrow-right" />
+                        Forward
+                     </button>
+                  </div>
                </div>
             </div>
          </main>

@@ -40,11 +40,6 @@
          title="Danh sách đơn hàng"
          :columns="columns"
          :is-loading="isLoading">
-         <template #id="{ row }">
-            <span class="font-bold">
-               {{ row.id }}
-            </span>
-         </template>
          <template #user="{ row }">
             <div class="flex items-center gap-3">
                <div class="avatar">

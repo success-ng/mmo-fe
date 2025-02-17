@@ -32,9 +32,6 @@
          :columns="columns"
          :fetch="fetch"
          :is-loading="isLoading">
-         <template #id="{ row }">
-            <span class="font-bold">{{ row.id }}</span>
-         </template>
          <template #userId="{ row }">
             <span class="font-bold">{{ row.userId }}</span>
          </template>

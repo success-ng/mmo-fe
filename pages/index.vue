@@ -5,10 +5,13 @@
    import "~/assets/css/main.css";
    const settingService = useApiSettingService();
    const intro = ref<SettingModel>({} as SettingModel);
-
+   const dialog = ref<SettingModel>({} as SettingModel);
    onMounted(() => {
       settingService.getByName("INTRO").then((res) => {
          intro.value = res;
+      });
+      settingService.getByName("DIALOG").then((res) => {
+         dialog.value = res;
       });
    });
 </script>
@@ -19,5 +22,8 @@
          <div class="" v-html="intro.val"></div>
       </div>
       <CustomCategory />
+      <MaterialDialog :is-open="true" title="Giới thiệu">
+         <div class="p-10" v-html="dialog.val"></div>
+      </MaterialDialog>
    </section>
 </template>

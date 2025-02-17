@@ -24,9 +24,9 @@
          @click="toggleTheme"
          type="checkbox"
          value="synthwave"
-         class="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1" />
+         class="col-span-2 col-start-1 row-start-1 toggle theme-controller bg-base-content" />
       <svg
-         class="stroke-base-100 fill-base-100 col-start-1 row-start-1"
+         class="col-start-1 row-start-1 stroke-base-100 fill-base-100"
          xmlns="http://www.w3.org/2000/svg"
          width="14"
          height="14"
@@ -41,7 +41,7 @@
             d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
       </svg>
       <svg
-         class="stroke-base-100 fill-base-100 col-start-2 row-start-1"
+         class="col-start-2 row-start-1 stroke-base-100 fill-base-100"
          xmlns="http://www.w3.org/2000/svg"
          width="14"
          height="14"

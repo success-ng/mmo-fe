@@ -22,46 +22,11 @@
       analysisService.index().then((res) => {
          analysis.value = res;
       });
-      settingService.getByName("INTRO").then((res) => {
-         intro.value = res;
-      });
    });
-
-   const onsubmit = () => {
-      settingService.update(intro.value).then((result) => {
-         intro.value = result;
-         $toast("Cập nhật thành công", {
-            type: "success",
-         });
-      });
-   };
 </script>
 
 <template>
    <section class="space-y-6">
-      <div class="card card-compact bg-base-100">
-         <div class="card-body">
-            <h3 class="card-title">Bảng điều khiển</h3>
-            <label>
-               <p>Nội dung giới thiệu:</p>
-               <!-- <textarea
-                  class="w-full h-32 textarea input-bordered"
-                  placeholder="Nhập nội dung"
-                  v-model="intro.val"></textarea> -->
-               <div>
-                  <ClientOnly fallback-tag="div" fallback="Loading...">
-                     <QuillEditor
-                        content-type="html"
-                        toolbar="full"
-                        class="textarea input-bordered"
-                        v-model:content="intro.val">
-                     </QuillEditor>
-                  </ClientOnly>
-               </div>
-            </label>
-            <button class="btn btn-primary" @click="onsubmit">Lưu</button>
-         </div>
-      </div>
       <div class="grid grid-cols-3 gap-3">
          <div class="card card-compact card-side bg-base-100">
             <div class="p-3 card-title">

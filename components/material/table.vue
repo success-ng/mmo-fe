@@ -108,14 +108,18 @@
                <tr v-for="(row, index) in data">
                   <td v-for="(col, key) in columns" :key="key">
                      <slot :name="col.key" :row="row">
+                        <span v-if="col.key == `id`" class="font-bold">{{
+                           row[col.key]
+                        }}</span>
                         <input
+                           v-else
                            type="text"
                            v-model="row[col.key]"
                            :disabled="!row.isEdit"
                            class="input input-sm disabled:text-base-content input-bordered" />
                      </slot>
                   </td>
-                  <td v-if="create || edit || remove">
+                  <td v-if="create || edit || remove || show">
                      <div class="flex gap-3">
                         <button
                            v-if="show"

@@ -176,9 +176,6 @@
       :fetch="fetchTxs"
       :columns="columnsTxs"
       :is-loading="isLoadingTxs">
-      <template #id="{ row }">
-         <span class="font-bold">{{ row.id }}</span>
-      </template>
       <template #userId="{ row }">
          <span class="font-bold">{{ row.userId }}</span>
       </template>
@@ -201,11 +198,6 @@
       title="Danh sách đơn hàng"
       :columns="columnsOrders"
       :is-loading="isLoadingOrders">
-      <template #id="{ row }">
-         <span class="font-bold">
-            {{ row.id }}
-         </span>
-      </template>
       <template #user="{ row }">
          <div class="flex items-center gap-3">
             <div class="avatar">

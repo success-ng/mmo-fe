@@ -5,6 +5,7 @@
       layout: "admin",
    });
 
+   const router = useRouter();
    const route = useRoute();
    const id = route.params.id;
    const category = ref({});
@@ -12,9 +13,11 @@
    const isLoading = ref(true);
    const categoryService = useApiCategoryService();
    const fetch = async () => {
+      isLoading.value = true;
       categoryService.get(id).then((res) => {
          products.value = res.products;
          category.value = res;
+         isLoading.value = false;
       });
    };
    const columns = [
@@ -31,12 +34,10 @@
       <MaterialTable
          :title="`Danh sách sản phẩm trong: ${category.name}`"
          :fetch="fetch"
+         :create="() => router.push(`/admin/product/create`)"
          :is-loading="isLoading"
          :columns="columns"
          :data="products">
-         <template #id="{ row }">
-            <span class="font-bold">{{ row.id }}</span>
-         </template>
       </MaterialTable>
    </section>
 </template>

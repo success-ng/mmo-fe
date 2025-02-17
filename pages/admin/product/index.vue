@@ -10,6 +10,8 @@
    });
 
    const router = useRouter();
+   const loading = ref(true);
+
    const fetch = async () => {
       loading.value = true;
       productService.index().then((response) => {
@@ -25,7 +27,6 @@
    const update = async (id: number) => {
       router.push(`/admin/product/${id}`);
    };
-   const loading = ref(true);
 
    const columns = [
       { key: "id", label: "#" },
@@ -46,9 +47,6 @@
       :show="update"
       :is-loading="loading"
       :columns="columns">
-      <template #id="{ row }">
-         <span class="font-bold">{{ row.id }}</span>
-      </template>
       <template #stock="{ row }">
          <span class="font-bold badge badge-secondary">{{ row.stock }}</span>
       </template>
