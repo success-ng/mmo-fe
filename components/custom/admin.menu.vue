@@ -44,11 +44,11 @@
 </script>
 
 <template>
-   <ul class="sticky top-3 menu bg-base-100 rounded-box">
+   <ul class="sticky top-3 menu bg-base-100 rounded-box drop-shadow-lg">
       <li class="py-2 font-bold text-center">Admin menu</li>
       <li v-for="link in links">
          <NuxtLink :to="link.to">
-            <Icon :name="link.icon" />
+            <Icon :name="link.icon" class="basis-1/4" />
             <span class="hidden md:block">
                {{ link.name }}
             </span>

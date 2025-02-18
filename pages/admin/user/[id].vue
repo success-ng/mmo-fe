@@ -1,4 +1,7 @@
 <script setup lang="ts">
+   definePageMeta({
+      layout: "admin",
+   });
    const route = useRoute();
    const id = Number(route.params.id);
 </script>

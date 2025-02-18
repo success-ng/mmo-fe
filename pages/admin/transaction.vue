@@ -20,6 +20,7 @@
       { key: "userId", label: "User Id" },
       { key: "amount", label: "Số tiền" },
       { key: "paymentMethod", label: "Loại giao dịch" },
+      { key: "orderCode", label: "Mã đơn hàng" },
       { key: "status", label: "Trạng thái" },
       { key: "transactionDate", label: "Ngày giao dịch" },
    ];
@@ -28,6 +29,7 @@
 <template>
    <section>
       <MaterialTable
+         title="Giao dịch"
          :data="txs"
          :columns="columns"
          :fetch="fetch"

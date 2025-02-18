@@ -31,6 +31,7 @@
 <template>
    <ul
       class="sticky flex flex-row justify-between drop-shadow-lg top-3 menu menu-md bg-base-100 rounded-box md:block">
+      <li class="py-2 font-bold text-center">Menu</li>
       <li v-for="link in links">
          <NuxtLink :to="link.to">
             <Icon :name="link.icon" />
@@ -39,11 +40,6 @@
             </span>
          </NuxtLink>
       </li>
-      <!-- <li>
-         <button class="btn btn-primary" @click="isDialogOpen = true">
-            Open Modal
-         </button>
-      </li> -->
    </ul>
 </template>
 

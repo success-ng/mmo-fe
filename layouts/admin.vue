@@ -15,11 +15,15 @@
                <div class="flex-1 space-y-3">
                   <slot />
                   <div class="flex justify-between">
-                     <button @click="router.back()" class="btn btn-border">
+                     <button
+                        @click="router.back()"
+                        class="btn btn-border drop-shadow">
                         <Icon name="fa6-solid:arrow-left" />
                         Back
                      </button>
-                     <button @click="router.forward()" class="btn btn-border">
+                     <button
+                        @click="router.forward()"
+                        class="btn btn-border drop-shadow">
                         <Icon name="fa6-solid:arrow-right" />
                         Forward
                      </button>

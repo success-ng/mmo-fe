@@ -111,6 +111,11 @@
                         <span v-if="col.key == `id`" class="font-bold">{{
                            row[col.key]
                         }}</span>
+                        <textarea
+                           v-else-if="col.key == `description`"
+                           :disabled="!row.isEdit"
+                           class="w-full textarea textarea-bordered disabled:text-base-content"
+                           v-model="row[col.key]" />
                         <input
                            v-else
                            type="text"
@@ -158,7 +163,7 @@
                            </button>
                            <button
                               class="join-item btn btn-sm btn-outline btn-primary">
-                              Page 22
+                              Page 1 of 1
                            </button>
                            <button
                               class="join-item btn btn-sm btn-outline btn-primary">

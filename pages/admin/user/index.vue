@@ -43,9 +43,7 @@
          :is-loading="isLoading"
          :data="users"
          :columns="columns"
-         :fetch="fetch"
-         :show="show"
-         :create="create">
+         :fetch="fetch">
          <template #name="{ row }">
             <div class="flex items-center gap-3">
                <div class="avatar">

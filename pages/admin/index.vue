@@ -1,26 +1,25 @@
 <script setup lang="ts">
-   import { QuillEditor } from "@vueup/vue-quill";
    import "@vueup/vue-quill/dist/vue-quill.snow.css";
    import { useApiAnalysisService } from "~/composables/api/analysis.service";
-   import { useApiSettingService } from "~/composables/api/setting.service";
+   import { useApiWebhookService } from "~/composables/api/webhook.service";
    import {
       getAnalysis,
       type AnalysisModel,
    } from "~/composables/models/analysis.model";
-   import type { SettingModel } from "~/composables/models/setting.model";
 
    definePageMeta({
       layout: "admin",
    });
-   const { $toast } = useNuxtApp();
-   const settingService = useApiSettingService();
    const analysisService = useApiAnalysisService();
-   const content = ref("<p>Đây là nội dung mặc định!</p>");
-   const intro = ref<SettingModel>({} as SettingModel);
    const analysis = ref<AnalysisModel[]>([] as AnalysisModel[]);
+   const webhooks = useApiWebhookService();
+
    onMounted(() => {
       analysisService.index().then((res) => {
          analysis.value = res;
+      });
+      webhooks.register().then((res) => {
+         console.log(res);
       });
    });
 </script>
@@ -28,7 +27,7 @@
 <template>
    <section class="space-y-6">
       <div class="grid grid-cols-3 gap-3">
-         <div class="card card-compact card-side bg-base-100">
+         <div class="card card-compact card-side bg-base-100 drop-shadow-lg">
             <div class="p-3 card-title">
                <span class="p-6 mask mask-circle bg-primary/10 text-primary">
                   <Icon name="fa6-solid:user" size="20" />
@@ -41,7 +40,7 @@
                </p>
             </div>
          </div>
-         <div class="card card-compact card-side bg-base-100">
+         <div class="card card-compact card-side bg-base-100 drop-shadow-lg">
             <div class="p-3 card-title">
                <span class="p-6 mask mask-circle bg-primary/10 text-primary">
                   <Icon name="fa6-solid:cart-flatbed" size="20" />
@@ -54,7 +53,7 @@
                </p>
             </div>
          </div>
-         <div class="card card-compact card-side bg-base-100">
+         <div class="card card-compact card-side bg-base-100 drop-shadow-lg">
             <div class="p-3 card-title">
                <span class="p-6 mask mask-circle bg-primary/10 text-primary">
                   <Icon name="fa6-solid:sack-dollar" size="20" />
@@ -67,7 +66,7 @@
                </p>
             </div>
          </div>
-         <div class="card card-compact card-side bg-base-100">
+         <div class="card card-compact card-side bg-base-100 drop-shadow-lg">
             <div class="p-3 card-title">
                <span class="p-6 mask mask-circle bg-primary/10 text-primary">
                   <Icon name="fa6-solid:money-bill-transfer" size="20" />
@@ -80,7 +79,7 @@
                </p>
             </div>
          </div>
-         <div class="card card-compact card-side bg-base-100">
+         <div class="card card-compact card-side bg-base-100 drop-shadow-lg">
             <div class="p-3 card-title">
                <span class="p-6 mask mask-circle bg-primary/10 text-primary">
                   <Icon name="fa6-solid:circle-dollar-to-slot" size="20" />
@@ -94,7 +93,7 @@
             </div>
          </div>
 
-         <div class="card card-compact card-side bg-base-100">
+         <div class="card card-compact card-side bg-base-100 drop-shadow-lg">
             <div class="p-3 card-title">
                <span class="p-6 mask mask-circle bg-primary/10 text-primary">
                   <Icon name="fa6-solid:money-bill-wave" size="20" />
@@ -107,7 +106,7 @@
                </p>
             </div>
          </div>
-         <div class="card card-compact card-side bg-base-100">
+         <div class="card card-compact card-side bg-base-100 drop-shadow-lg">
             <div class="p-3 card-title">
                <span class="p-6 mask mask-circle bg-primary/10 text-primary">
                   <Icon name="fa6-solid:money-bill-wave" size="20" />

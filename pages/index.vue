@@ -1,7 +1,6 @@
 <script setup lang="ts">
    import { useApiSettingService } from "~/composables/api/setting.service";
    import type { SettingModel } from "~/composables/models/setting.model";
-   // import "@vueup/vue-quill/dist/vue-quill.snow.css";
    import "~/assets/css/main.css";
    const settingService = useApiSettingService();
    const intro = ref<SettingModel>({} as SettingModel);
@@ -23,7 +22,7 @@
       </div>
       <CustomCategory />
       <MaterialDialog :is-open="true" title="Giới thiệu">
-         <div class="p-10" v-html="dialog.val"></div>
+         <div class="" v-html="dialog.val"></div>
       </MaterialDialog>
    </section>
 </template>

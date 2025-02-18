@@ -33,28 +33,24 @@
 
 <template>
    <section class="space-y-6">
-      <div class="card card-compact bg-base-100">
-         <div class="card-body">
-            <MaterialTable
-               title="Cài đặt"
-               :data="settings"
-               :fetch="fetch"
-               :columns="columns"
-               :isLoading="isLoading"
-               :create="create"
-               :show="show">
-               <template #name="{ row }">
-                  <span class="font-bold">{{ row.name }}</span>
-               </template>
-               <template #description="{ row }">
-                  <span class="font-bold">{{ row.description }}</span>
-               </template>
-               <template #val="{ row }">
-                  <span class="" v-html="row.val" />
-               </template>
-            </MaterialTable>
-         </div>
-      </div>
+      <MaterialTable
+         title="Cài đặt"
+         :data="settings"
+         :fetch="fetch"
+         :columns="columns"
+         :isLoading="isLoading"
+         :create="create"
+         :show="show">
+         <template #name="{ row }">
+            <span class="font-bold">{{ row.name }}</span>
+         </template>
+         <template #description="{ row }">
+            <span class="font-bold">{{ row.description }}</span>
+         </template>
+         <template #val="{ row }">
+            <span class="" v-html="row.val" />
+         </template>
+      </MaterialTable>
    </section>
 </template>
 

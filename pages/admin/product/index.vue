@@ -41,6 +41,7 @@
 
 <template>
    <MaterialTable
+      title="Sản phẩm"
       :fetch="fetch"
       :data="data"
       :create="create"

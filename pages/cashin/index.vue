@@ -5,7 +5,7 @@
 
    const transactionService = useApiTransactionService();
    const userService = useApiUserService();
-
+   const router = useRouter();
    const cashInAmt = [
       5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000,
    ];
@@ -37,7 +37,7 @@
             redirectUrl: "http://localhost:3000/cashin",
          })
          .then((res) => {
-            window.open(res.paymentLink, "_blank");
+            window.location.href = res.paymentLink;
          });
    };
 </script>

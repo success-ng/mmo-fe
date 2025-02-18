@@ -1,8 +1,5 @@
 <script setup lang="ts">
-   import { routerKey } from "vue-router";
-   import CategoryTable from "~/components/custom/category.table.vue";
    import { useApiCategoryService } from "~/composables/api/category.service";
-   import type { CategoryModel } from "~/composables/models/category.model";
 
    definePageMeta({
       layout: "admin",
@@ -36,11 +33,35 @@
    };
 
    const edit = async (model: any) => {
-      await categoryService.update(model);
+      await categoryService
+         .update(model)
+         .then(() => {
+            fetch();
+            $toast(`Cập nhật thành công ${model.id}`, {
+               type: "success",
+            });
+         })
+         .catch((err) => {
+            $toast(err.message, {
+               type: "error",
+            });
+         });
    };
 
    const remove = async (id: number) => {
-      await categoryService.remove(id);
+      await categoryService
+         .remove(id)
+         .then(() => {
+            fetch();
+            $toast(`Xóa thành công ${id}`, {
+               type: "success",
+            });
+         })
+         .catch((err) => {
+            $toast(err.message, {
+               type: "error",
+            });
+         });
    };
 </script>
 

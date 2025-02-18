@@ -62,27 +62,35 @@
 </script>
 
 <template>
-   <form @submit="save" class="grid grid-cols-1 gap-3 lg:grid-cols-3">
-      <label class="flex items-center gap-2 input input-bordered input-md">
-         <span class="label-text">Tên</span>
-         <input type="text" v-model="data.name" placeholder="Tên danh mục" />
-      </label>
-      <label class="flex items-center gap-2 input input-bordered">
-         Mô tả
+   <form @submit="save" class="grid grid-cols-1 gap-3 lg:grid-cols-2">
+      <label class="w-full max-w-xs form-control">
+         <div class="label">
+            <span class="label-text">Tên</span>
+         </div>
          <input
+            class="input input-bordered"
             type="text"
-            class="grow"
+            v-model="data.name"
+            placeholder="Tên danh mục" />
+      </label>
+      <label class="w-full max-w-xs form-control">
+         <div class="label">
+            <span class="label-text"> Mô tả</span>
+         </div>
+         <textarea
+            class="textarea textarea-bordered"
+            cols="30"
             placeholder="Tên danh mục"
             v-model="data.description" />
       </label>
-      <label class="flex items-center gap-2 input input-bordered">
+      <!-- <label class="flex items-center gap-2 input input-bordered">
          Icon
          <input
             type="text"
             class="grow"
             placeholder="Tên danh mục"
             v-model="data.icon" />
-      </label>
+      </label> -->
       <input type="submit" class="font-bold btn btn-primary" value="Lưu" />
       <input type="reset" class="font-bold btn btn-secondary" value="Hủy" />
    </form>

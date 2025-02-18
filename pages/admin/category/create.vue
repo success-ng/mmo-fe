@@ -7,7 +7,7 @@
    <section class="space-y-6">
       <div class="card card-compact bg-base-100">
          <div class="card-body">
-            <h3 class="card-title">Create</h3>
+            <h3 class="card-title">Create category</h3>
             <CustomCategoryForm />
          </div>
       </div>
