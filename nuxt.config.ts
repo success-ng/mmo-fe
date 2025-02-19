@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       base_url: process.env.API_BASE_URL,
+      domain: process.env.DOMAIN,
     }
   },
   compatibilityDate: '2024-11-01',

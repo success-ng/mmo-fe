@@ -50,7 +50,8 @@
 </script>
 
 <template>
-   <div class="overflow-hidden card bg-base-100 text-base-content">
+   <div
+      class="overflow-hidden card bg-base-100 text-base-content drop-shadow-lg">
       <p
          class="flex-none p-4 text-base text-center text-white bg-blue-500 card-title">
          {{ product.name }}
@@ -70,9 +71,7 @@
                </span>
             </div>
             <div class="">
-               <div
-                  class="flex-1 font-sans text-dark text-wrap"
-                  v-html="product.description" />
+               <p class="" v-html="product.description" />
                <p>
                   - Quốc gia <Icon name="fa6-solid:earth-asia" /> :
                   {{ product.country }}

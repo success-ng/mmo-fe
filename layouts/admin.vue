@@ -7,7 +7,7 @@
       <header><UiHeader /></header>
       <div class="flex flex-col justify-between flex-1 overflow-y-auto">
          <main class="p-3">
-            <div class="flex flex-col gap-3 md:flex-row">
+            <div class="flex flex-col gap-3 lg:flex-row">
                <!-- <CustomProfileMenu /> -->
                <aside class="basis-2/12">
                   <CustomAdminMenu />

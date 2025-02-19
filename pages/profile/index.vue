@@ -1,66 +1,60 @@
 <script setup lang="ts">
-   import { useApiTransactionService } from "~/composables/api/transaction.service";
    import { useApiUserService } from "~/composables/api/user.service";
-   import type { OrderModel } from "~/composables/models/order.model ";
-   import type { TransactionModel } from "~/composables/models/transaction.model ";
    import type { UserModel } from "~/composables/models/user.model";
 
    const userService = useApiUserService();
-   const transactionService = useApiTransactionService();
    const { $toast } = useNuxtApp();
-   const txs: Ref<TransactionModel[]> = ref([] as TransactionModel[]);
-   const orders = ref<OrderModel[]>([] as OrderModel[]);
    const user: Ref<UserModel> = ref({} as UserModel);
 
-   const isLoadingTxs = ref(true);
-   const isLoadingOrders = ref(true);
-   const fetchOrders = async () => {
-      isLoadingOrders.value = true;
-      userService.userOrder().then((res) => {
-         isLoadingOrders.value = false;
-         orders.value = res;
-      });
-   };
-   const fetchTxs = async () => {
-      isLoadingTxs.value = true;
-      transactionService.myTxs().then((res) => {
-         isLoadingTxs.value = false;
-         txs.value = res;
-      });
-   };
-   const copyToClipboard = (text: string) => {
-      navigator.clipboard.writeText(text);
-      $toast("Đã copy via vào clipboard, CTRL+V để dán!!!", {
-         type: "success",
-      });
-   };
+   const router = useRouter();
+
+   const changePassword = ref({
+      current_password: "",
+      password: "",
+      password_confirmation: "",
+   });
 
    onMounted(async () => {
       user.value = await userService.profile();
    });
 
+   const onChangePassword = async (event: Event) => {
+      event.preventDefault();
+      if (
+         changePassword.value.password !==
+         changePassword.value.password_confirmation
+      ) {
+         $toast("Mật khẩu không trùng khớp", {
+            type: "error",
+         });
+         return;
+      }
+      await userService
+         .changePassword({
+            currentPassword: changePassword.value.current_password,
+            newPassword: changePassword.value.password,
+         })
+         .then((res) => {
+            userService.logout();
+
+            $toast("Đổi mật khẩu thành công", {
+               type: "success",
+               onClose: () => {
+                  router.push("/");
+               },
+            });
+         })
+         .catch((err) => {
+            $toast("Đổi mật khẩu thất bại, có lỗi xảy ra!!", {
+               type: "error",
+            });
+         });
+   };
+
    const onSubmit = async (event: Event) => {
       event.preventDefault();
       await userService.updateProfile(user.value);
    };
-
-   const columnsOrders = [
-      { key: "id", label: "#" },
-      { key: "user", label: "Người dùng" },
-      { key: "productId", label: "Mã sản phẩm" },
-      { key: "price", label: "Giá" },
-      { key: "status", label: "Trạng thái" },
-      { key: "via", label: "VIA" },
-   ];
-
-   const columnsTxs = [
-      { key: "id", label: "#" },
-      { key: "userId", label: "User Id" },
-      { key: "amount", label: "Số tiền" },
-      { key: "paymentMethod", label: "Loại giao dịch" },
-      { key: "status", label: "Trạng thái" },
-      { key: "transactionDate", label: "Ngày giao dịch" },
-   ];
 </script>
 
 <template>
@@ -71,7 +65,7 @@
             class="w-full h-24 overflow-hidden"
             alt="" />
       </figure>
-      <div class="flex-row items-center gap-3 card-body">
+      <div class="gap-3 md:items-center md:flex-row card-body">
          <div class="flex items-center gap-3 basis-1/2">
             <div class="avatar">
                <div class="w-24 rounded-full">
@@ -114,8 +108,8 @@
    <div class="shadow-lg card card-compact bg-base-100">
       <form class="card-body" @submit="onSubmit">
          <h1 class="card-title">Thông tin người dùng</h1>
-         <div class="grid grid-cols-3">
-            <label class="space-y-3">
+         <div class="grid gap-3 md:grid-cols-3">
+            <label class="form-control">
                <p>Tên đăng nhập</p>
                <input
                   type="text"
@@ -125,7 +119,7 @@
                   class="input input-bordered"
                   v-model="user.username" />
             </label>
-            <label class="space-y-3">
+            <label class="form-control">
                <p>Email</p>
                <input
                   type="text"
@@ -134,7 +128,7 @@
                   class="input input-bordered"
                   v-model="user.email" />
             </label>
-            <label class="space-y-3">
+            <label class="form-control">
                <p>Số điện thoại</p>
                <input
                   type="tel"
@@ -143,7 +137,7 @@
                   class="input input-bordered"
                   v-model="user.phone" />
             </label>
-            <label class="space-y-3">
+            <label class="form-control">
                <p>Họ và tên</p>
                <input
                   type="text"
@@ -152,92 +146,53 @@
                   class="input input-bordered"
                   v-model="user.fullname" />
             </label>
-            <label class="space-y-3">
+            <label class="form-control">
                <p>Telegram chat id</p>
                <input type="text" name="" id="" class="input input-bordered" />
             </label>
-            <label class="space-y-3">
+            <label class="form-control">
                <p>Ngày đăng ký</p>
-               <input type="text" name="" id="" class="input input-bordered" />
+               <input
+                  type="text"
+                  disabled
+                  class="input input-bordered"
+                  v-model="user.createdAt" />
             </label>
-            <label class="space-y-3">
+            <!-- <label class="form-control">
                <p>Lần đăng nhập gần nhất</p>
                <input type="text" name="" id="" class="input input-bordered" />
-            </label>
+            </label> -->
          </div>
          <button class="font-bold btn btn-primary text-primary-content">
             Lưu
          </button>
       </form>
    </div>
-   <MaterialTable
-      title="Lịch sử mua hàng"
-      :data="txs"
-      :fetch="fetchTxs"
-      :columns="columnsTxs"
-      :is-loading="isLoadingTxs">
-      <template #userId="{ row }">
-         <span class="font-bold">{{ row.userId }}</span>
-      </template>
-      <template #status="{ row }">
-         <span class="font-bold badge badge-secondary">{{ row.status }}</span>
-      </template>
-      <template #amount="{ row }">
-         <span class="font-bold">{{ row.amount }} đ</span>
-      </template>
-      <template #paymentMethod="{ row }">
-         <span class="font-bold">{{ row.paymentMethod }}</span>
-      </template>
-      <template #transactionDate="{ row }">
-         <span class="font-bold">{{ row.transactionDate }}</span>
-      </template>
-   </MaterialTable>
-   <MaterialTable
-      :data="orders"
-      :fetch="fetchOrders"
-      title="Danh sách đơn hàng"
-      :columns="columnsOrders"
-      :is-loading="isLoadingOrders">
-      <template #user="{ row }">
-         <div class="flex items-center gap-3">
-            <div class="avatar">
-               <div class="w-12 h-12 mask mask-squircle">
-                  <img
-                     src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                     alt="Avatar Tailwind CSS Component" />
-               </div>
-            </div>
-            <div>
-               <div class="font-bold">{{ row.user.email }}</div>
-               <div class="text-sm opacity-50">
-                  Id: {{ row.userId }} -
-                  {{ row.user.username }}
-               </div>
-            </div>
-         </div>
-      </template>
-      <template #productId="{ row }">
-         <span class="font-bold">
-            {{ row.productId }}
-         </span>
-      </template>
-      <template #price="{ row }">
-         <div class="flex items-center gap-3">
-            <div class="">
-               <p>Đơn giá: {{ row.price }} đ</p>
-               <p>Số lượng: x{{ row.quantity }}</p>
-            </div>
-            <div class="font-bold">= {{ row.totalAmount }} đ</div>
-         </div>
-      </template>
-      <template #via="{ row }">
-         <div class="tooltip" :data-tip="row.via">
-            <button class="btn btn-xs" @click="copyToClipboard(row.via)">
-               <Icon name="fa6-solid:ellipsis" />
-            </button>
-         </div>
-      </template>
-   </MaterialTable>
+   <div class="drop-shadow-lg card card-compact bg-base-100">
+      <div class="card-body">
+         <h1 class="card-title">Thay đổi mật khẩu</h1>
+         <form @submit.prevent="" class="grid grid-cols-3 gap-3">
+            <label for="">Mật khẩu hiện tại</label>
+            <label for="">Mật khẩu mới</label>
+            <label for="">Nhập lại mật khẩu mới</label>
+            <input
+               type="text"
+               class="input input-bordered"
+               v-model="changePassword.current_password" />
+            <input
+               type="text"
+               class="input input-bordered"
+               v-model="changePassword.password" />
+            <input
+               type="text"
+               class="input input-bordered"
+               v-model="changePassword.password_confirmation" />
+         </form>
+         <button class="btn btn-primary btn-md" @click="onChangePassword">
+            Cập nhật
+         </button>
+      </div>
+   </div>
 </template>
 
 <style scoped></style>

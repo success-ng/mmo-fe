@@ -65,7 +65,7 @@
          <button class="btn btn-primary btn-md">Cập nhật</button>
       </div>
    </div>
-   <div class="shadow-lg card card-compact bg-base-100">
+   <div class="drop-shadow-lg card card-compact bg-base-100">
       <div class="card-body">
          <h1 class="card-title">Thay đổi mật khẩu</h1>
          <form @submit.prevent="" class="grid grid-cols-3 gap-3">

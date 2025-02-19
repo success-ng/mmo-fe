@@ -44,8 +44,8 @@
 </script>
 
 <template>
-   <ul class="sticky top-3 menu bg-base-100 rounded-box drop-shadow-lg">
-      <li class="py-2 font-bold text-center">Admin menu</li>
+   <ul
+      class="sticky flex flex-row flex-wrap justify-between drop-shadow-lg top-3 menu menu-md bg-base-100 rounded-box lg:block">
       <li v-for="link in links">
          <NuxtLink :to="link.to">
             <Icon :name="link.icon" class="basis-1/4" />

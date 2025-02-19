@@ -27,7 +27,7 @@
    const save = async () => {
       if (props.id)
          await settingService
-            .create(setting.value)
+            .update(setting.value)
             .then((res) => {
                setting.value = res;
                $toast.success("Lưu thành công");
@@ -37,7 +37,7 @@
             });
       else {
          await settingService
-            .update(setting.value)
+            .create(setting.value)
             .then((res) => {
                setting.value = res;
                $toast.success("Lưu thành công");
@@ -52,7 +52,7 @@
    });
 </script>
 <template>
-   <div class="card bg-base-100">
+   <div class="card bg-base-100 drop-shadow-lg">
       <div class="card-body">
          <h2 class="card-title">Cài đặt: {{ setting.name }}</h2>
          <label for="form-control">

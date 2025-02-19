@@ -27,5 +27,10 @@ export const useApiProductService = () => {
     return data.data;
   }
 
-  return { index, get, update, add, create }
+  const info = async (id: number) => {
+    const data = await axios.get(`${prefix}/info/${id}`)
+    return data.data
+  }
+
+  return { index, get, update, add, create, info }
 }

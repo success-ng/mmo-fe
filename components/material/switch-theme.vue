@@ -4,7 +4,7 @@
       const savedTheme = localStorage.getItem("theme");
       if (savedTheme === "dark") {
          isDark.value = true;
-         document.documentElement.setAttribute("data-theme", "dark");
+         document.documentElement.setAttribute("data-theme", "light");
       } else {
          isDark.value = false;
          document.documentElement.setAttribute("data-theme", "light");
@@ -12,7 +12,7 @@
    });
    const toggleTheme = () => {
       isDark.value = !isDark.value;
-      const theme = isDark.value ? "dark" : "light";
+      const theme = isDark.value ? "light" : "light";
       document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
    };

@@ -58,7 +58,7 @@
 </script>
 
 <template>
-   <div class="overflow-x-auto card card-compact bg-base-100">
+   <div class="overflow-x-auto card card-compact bg-base-100 drop-shadow-lg">
       <div class="card-body">
          <div class="flex justify-between">
             <h3 class="card-title">{{ title }}</h3>

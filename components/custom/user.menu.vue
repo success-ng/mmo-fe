@@ -21,6 +21,16 @@
          name: "Bảo mât",
       },
       {
+         to: "/profile/txs",
+         icon: "fa6-solid:circle-dollar-to-slot",
+         name: "Giao dịch",
+      },
+      {
+         to: "/profile/order",
+         icon: "fa6-solid:cart-shopping",
+         name: "Đơn hàng",
+      },
+      {
          to: "/auth",
          icon: "fa6-solid:right-from-bracket",
          name: "Đăng xuất",
@@ -30,11 +40,10 @@
 
 <template>
    <ul
-      class="sticky flex flex-row justify-between drop-shadow-lg top-3 menu menu-md bg-base-100 rounded-box md:block">
-      <li class="py-2 font-bold text-center">Menu</li>
+      class="sticky flex flex-row flex-wrap justify-between drop-shadow-lg top-3 menu menu-md bg-base-100 rounded-box lg:block">
       <li v-for="link in links">
          <NuxtLink :to="link.to">
-            <Icon :name="link.icon" />
+            <Icon :name="link.icon" class="basis-1/4" />
             <span class="hidden md:block">
                {{ link.name }}
             </span>

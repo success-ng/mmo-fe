@@ -15,7 +15,7 @@
             <img src="./../public/images/contact.webp" />
             <div class="flex flex-col gap-3">
                <button class="btn">Facebook</button>
-               <button class="btn">Zalo</button>
+               <button class="btn">https://zalo.me/0812928500</button>
                <button class="btn">Telegram</button>
             </div>
          </div>

@@ -5,6 +5,7 @@
    const { change } = defineProps<{
       change: () => void;
    }>();
+   const router = useRouter();
 
    const registerForm = ref<RegisterForm>({
       username: "",
@@ -106,7 +107,7 @@
          <p class="flex-none text-center">
             Bạn đã có tài khoản?
             <button
-               @click="change"
+               @click="router.push('/auth')"
                type="reset"
                class="btn btn-primary btn-sm btn-ghost text-primary">
                Đăng nhập ngay

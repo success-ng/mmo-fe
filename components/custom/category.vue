@@ -26,7 +26,7 @@
    <div class="space-y-3" v-for="category in categories" :key="category.id">
       <div
          v-if="category.products.length > 0"
-         class="flex-row items-center gap-4 p-3 font-bold rounded-md text-primary-content card bg-gradient-to-r from-blue-800 to-purple-800">
+         class="flex-row items-center gap-4 p-3 font-bold rounded-md text-primary-content card bg-gradient-to-r from-blue-800 to-purple-800 drop-shadow-lg">
          <figure>
             <img :src="category.icon" alt="" class="w-[2em]" />
          </figure>

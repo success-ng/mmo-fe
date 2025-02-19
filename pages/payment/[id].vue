@@ -32,7 +32,7 @@
             <p class="text-center">
                Vui lòng kiểm tra đơn hàng
                <a
-                  href="http://localhost:3000/profile#order-table"
+                  href="http://103.167.89.227/profile#order-table"
                   class="link badge badge-primary"
                   >Tại đây</a
                >!

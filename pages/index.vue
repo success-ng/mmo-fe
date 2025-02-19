@@ -17,7 +17,7 @@
 
 <template>
    <section class="space-y-3">
-      <div class="p-10 card bg-base-100">
+      <div class="p-10 card bg-base-100 drop-shadow-lg">
          <div class="" v-html="intro.val"></div>
       </div>
       <CustomCategory />

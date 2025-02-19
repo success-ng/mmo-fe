@@ -4,6 +4,7 @@
    const { change } = defineProps<{
       change: () => void;
    }>();
+
    const router = useRouter();
    const authService = useAuthService();
    const loginForm = ref<LoginForm>({
@@ -21,9 +22,7 @@
 </script>
 
 <template>
-   <form
-      class="flex flex-col justify-center space-y-4 basis-1/2"
-      @submit.prevent="login">
+   <form class="flex flex-col justify-center space-y-4" @submit.prevent="login">
       <p class="justify-center flex-none card-title">Đăng nhập</p>
       <div class="space-y-4">
          <label class="flex items-center gap-2 input input-bordered">
@@ -51,7 +50,7 @@
             Bạn chưa có tài khoản?
             <button
                type="reset"
-               @click="change"
+               @click="router.push('/auth/register')"
                class="btn btn-primary btn-sm btn-ghost text-primary">
                Đăng ký ngay
             </button>
