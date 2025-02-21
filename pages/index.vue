@@ -5,24 +5,36 @@
    const settingService = useApiSettingService();
    const intro = ref<SettingModel>({} as SettingModel);
    const dialog = ref<SettingModel>({} as SettingModel);
-   onMounted(() => {
-      settingService.getByName("INTRO").then((res) => {
-         intro.value = res;
-      });
-      settingService.getByName("DIALOG").then((res) => {
-         dialog.value = res;
-      });
+   const loading = ref(true);
+   onMounted(async () => {
+      loading.value = true;
+      try {
+         const [introRes, dialogRes] = await Promise.all([
+            settingService.getByName("INTRO"),
+            settingService.getByName("DIALOG"),
+         ]);
+         intro.value = introRes;
+         dialog.value = dialogRes;
+      } finally {
+         loading.value = false;
+      }
    });
 </script>
 
 <template>
    <section class="space-y-3">
       <div class="p-10 card bg-base-100 drop-shadow-lg">
-         <div class="" v-html="intro.val"></div>
+         <p class="" v-html="intro.val"></p>
+         <div v-if="loading" class="flex justify-center">
+            <span class="loading" />
+         </div>
       </div>
       <CustomCategory />
       <MaterialDialog :is-open="true" title="Giới thiệu">
-         <div class="" v-html="dialog.val"></div>
+         <p class="" v-html="dialog.val"></p>
+         <div class="flex justify-center">
+            <span :class="{ loading: loading }" />
+         </div>
       </MaterialDialog>
    </section>
 </template>

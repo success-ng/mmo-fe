@@ -99,50 +99,42 @@
                href="#">
                HẾT HÀNG
             </button>
-
-            <div class="modal" role="dialog" :id="`my_modal_${product.id}`">
-               <div class="max-w-md space-y-4 modal-box">
-                  <h3 class="text-lg font-bold">{{ product.name }}!</h3>
-                  <label
-                     class="flex items-center gap-2 input input-sm input-bordered">
-                     Số lượng
-                     <input
-                        type="number"
-                        class="grow"
-                        placeholder="Nhập số lượng"
-                        v-model="buyModel.quantity" />
-                  </label>
-                  <label
-                     class="flex items-center gap-2 input input-sm input-bordered">
-                     Đơn giá
-                     <span class="badge badge-warning text-warning-content">
-                        {{ product.price }} đ</span
-                     >
-                  </label>
-                  <div class="divider" />
-                  <label
-                     class="flex items-center gap-2 input input-sm input-bordered">
-                     Thành tiền
-                     <span class="badge badge-warning text-warning-content">
-                        {{
-                           (product.price * buyModel.quantity).toLocaleString()
-                        }}
-                        đ</span
-                     >
-                  </label>
-                  <div class="modal-action">
-                     <a
-                        href="#"
-                        class="btn btn-success text-success-content"
-                        @click="onSubmit"
-                        >Mua!</a
-                     >
-                     <a href="#" class="btn btn-error text-error-content"
-                        >Hủy</a
-                     >
-                  </div>
-               </div>
-            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal" role="dialog" :id="`my_modal_${product.id}`">
+      <div class="max-w-md space-y-4 modal-box">
+         <h3 class="text-lg font-bold">{{ product.name }}!</h3>
+         <label class="flex items-center gap-2 input input-sm input-bordered">
+            Số lượng
+            <input
+               type="number"
+               class="grow"
+               placeholder="Nhập số lượng"
+               v-model="buyModel.quantity" />
+         </label>
+         <label class="flex items-center gap-2 input input-sm input-bordered">
+            Đơn giá
+            <span class="badge badge-warning text-warning-content">
+               {{ product.price }} đ</span
+            >
+         </label>
+         <div class="divider" />
+         <label class="flex items-center gap-2 input input-sm input-bordered">
+            Thành tiền
+            <span class="badge badge-warning text-warning-content">
+               {{ (product.price * buyModel.quantity).toLocaleString() }}
+               đ</span
+            >
+         </label>
+         <div class="modal-action">
+            <a
+               href="#"
+               class="btn btn-success text-success-content"
+               @click="onSubmit"
+               >Mua!</a
+            >
+            <a href="#" class="btn btn-error text-error-content">Hủy</a>
          </div>
       </div>
    </div>

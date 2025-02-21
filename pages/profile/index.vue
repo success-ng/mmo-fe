@@ -36,7 +36,6 @@
          })
          .then((res) => {
             userService.logout();
-
             $toast("Đổi mật khẩu thành công", {
                type: "success",
                onClose: () => {
@@ -45,7 +44,18 @@
             });
          })
          .catch((err) => {
-            $toast("Đổi mật khẩu thất bại, có lỗi xảy ra!!", {
+            const data = err.response?.data as {
+               responseMessage: {
+                  message: string;
+                  status: number;
+               };
+            };
+            alert(data.toString());
+            console.log(data);
+            const message =
+               data.responseMessage.message ||
+               "Đổi mật khẩu thất bại, có lỗi xảy ra!!";
+            $toast(message, {
                type: "error",
             });
          });
@@ -53,7 +63,18 @@
 
    const onSubmit = async (event: Event) => {
       event.preventDefault();
-      await userService.updateProfile(user.value);
+      userService
+         .updateProfile(user.value)
+         .then(() => {
+            $toast("Cập nhật thành công", {
+               type: "success",
+            });
+         })
+         .catch(() => {
+            $toast("Cập nhật thất bại, có lỗi xảy ra!!", {
+               type: "error",
+            });
+         });
    };
 </script>
 

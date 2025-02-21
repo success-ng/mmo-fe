@@ -19,7 +19,7 @@
       { key: "id", label: "#" },
       { key: "userId", label: "User Id" },
       { key: "amount", label: "Số tiền" },
-      { key: "paymentMethod", label: "Loại giao dịch" },
+      // { key: "paymentMethod", label: "Loại giao dịch" },
       { key: "orderCode", label: "Mã đơn hàng" },
       { key: "status", label: "Trạng thái" },
       { key: "transactionDate", label: "Ngày giao dịch" },
@@ -44,9 +44,6 @@
          </template>
          <template #amount="{ row }">
             <span class="font-bold">{{ row.amount }} đ</span>
-         </template>
-         <template #paymentMethod="{ row }">
-            <span class="font-bold">{{ row.paymentMethod }}</span>
          </template>
          <template #transactionDate="{ row }">
             <span class="font-bold">{{ row.transactionDate }}</span>

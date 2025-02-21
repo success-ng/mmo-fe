@@ -15,11 +15,11 @@
          icon: "fa6-solid:user",
          name: "Thông tin",
       },
-      {
-         to: "/profile/security",
-         icon: "fa6-solid:user-shield",
-         name: "Bảo mât",
-      },
+      // {
+      //    to: "/profile/security",
+      //    icon: "fa6-solid:user-shield",
+      //    name: "Bảo mât",
+      // },
       {
          to: "/profile/txs",
          icon: "fa6-solid:circle-dollar-to-slot",
