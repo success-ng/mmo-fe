@@ -1,4 +1,5 @@
 <script setup lang="ts">
+   import { useAuthService } from "~/composables/api/auth.service";
    import { useCoreAxiosInstance } from "~/composables/core/axios.instance";
    import type { RegisterForm } from "~/composables/forms/register.form";
    const { $toast } = useNuxtApp();
@@ -6,7 +7,7 @@
       change: () => void;
    }>();
    const router = useRouter();
-
+   const authService = useAuthService();
    const registerForm = ref<RegisterForm>({
       username: "",
       fullname: "",
@@ -16,7 +17,6 @@
       phone: "",
    });
    const confirmPassword = ref("");
-   const axios = useCoreAxiosInstance();
    const OnSubmit = async (event: Event) => {
       event.preventDefault();
       registerForm.value.rewritePassword = confirmPassword.value;
@@ -35,19 +35,7 @@
             type: "error",
          });
       }
-      axios
-         .post("/auth/register", registerForm.value)
-         .then((response) => {
-            $toast("Đăng ký thành công!\nVui lòng đăng nhập!", {
-               type: "success",
-            });
-         })
-         .catch((error) => {
-            console.error("Lỗi:", error);
-            $toast("Có lỗi xảy ra trong quá trình đăng ký. Vui lòng thử lại.", {
-               type: "error",
-            });
-         });
+      authService.register(registerForm.value);
    };
 </script>
 
@@ -111,6 +99,15 @@
                type="reset"
                class="btn btn-primary btn-sm btn-ghost text-primary">
                Đăng nhập ngay
+            </button>
+         </p>
+         <p class="flex-none text-center">
+            Quên mật khẩu?
+            <button
+               type="reset"
+               @click="router.push('/auth/forget')"
+               class="btn btn-primary btn-sm btn-ghost text-primary">
+               Lấy lại mật khẩu
             </button>
          </p>
       </div>

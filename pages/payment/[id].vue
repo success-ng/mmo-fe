@@ -31,10 +31,8 @@
             </div>
             <p class="text-center">
                Vui lòng kiểm tra đơn hàng
-               <a
-                  href="http://103.167.89.227/profile#order-table"
-                  class="link badge badge-primary"
-                  >Tại đây</a
+               <NuxtLink href="/profile/order" class="link badge badge-primary"
+                  >Tại đây</NuxtLink
                >!
                <br />
                Chú ý không chia sẻ thông tin với người khác để tránh gây ra rủi

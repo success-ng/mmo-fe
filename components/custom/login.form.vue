@@ -1,4 +1,5 @@
 <script setup lang="ts">
+   import { useAuthService } from "~/composables/api/auth.service";
    import type { LoginForm } from "~/composables/forms/login.form";
 
    const { change } = defineProps<{
@@ -53,6 +54,15 @@
                @click="router.push('/auth/register')"
                class="btn btn-primary btn-sm btn-ghost text-primary">
                Đăng ký ngay
+            </button>
+         </p>
+         <p class="flex-none text-center">
+            Quên mật khẩu?
+            <button
+               type="reset"
+               @click="router.push('/auth/forget')"
+               class="btn btn-primary btn-sm btn-ghost text-primary">
+               Lấy lại mật khẩu
             </button>
          </p>
       </div>

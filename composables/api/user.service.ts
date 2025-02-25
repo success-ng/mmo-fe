@@ -1,7 +1,6 @@
 import { useCoreAxiosInstance } from "../core/axios.instance"
 import type { RegisterForm } from "../forms/register.form"
 import type { OrderModel } from "../models/order.model "
-import type { UserHistoryModel } from "../models/user-history.model "
 import type { UserModel } from "../models/user.model"
 
 export const useApiUserService = () => {
