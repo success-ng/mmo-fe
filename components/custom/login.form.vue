@@ -6,6 +6,7 @@
       change: () => void;
    }>();
 
+   const loading = ref(false);
    const router = useRouter();
    const authService = useAuthService();
    const loginForm = ref<LoginForm>({
@@ -13,12 +14,14 @@
       password: "",
    });
    const login = async () => {
+      loading.value = true;
       try {
          await authService.login(loginForm.value);
          router.back();
       } catch (error) {
          console.error(error);
       }
+      loading.value = false;
    };
 </script>
 
@@ -44,8 +47,12 @@
          </label>
       </div>
       <div class="">
-         <button class="w-full btn btn-primary" @submit.prevent="">
-            Đăng nhập
+         <button
+            type="submit"
+            class="w-full btn btn-primary"
+            :disabled="loading">
+            <span v-if="loading" class="loading loading-spinner loading-sm" />
+            <span v-else> Đăng nhập </span>
          </button>
          <p class="flex-none text-center">
             Bạn chưa có tài khoản?

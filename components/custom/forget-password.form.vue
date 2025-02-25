@@ -4,9 +4,14 @@
    const router = useRouter();
    const email = ref("");
    const authService = useAuthService();
-   const submit = () => {
+   const isLoading = ref(false);
+   const submit = async () => {
       //  router.push("/auth/login");
-      authService.forget(email.value);
+      isLoading.value = true;
+      await authService.forget(email.value).then((res) => {
+         router.push("/auth");
+      });
+      isLoading.value = false;
    };
 </script>
 
@@ -26,7 +31,15 @@
          </label>
       </div>
       <div class="">
-         <button type="submit" class="w-full btn btn-primary">Gửi mail</button>
+         <button
+            type="submit"
+            class="w-full btn btn-primary"
+            :disabled="isLoading">
+            <span v-if="isLoading" class="loading loading-spinner loading-sm"></span>
+            <span v-else>
+               Gửi mail
+            </span>
+         </button>
          <p class="flex-none text-center">
             Bạn đã có tài khoản?
             <button

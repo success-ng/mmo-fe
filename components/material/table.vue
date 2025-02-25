@@ -67,7 +67,7 @@
                Refresh
             </button>
          </div>
-         <table class="table table-pin-rows table-pin-cols" :class="class">
+         <table class="table table-pin-rows table-pin-cols">
             <thead>
                <tr class="border-b-2 border-base-300">
                   <th v-for="(col, index) in columns">
