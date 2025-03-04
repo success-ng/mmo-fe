@@ -1,11 +1,10 @@
 import { useCoreAxiosInstance } from "../core/axios.instance"
 import type { RegisterForm } from "../forms/register.form"
-import type { OrderModel } from "../models/order.model "
 import type { UserModel } from "../models/user.model"
 
 export const useApiUserService = () => {
   const axios = useCoreAxiosInstance()
-
+  const prefix = '/user'
   const profile = async (): Promise<UserModel> => {
     const data = await axios.get('/auth/profile')
     return {
@@ -24,21 +23,13 @@ export const useApiUserService = () => {
     return data.data
   }
 
-  const userTransaction = async () => {
-    const data = await axios.get('/transaction/my-txs');
-    return data.data;
-  }
-  const userOrder = async (): Promise<OrderModel[]> => {
-    const data = await axios.get('/order/user');
-    return data.data;
-  }
-
   const create = async (form: UserModel): Promise<UserModel> => {
     const data = await axios.post('/user/create', form);
     return data.data;
   }
-  const getUsers = async (): Promise<UserModel[]> => {
-    const data = await axios.get('/user/')
+  const index = async (params?: {}): Promise<UserModel[]> => {
+    const query = new URLSearchParams(params).toString()
+    const data = await axios.get(`${prefix}` + (query ? `?${query}` : ''))
     return data.data
   }
 
@@ -61,5 +52,5 @@ export const useApiUserService = () => {
     const token = useCookie("authToken")
     token.value = undefined
   }
-  return { profile, userTransaction, userOrder, get, register, update, getUsers, updateProfile, changePassword, logout, create }
+  return { profile, get, register, update, index, updateProfile, changePassword, logout, create }
 }

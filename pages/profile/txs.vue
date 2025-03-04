@@ -17,7 +17,7 @@
       { key: "id", label: "#" },
       { key: "userId", label: "User Id" },
       { key: "amount", label: "Số tiền" },
-      { key: "paymentMethod", label: "Loại giao dịch" },
+      // { key: "paymentMethod", label: "Loại giao dịch" },
       { key: "status", label: "Trạng thái" },
       { key: "transactionDate", label: "Ngày giao dịch" },
    ];

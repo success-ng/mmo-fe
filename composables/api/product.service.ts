@@ -4,8 +4,9 @@ import type { ProductModel } from "../models/product.model"
 export const useApiProductService = () => {
   const axios = useCoreAxiosInstance()
   const prefix = "/product"
-  const index = async () => {
-    const data = await axios.get(`${prefix}/`)
+  const index = async (params?: {}) => {
+    const query = new URLSearchParams(params).toString()
+    const data = await axios.get(`${prefix}`)
     return data.data
   }
 
@@ -14,11 +15,11 @@ export const useApiProductService = () => {
     return data.data
   }
   const update = async (body: ProductModel) => {
-    const data = await axios.put(`${prefix}/`, body)
+    const data = await axios.put(`${prefix}`, body)
     return data.data;
   }
   const create = async (body: ProductModel) => {
-    const data = await axios.post(`${prefix}/`, body)
+    const data = await axios.post(`${prefix}`, body)
     return data.data;
   }
 

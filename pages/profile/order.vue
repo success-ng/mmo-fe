@@ -1,19 +1,26 @@
 <script setup lang="ts">
+   import { useApiOrderService } from "~/composables/api/order.service";
    import { useApiUserService } from "~/composables/api/user.service";
    import type { OrderModel } from "~/composables/models/order.model ";
+   import type { Column } from "~/composables/types/table.type";
    const { $toast } = useNuxtApp();
    const userService = useApiUserService();
-
+   const orderService = useApiOrderService();
    const orders = ref<OrderModel[]>([] as OrderModel[]);
    const isLoadingOrders = ref(true);
 
-   const columnsOrders = [
+   const columns = [
       { key: "id", label: "#" },
       { key: "user", label: "Người dùng" },
-      { key: "productId", label: "Mã sản phẩm" },
+      { key: "product", label: "Sản phẩm" },
       { key: "price", label: "Giá" },
-      { key: "status", label: "Trạng thái" },
+      { key: "orderCode", label: "Má đơn hàng" },
+      // { key: "status", label: "Trạng thái" },
       { key: "via", label: "VIA" },
+   ];
+   const keyWords: Column[] = [
+      { key: "orderCode", label: "Mã giao dịch" },
+      { key: "orderDate", label: "Ngày mua", type: "date" },
    ];
    const copyToClipboard = (text: string) => {
       navigator.clipboard.writeText(text);
@@ -22,9 +29,9 @@
       });
    };
 
-   const fetchOrders = async () => {
+   const fetch = async (params?: {}) => {
       isLoadingOrders.value = true;
-      userService.userOrder().then((res) => {
+      orderService.myOrder(params).then((res) => {
          isLoadingOrders.value = false;
          orders.value = res;
       });
@@ -34,9 +41,10 @@
    <section class="space-y-6">
       <MaterialTable
          :data="orders"
-         :fetch="fetchOrders"
+         :key-words="keyWords"
+         :fetch="fetch"
          title="Danh sách đơn hàng"
-         :columns="columnsOrders"
+         :columns="columns"
          :is-loading="isLoadingOrders">
          <template #user="{ row }">
             <div class="flex items-center gap-3">
@@ -56,10 +64,20 @@
                </div>
             </div>
          </template>
-         <template #productId="{ row }">
-            <span class="font-bold">
-               {{ row.productId }}
-            </span>
+         <template #orderCode="{ row }">
+            <span class="font-bold badge badge-ghost">{{ row.orderCode }}</span>
+         </template>
+         <template #product="{ row }">
+            <p>
+               Tên sản phẩm:
+               <span class="font-bold">{{ row.productName }}</span>
+            </p>
+            <p class="text-sm opacity-50">
+               Mã sản phẩm:
+               <span>
+                  {{ row.productId }}
+               </span>
+            </p>
          </template>
          <template #price="{ row }">
             <div class="flex items-center gap-3">
@@ -73,7 +91,7 @@
          <template #via="{ row }">
             <div class="tooltip" :data-tip="row.via">
                <button class="btn btn-xs" @click="copyToClipboard(row.via)">
-                  <Icon name="fa6-solid:ellipsis" />
+                  Sao chép
                </button>
             </div>
          </template>

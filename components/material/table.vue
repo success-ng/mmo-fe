@@ -1,20 +1,30 @@
 <script setup lang="ts">
    import type { Column } from "~/composables/types/table.type";
 
-   const { fetch, edit, create, remove, show, data, columns, isLoading } =
-      defineProps<{
-         title?: string;
-         class?: string;
-         data: any[];
-         columns: Column[];
-         isLoading: boolean;
-         fetch: () => Promise<void>;
-         edit?: (model: any) => Promise<void>;
-         remove?: (id: number) => Promise<void>;
-         create?: () => Promise<void>;
-         show?: (id: number) => void;
-      }>();
-
+   const {
+      fetch,
+      edit,
+      create,
+      remove,
+      show,
+      data,
+      columns,
+      isLoading,
+      keyWords,
+   } = defineProps<{
+      title?: string;
+      class?: string;
+      data: any[];
+      keyWords?: Column[];
+      columns: Column[];
+      isLoading: boolean;
+      fetch: (params?: {}) => Promise<void>;
+      edit?: (model: any) => Promise<void>;
+      remove?: (id: number) => Promise<void>;
+      create?: () => Promise<void>;
+      show?: (id: number) => void;
+   }>();
+   const searchTerms = ref<{ [key: string]: string }>({});
    const { $toast } = useNuxtApp();
 
    const onRemove = (model: any) => {
@@ -62,11 +72,35 @@
       <div class="card-body">
          <div class="flex justify-between">
             <h3 class="card-title">{{ title }}</h3>
-            <button class="btn btn-primary btn-sm btn-outline" @click="fetch">
+            <button class="btn btn-primary btn-sm btn-outline" @click="fetch()">
                <Icon name="fa6-solid:arrows-rotate" />
                Refresh
             </button>
          </div>
+         <div class="flex gap-2">
+            <div
+               v-if="keyWords && keyWords.length"
+               v-for="(keyword, index) in keyWords"
+               :key="index">
+               <div class="form-control">
+                  <label :for="keyword.key">{{ keyword.label }}</label>
+                  <input
+                     :type="keyword.type || `text`"
+                     :id="keyword.key"
+                     v-model="searchTerms[keyword.key]"
+                     class="input input-bordered" />
+                  <!-- <slot :name="keyword.key" :keyword="keyword">
+                     </slot> -->
+               </div>
+            </div>
+         </div>
+         <button
+            v-if="keyWords && keyWords.length"
+            class="btn btn-primary btn-sm"
+            @click="fetch(searchTerms)">
+            <Icon name="fa6-solid:search" />
+            Search
+         </button>
          <table class="table table-pin-rows table-pin-cols">
             <thead>
                <tr class="border-b-2 border-base-300">

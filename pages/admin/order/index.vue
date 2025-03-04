@@ -4,13 +4,14 @@
    });
    import { useApiOrderService } from "~/composables/api/order.service";
    import type { OrderModel } from "~/composables/models/order.model ";
+   import type { Column } from "~/composables/types/table.type";
    const orderService = useApiOrderService();
    const { $toast } = useNuxtApp();
    const orders = ref([] as OrderModel[]);
    const isLoading = ref(true);
-   const fetch = async () => {
+   const fetch = async (params?: {}) => {
       isLoading.value = true;
-      orderService.index().then((res) => {
+      orderService.index(params).then((res) => {
          orders.value = res;
          isLoading.value = false;
       });
@@ -18,12 +19,17 @@
    const columns = [
       { key: "id", label: "#" },
       { key: "user", label: "Người dùng" },
-      { key: "productId", label: "Mã sản phẩm" },
+      { key: "product", label: "Sản phẩm" },
       { key: "price", label: "Giá" },
-      { key: "status", label: "Trạng thái" },
+      { key: "orderCode", label: "Má đơn hàng" },
+      // { key: "status", label: "Trạng thái" },
+      { key: "orderDate", label: "Ngày mua" },
       { key: "via", label: "VIA" },
    ];
-
+   const keyWords: Column[] = [
+      { key: "orderCode", label: "Mã giao dịch" },
+      { key: "orderDate", label: "Ngày mua", type: "date" },
+   ];
    const copyToClipboard = (text: string) => {
       navigator.clipboard.writeText(text);
       $toast("Đã copy via vào clipboard, CTRL+V để dán!!!", {
@@ -35,10 +41,11 @@
 <template>
    <section>
       <MaterialTable
+         title="Danh sách đơn hàng"
          :data="orders"
          :fetch="fetch"
-         title="Danh sách đơn hàng"
          :columns="columns"
+         :key-words="keyWords"
          :is-loading="isLoading">
          <template #user="{ row }">
             <div class="flex items-center gap-3">
@@ -58,10 +65,20 @@
                </div>
             </div>
          </template>
-         <template #productId="{ row }">
-            <span class="font-bold">
-               {{ row.productId }}
-            </span>
+         <template #orderCode="{ row }">
+            <span class="font-bold badge badge-ghost">{{ row.orderCode }}</span>
+         </template>
+         <template #product="{ row }">
+            <p>
+               Tên sản phẩm:
+               <span class="font-bold">{{ row.productName }}</span>
+            </p>
+            <p class="text-sm opacity-50">
+               Mã sản phẩm:
+               <span>
+                  {{ row.productId }}
+               </span>
+            </p>
          </template>
          <template #price="{ row }">
             <div class="flex items-center gap-3">
@@ -74,10 +91,17 @@
          </template>
          <template #via="{ row }">
             <div class="tooltip" :data-tip="row.via">
-               <button class="btn btn-xs" @click="copyToClipboard(row.via)">
-                  <Icon name="fa6-solid:ellipsis" />
+               <button
+                  class="btn btn-xs btn-info"
+                  @click="copyToClipboard(row.via)">
+                  Sao chép
                </button>
             </div>
+         </template>
+         <template #orderDate="{ row }">
+            <span class="font-bold">{{
+               new Date(row.orderDate).toLocaleString()
+            }}</span>
          </template>
       </MaterialTable>
    </section>

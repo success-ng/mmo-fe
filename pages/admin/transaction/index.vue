@@ -1,6 +1,7 @@
 <script setup lang="ts">
    import { useApiTransactionService } from "~/composables/api/transaction.service";
    import type { TransactionModel } from "~/composables/models/transaction.model ";
+   import type { Column } from "~/composables/types/table.type";
 
    definePageMeta({
       layout: "admin",
@@ -15,7 +16,12 @@
          txs.value = res;
       });
    };
-   const columns = [
+   const keyWords: Column[] = [
+      { key: "orderCode", label: "Mã giao dịch" },
+      { key: "transactionDate", label: "Ngày giao dịch" },
+   ];
+
+   const columns: Column[] = [
       { key: "id", label: "#" },
       { key: "userId", label: "User Id" },
       { key: "amount", label: "Số tiền" },
@@ -31,6 +37,7 @@
       <MaterialTable
          title="Giao dịch"
          :data="txs"
+         :key-words="keyWords"
          :columns="columns"
          :fetch="fetch"
          :is-loading="isLoading">

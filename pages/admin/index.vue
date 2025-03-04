@@ -20,9 +20,9 @@
          loading.value = false;
          analysis.value = res;
       });
-      webhooks.register().then((res) => {
-         console.log(res);
-      });
+      // webhooks.register().then((res) => {
+      //    console.log(res);
+      // });
    });
 </script>
 

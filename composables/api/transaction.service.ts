@@ -5,14 +5,16 @@ export const useApiTransactionService = () => {
   const axios = useCoreAxiosInstance()
   const prefix = '/transactions'
 
-  const myTxs = async (): Promise<TransactionModel[]> => {
+  const myTxs = async (params?: {}): Promise<TransactionModel[]> => {
+    const query = new URLSearchParams(params).toString()
     return await axios.get(`${prefix}/my-txs`).then(res => {
       return res.data
     })
   }
 
-  const txs = async (): Promise<TransactionModel[]> => {
-    return await axios.get(`${prefix}/`).then(res => {
+  const txs = async (params?: {}): Promise<TransactionModel[]> => {
+    const query = new URLSearchParams(params).toString()
+    return await axios.get(`${prefix}`).then(res => {
       return res.data
     })
   }

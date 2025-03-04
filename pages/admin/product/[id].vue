@@ -54,21 +54,17 @@
    <section class="space-y-6">
       <MaterialTable
          title="Thông tin sản phẩm"
+         class="table-sm"
          :fetch="fetch"
          :is-loading="isLoading"
          :data="productInfos"
          :create="changeModal"
          :columns="columns">
-         <template #stock="{ row }">
-            <span class="font-bold badge badge-secondary">{{ row.stock }}</span>
+         <template #productId="{ row }">
+            <span class="font-bold">{{ row.productId }}</span>
          </template>
-         <template #categoryID="{ row }">
-            <span class="font-bold badge badge-primary">{{
-               row.categoryID
-            }}</span>
-         </template>
-         <template #createdAt="{ row }">
-            {{ row.createdAt }}
+         <template #value="{ row }">
+            <span class="font-bold">{{ row.value }}</span>
          </template>
       </MaterialTable>
       <div class="modal" :class="{ 'modal-open': isOpenModal }">

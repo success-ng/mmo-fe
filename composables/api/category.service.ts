@@ -3,9 +3,10 @@ import type { CategoryModel } from "../models/category.model"
 
 export const useApiCategoryService = () => {
   const axios = useCoreAxiosInstance()
-
-  const index = async () => {
-    return await axios.get('/category').then(res => res.data)
+  const prefix = "/category"
+  const index = async (params?: {}) => {
+    const query = new URLSearchParams(params).toString()
+    return await axios.get(`${prefix}` + (query ? `?${query}` : '')).then(res => res.data)
   }
 
   const create = async (model: CategoryModel) => {

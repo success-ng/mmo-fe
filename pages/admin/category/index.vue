@@ -1,5 +1,6 @@
 <script setup lang="ts">
    import { useApiCategoryService } from "~/composables/api/category.service";
+   import type { Column } from "~/composables/types/table.type";
 
    definePageMeta({
       layout: "admin",
@@ -8,7 +9,7 @@
    const categoryService = useApiCategoryService();
    const data = ref([]);
    const isLoading = ref(true);
-   const columns = [
+   const columns: Column[] = [
       { key: "id", label: "#" },
       { key: "name", label: "Tên" },
       { key: "description", label: "Mô tả" },

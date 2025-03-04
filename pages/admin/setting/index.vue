@@ -1,6 +1,7 @@
 <script setup lang="ts">
    import { useApiSettingService } from "~/composables/api/setting.service";
    import type { SettingModel } from "~/composables/models/setting.model";
+   import type { Column } from "~/composables/types/table.type";
 
    definePageMeta({
       layout: "admin",
@@ -23,7 +24,7 @@
    const create = async () => {
       router.push(`/admin/setting/create`);
    };
-   const columns = [
+   const columns: Column[] = [
       { key: "id", label: "#" },
       { key: "name", label: "Tên" },
       { key: "description", label: "Mô tả" },

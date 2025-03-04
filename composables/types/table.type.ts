@@ -14,4 +14,5 @@ export type TableProps<T> = {
 export type Column = {
   key: string;
   label: string;
+  type?: string;
 };

@@ -2,6 +2,7 @@
    import { useApiProductService } from "~/composables/api/product.service";
    import { useApiUserService } from "~/composables/api/user.service";
    import type { ProductModel } from "~/composables/models/product.model";
+   import type { Column } from "~/composables/types/table.type";
    const data: Ref<ProductModel[]> = ref([] as ProductModel[]);
    const productService = useApiProductService();
 
@@ -19,6 +20,11 @@
          data.value = response;
       });
    };
+
+   const keyWords: Column[] = [
+      { key: "name", label: "Tên sản phẩm" },
+      { key: "Quốc gia", label: "Username" },
+   ];
 
    const create = async () => {
       router.push("/admin/product/create");
@@ -44,6 +50,7 @@
       title="Sản phẩm"
       :fetch="fetch"
       :data="data"
+      :key-words="keyWords"
       :create="create"
       :show="update"
       :is-loading="loading"

@@ -1,6 +1,7 @@
 <script setup lang="ts">
    import type { UserModel } from "~/composables/models/user.model";
    import { useApiUserService } from "~/composables/api/user.service";
+   import type { Column } from "~/composables/types/table.type";
 
    definePageMeta({
       layout: "admin",
@@ -11,7 +12,7 @@
    const isLoading = ref(true);
    const fetch = async () => {
       isLoading.value = true;
-      userService.getUsers().then((res) => {
+      userService.index().then((res) => {
          users.value = res;
          isLoading.value = false;
       });
@@ -24,6 +25,12 @@
    const create = async () => {
       router.push("/admin/user/create");
    };
+
+   const keyWords: Column[] = [
+      { key: "email", label: "Email" },
+      { key: "username", label: "Username" },
+      { key: "phone", label: "Số điện thoại" },
+   ];
 
    const columns = [
       { key: "id", label: "#" },
@@ -42,6 +49,7 @@
          title="Danh sách người dùng"
          :is-loading="isLoading"
          :data="users"
+         :key-words="keyWords"
          :columns="columns"
          :fetch="fetch">
          <template #name="{ row }">
