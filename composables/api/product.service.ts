@@ -6,7 +6,7 @@ export const useApiProductService = () => {
   const prefix = "/product"
   const index = async (params?: {}) => {
     const query = new URLSearchParams(params).toString()
-    const data = await axios.get(`${prefix}`)
+    const data = await axios.get(`${prefix}` + (query ? `?${query}` : ''))
     return data.data
   }
 

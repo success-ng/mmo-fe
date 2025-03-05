@@ -12,7 +12,6 @@
    });
    const analysisService = useApiAnalysisService();
    const analysis = ref<AnalysisModel[]>([] as AnalysisModel[]);
-   const webhooks = useApiWebhookService();
    const loading = ref(true);
    onMounted(() => {
       loading.value = true;

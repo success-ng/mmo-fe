@@ -13,18 +13,15 @@
    const router = useRouter();
    const loading = ref(true);
 
-   const fetch = async () => {
+   const fetch = async (params?: {}) => {
       loading.value = true;
-      productService.index().then((response) => {
+      productService.index(params).then((response) => {
          loading.value = false;
          data.value = response;
       });
    };
 
-   const keyWords: Column[] = [
-      { key: "name", label: "Tên sản phẩm" },
-      { key: "Quốc gia", label: "Username" },
-   ];
+   const keyWords: Column[] = [{ key: "name", label: "Tên sản phẩm" }];
 
    const create = async () => {
       router.push("/admin/product/create");

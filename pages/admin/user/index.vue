@@ -10,9 +10,9 @@
    const router = useRouter();
    const users: Ref<UserModel[]> = ref<UserModel[]>([]);
    const isLoading = ref(true);
-   const fetch = async () => {
+   const fetch = async (params?: {}) => {
       isLoading.value = true;
-      userService.index().then((res) => {
+      userService.index(params).then((res) => {
          users.value = res;
          isLoading.value = false;
       });
@@ -29,7 +29,7 @@
    const keyWords: Column[] = [
       { key: "email", label: "Email" },
       { key: "username", label: "Username" },
-      { key: "phone", label: "Số điện thoại" },
+      { key: "role", label: "Vai trò" },
    ];
 
    const columns = [
