@@ -4,7 +4,6 @@
    import type { OrderModel } from "~/composables/models/order.model ";
    import type { Column } from "~/composables/types/table.type";
    const { $toast } = useNuxtApp();
-   const userService = useApiUserService();
    const orderService = useApiOrderService();
    const orders = ref<OrderModel[]>([] as OrderModel[]);
    const isLoadingOrders = ref(true);
@@ -14,7 +13,7 @@
       { key: "user", label: "Người dùng" },
       { key: "product", label: "Sản phẩm" },
       { key: "price", label: "Giá" },
-      { key: "orderCode", label: "Má đơn hàng" },
+      { key: "orderCode", label: "Mã đơn hàng" },
       // { key: "status", label: "Trạng thái" },
       { key: "via", label: "VIA" },
    ];

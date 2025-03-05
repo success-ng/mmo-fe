@@ -21,7 +21,7 @@
       { key: "user", label: "Người dùng" },
       { key: "product", label: "Sản phẩm" },
       { key: "price", label: "Giá" },
-      { key: "orderCode", label: "Má đơn hàng" },
+      { key: "orderCode", label: "Mã đơn hàng" },
       // { key: "status", label: "Trạng thái" },
       { key: "orderDate", label: "Ngày mua" },
       { key: "via", label: "VIA" },
