@@ -7,7 +7,7 @@ export const useApiTransactionService = () => {
 
   const myTxs = async (params?: {}): Promise<TransactionModel[]> => {
     const query = new URLSearchParams(params).toString()
-    return await axios.get(`${prefix}/my-txs`).then(res => {
+    return await axios.get(`${prefix}/my-txs${query ? `?${query}` : ''}`).then(res => {
       return res.data
     })
   }

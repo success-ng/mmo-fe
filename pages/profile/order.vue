@@ -6,7 +6,7 @@
    const { $toast } = useNuxtApp();
    const orderService = useApiOrderService();
    const orders = ref<OrderModel[]>([] as OrderModel[]);
-   const isLoadingOrders = ref(true);
+   const isLoading = ref(true);
 
    const columns = [
       { key: "id", label: "#" },
@@ -18,8 +18,8 @@
       { key: "via", label: "VIA" },
    ];
    const keyWords: Column[] = [
-      { key: "orderCode", label: "Mã giao dịch" },
-      { key: "orderDate", label: "Ngày mua", type: "date" },
+      { key: "orderCode", label: "Mã đơn hàng" },
+      { key: "orderDate", label: "Ngày mua", type: "datetime-local" },
    ];
    const copyToClipboard = (text: string) => {
       navigator.clipboard.writeText(text);
@@ -29,22 +29,22 @@
    };
 
    const fetch = async (params?: {}) => {
-      isLoadingOrders.value = true;
-      orderService.myOrder(params).then((res) => {
-         isLoadingOrders.value = false;
+      isLoading.value = true;
+      orderService.index(params).then((res) => {
          orders.value = res;
+         isLoading.value = false;
       });
    };
 </script>
 <template>
    <section class="space-y-6">
       <MaterialTable
-         :data="orders"
-         :key-words="keyWords"
-         :fetch="fetch"
          title="Danh sách đơn hàng"
+         :data="orders"
+         :fetch="fetch"
          :columns="columns"
-         :is-loading="isLoadingOrders">
+         :key-words="keyWords"
+         :is-loading="isLoading">
          <template #user="{ row }">
             <div class="flex items-center gap-3">
                <div class="avatar">
@@ -89,10 +89,17 @@
          </template>
          <template #via="{ row }">
             <div class="tooltip" :data-tip="row.via">
-               <button class="btn btn-xs" @click="copyToClipboard(row.via)">
+               <button
+                  class="btn btn-xs btn-info"
+                  @click="copyToClipboard(row.via)">
                   Sao chép
                </button>
             </div>
+         </template>
+         <template #orderDate="{ row }">
+            <span class="font-bold">{{
+               new Date(row.orderDate).toLocaleString()
+            }}</span>
          </template>
       </MaterialTable>
    </section>

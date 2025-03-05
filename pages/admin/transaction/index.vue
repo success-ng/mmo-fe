@@ -9,15 +9,15 @@
    const transactionService = useApiTransactionService();
    const txs: Ref<TransactionModel[]> = ref([] as TransactionModel[]);
    const isLoading = ref(true);
-   const fetch = async () => {
+   const fetch = async (params?: {}) => {
       isLoading.value = true;
-      transactionService.txs().then((res) => {
+      transactionService.txs(params).then((res) => {
          isLoading.value = false;
          txs.value = res;
       });
    };
    const keyWords: Column[] = [
-      { key: "orderCode", label: "Mã giao dịch" },
+      { key: "orderCode", label: "Mã giao dịch", type: "number" },
       {
          key: "transactionDate",
          label: "Ngày giao dịch",

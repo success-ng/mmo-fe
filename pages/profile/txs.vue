@@ -17,6 +17,7 @@
       { key: "id", label: "#" },
       { key: "userId", label: "User Id" },
       { key: "amount", label: "Số tiền" },
+      { key: "orderCode", label: "Mã giao dịch" },
       // { key: "paymentMethod", label: "Loại giao dịch" },
       { key: "status", label: "Trạng thái" },
       { key: "transactionDate", label: "Ngày giao dịch" },
@@ -30,6 +31,9 @@
          :fetch="fetchTxs"
          :columns="columnsTxs"
          :is-loading="isLoadingTxs">
+         <template #orderCode="{ row }">
+            <span class="font-bold badge badge-ghost">{{ row.orderCode }}</span>
+         </template>
          <template #userId="{ row }">
             <span class="font-bold">{{ row.userId }}</span>
          </template>
