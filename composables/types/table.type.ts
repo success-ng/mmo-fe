@@ -15,4 +15,6 @@ export type Column = {
   key: string;
   label: string;
   type?: string;
+  options?: { label: string; value: string }[];
+
 };

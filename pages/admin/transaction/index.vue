@@ -18,7 +18,11 @@
    };
    const keyWords: Column[] = [
       { key: "orderCode", label: "Mã giao dịch" },
-      { key: "transactionDate", label: "Ngày giao dịch" },
+      {
+         key: "transactionDate",
+         label: "Ngày giao dịch",
+         type: "datetime-local",
+      },
    ];
 
    const columns: Column[] = [

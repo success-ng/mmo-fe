@@ -1,4 +1,5 @@
 <script setup lang="ts">
+   import type { AxiosError } from "axios";
    import type { Column } from "~/composables/types/table.type";
 
    const {
@@ -29,18 +30,12 @@
 
    const onRemove = (model: any) => {
       if (remove) {
-         remove(model.id)
-            .then(() => {
-               fetch();
-               $toast(`Xóa thành công ${model.id}`, {
-                  type: "success",
-               });
-            })
-            .catch((err) => {
-               $toast(err.message, {
-                  type: "error",
-               });
+         remove(model.id).then((res) => {
+            fetch();
+            $toast(`Xóa thành công ${model.id}`, {
+               type: "success",
             });
+         });
       }
    };
 
@@ -81,17 +76,30 @@
             <div
                v-if="keyWords && keyWords.length"
                v-for="(keyword, index) in keyWords"
-               :key="index">
-               <div class="form-control">
-                  <label :for="keyword.key">{{ keyword.label }}</label>
-                  <input
-                     :type="keyword.type || `text`"
-                     :id="keyword.key"
-                     v-model="searchTerms[keyword.key]"
-                     class="input input-bordered" />
-                  <!-- <slot :name="keyword.key" :keyword="keyword">
-                     </slot> -->
-               </div>
+               :key="index"
+               class="form-control">
+               <label class="label" :for="keyword.key">{{
+                  keyword.label
+               }}</label>
+               <select
+                  v-if="keyword.type == 'select'"
+                  :id="keyword.key"
+                  v-model="searchTerms[keyword.key]"
+                  class="select select-bordered">
+                  <option :value="undefined" disabled>-- Chọn --</option>
+                  <option
+                     v-for="(option, index) in keyword.options"
+                     :key="index"
+                     :value="option.value">
+                     {{ option.label }}
+                  </option>
+               </select>
+               <input
+                  v-else
+                  :type="keyword.type || `text`"
+                  :id="keyword.key"
+                  v-model="searchTerms[keyword.key]"
+                  class="input input-bordered" />
             </div>
          </div>
          <button
@@ -101,7 +109,7 @@
             <Icon name="fa6-solid:search" />
             Search
          </button>
-         <table class="table table-pin-rows table-pin-cols">
+         <table class="table table-pin-rows">
             <thead>
                <tr class="border-b-2 border-base-300">
                   <th v-for="(col, index) in columns">

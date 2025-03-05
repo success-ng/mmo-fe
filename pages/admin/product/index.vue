@@ -31,6 +31,10 @@
       router.push(`/admin/product/${id}`);
    };
 
+   const del = async (id: number) => {
+      await productService.del(id);
+   };
+
    const columns = [
       { key: "id", label: "#" },
       { key: "country", label: "Quốc gia" },
@@ -50,6 +54,7 @@
       :key-words="keyWords"
       :create="create"
       :show="update"
+      :remove="del"
       :is-loading="loading"
       :columns="columns">
       <template #stock="{ row }">

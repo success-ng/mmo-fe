@@ -1,7 +1,9 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import type { ErrorModel } from "../models/error.model";
 
 export const useCoreAxiosInstance = () => {
   const router = useRouter();
+  const toast = useToast();
   const config = useRuntimeConfig();
   const axiosInstance = axios.create({
     // baseURL: "http://localhost/api",
@@ -34,11 +36,12 @@ export const useCoreAxiosInstance = () => {
       // toast.success(`Request successful! Status: ${response.status}`);
       return response.data;
     },
-    (error) => {
+    (error: AxiosError<ErrorModel>) => {
       // Xử lý lỗi từ phản hồi
       if (error.response?.status === 401) {
         // Ví dụ: Điều hướng đến trang đăng nhập nếu token hết hạn
         router.push("/auth");
+        return Promise.reject(error);
       } else if (error.response?.status === 403) {
         router.push("/403");
       }
@@ -46,6 +49,7 @@ export const useCoreAxiosInstance = () => {
         // Nếu lỗi kết nối mạng (server không phản hồi)
         router.push("/500");
       }
+      toast.error(`Request failed!\n${error.response?.data?.data.errors}`);
       // toast.error(`Request failed! Status: ${error.response?.status}`);
       return Promise.reject(error);
     }

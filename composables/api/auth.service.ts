@@ -14,7 +14,7 @@ export const useAuthService = () => {
       token.value = res.data.token;
       return res
     }).catch(err => {
-      $toast("Login failed", {
+      $toast("Tài khoản hoặc mật khẩu không chính xác", {
         type: "error",
       });
       return Promise.reject(err)

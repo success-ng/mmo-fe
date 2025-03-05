@@ -29,7 +29,15 @@
    const keyWords: Column[] = [
       { key: "email", label: "Email" },
       { key: "username", label: "Username" },
-      { key: "role", label: "Vai trò" },
+      {
+         key: "role",
+         label: "Vai trò",
+         type: "select",
+         options: [
+            { label: "Quản trị viên", value: "ADMIN" },
+            { label: "Người dùng", value: "USER" },
+         ],
+      },
    ];
 
    const columns = [

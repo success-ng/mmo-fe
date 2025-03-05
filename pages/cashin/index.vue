@@ -28,7 +28,7 @@
             id: 0,
             amount: selectedAmount.value,
             paymentMethod: "string",
-            transactionDate: Date.now().toString(),
+            transactionDate: new Date().toISOString(),
             status: "PAID",
             userId: 0,
             paymentLink: "string",

@@ -27,8 +27,8 @@
       { key: "via", label: "VIA" },
    ];
    const keyWords: Column[] = [
-      { key: "orderCode", label: "Mã giao dịch" },
-      { key: "orderDate", label: "Ngày mua", type: "date" },
+      { key: "orderCode", label: "Mã đơn hàng" },
+      { key: "orderDate", label: "Ngày mua", type: "datetime-local" },
    ];
    const copyToClipboard = (text: string) => {
       navigator.clipboard.writeText(text);
