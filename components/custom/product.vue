@@ -51,7 +51,8 @@
 
 <template>
    <div
-      class="overflow-hidden card bg-base-100 text-base-content drop-shadow-lg">
+      class="overflow-hidden card bg-base-100 text-base-content drop-shadow-lg"
+      style="-webkit-overflow-scrolling: touch">
       <p
          class="flex-none p-4 text-base text-center text-white bg-blue-500 card-title">
          {{ product.name }}

@@ -87,7 +87,7 @@
                Refresh
             </button>
          </div>
-         <div class="flex gap-2">
+         <div class="flex flex-wrap gap-2">
             <div
                v-if="keyWords && keyWords.length"
                v-for="(keyword, index) in keyWords"
