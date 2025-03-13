@@ -124,114 +124,116 @@
             <Icon name="fa6-solid:search" />
             Search
          </button>
-         <table class="table table-pin-rows">
-            <thead>
-               <tr class="border-b-2 border-base-300">
-                  <th v-for="(col, index) in columns">
-                     {{ col.label }}
-                  </th>
-                  <th v-if="edit || remove || show">Action</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr v-if="isLoading">
-                  <td :colspan="columns.length + 1">
-                     <div class="flex justify-center gap-3">
-                        <span
-                           class="loading loading-spinner loading-sm text-primary"></span>
-                        Loading...
-                     </div>
-                  </td>
-               </tr>
-               <tr v-else v-if="data.length == 0">
-                  <td :colspan="columns.length + 1">
-                     <p class="text-center text-primary">No record !!!</p>
-                  </td>
-               </tr>
-               <tr
-                  v-if="!isLoading && create"
-                  class="border-b-2 border-base-300">
-                  <td :colspan="columns.length + 1">
-                     <div class="flex justify-center">
-                        <button
-                           class="btn btn-primary btn-sm btn-outline"
-                           @click="create">
-                           <Icon name="fa6-solid:circle-plus" />
-                           Thêm mới
-                        </button>
-                     </div>
-                  </td>
-               </tr>
-               <tr v-for="(row, index) in data">
-                  <td v-for="(col, key) in columns" :key="key">
-                     <slot :name="col.key" :row="row">
-                        <span v-if="col.key == `id`" class="font-bold">{{
-                           row[col.key]
-                        }}</span>
-                        <textarea
-                           v-else-if="col.key == `description`"
-                           :disabled="!row.isEdit"
-                           class="w-full textarea textarea-bordered disabled:text-base-content"
-                           v-model="row[col.key]" />
-                        <input
-                           v-else
-                           type="text"
-                           v-model="row[col.key]"
-                           :disabled="!row.isEdit"
-                           class="input input-sm disabled:text-base-content input-bordered" />
-                     </slot>
-                  </td>
-                  <td v-if="edit || remove || show">
-                     <div class="flex gap-3">
-                        <button
-                           v-if="show"
-                           class="btn btn-sm btn-info"
-                           @click="show(row.id)">
-                           <Icon name="fa6-solid:eye" />
-                        </button>
-                        <button
-                           v-if="edit"
-                           class="btn btn-sm"
-                           :class="row.isEdit ? 'btn-accent' : 'btn-warning'"
-                           @click="onEdit(row)">
-                           <Icon
-                              v-if="row.isEdit"
-                              name="fa6-solid:floppy-disk" />
-                           <Icon v-else name="fa6-solid:pen-to-square" />
-                        </button>
-                        <button
-                           v-if="remove"
-                           class="btn btn-error btn-sm"
-                           @click="onRemove(row)">
-                           <Icon name="fa6-solid:trash" />
-                        </button>
-                     </div>
-                  </td>
-               </tr>
-            </tbody>
-            <tfoot>
-               <tr class="border-t-2 border-base-300">
-                  <td :colspan="columns.length + 1">
-                     <div class="flex justify-center">
-                        <div class="join">
+         <div class="w-full overflow-auto">
+            <table class="table table-pin-rows">
+               <thead>
+                  <tr class="border-b-2 border-base-300">
+                     <th v-for="(col, index) in columns">
+                        {{ col.label }}
+                     </th>
+                     <th v-if="edit || remove || show">Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr v-if="isLoading">
+                     <td :colspan="columns.length + 1">
+                        <div class="flex justify-center gap-3">
+                           <span
+                              class="loading loading-spinner loading-sm text-primary"></span>
+                           Loading...
+                        </div>
+                     </td>
+                  </tr>
+                  <tr v-else v-if="data.length == 0">
+                     <td :colspan="columns.length + 1">
+                        <p class="text-center text-primary">No record !!!</p>
+                     </td>
+                  </tr>
+                  <tr
+                     v-if="!isLoading && create"
+                     class="border-b-2 border-base-300">
+                     <td :colspan="columns.length + 1">
+                        <div class="flex justify-center">
                            <button
-                              class="join-item btn btn-sm btn-outline btn-primary">
-                              «
-                           </button>
-                           <button
-                              class="join-item btn btn-sm btn-outline btn-primary">
-                              Page 1 of 1
-                           </button>
-                           <button
-                              class="join-item btn btn-sm btn-outline btn-primary">
-                              »
+                              class="btn btn-primary btn-sm btn-outline"
+                              @click="create">
+                              <Icon name="fa6-solid:circle-plus" />
+                              Thêm mới
                            </button>
                         </div>
-                     </div>
-                  </td>
-               </tr>
-            </tfoot>
-         </table>
+                     </td>
+                  </tr>
+                  <tr v-for="(row, index) in data">
+                     <td v-for="(col, key) in columns" :key="key">
+                        <slot :name="col.key" :row="row">
+                           <span v-if="col.key == `id`" class="font-bold">{{
+                              row[col.key]
+                           }}</span>
+                           <textarea
+                              v-else-if="col.key == `description`"
+                              :disabled="!row.isEdit"
+                              class="w-full textarea textarea-bordered disabled:text-base-content"
+                              v-model="row[col.key]" />
+                           <input
+                              v-else
+                              type="text"
+                              v-model="row[col.key]"
+                              :disabled="!row.isEdit"
+                              class="input input-sm disabled:text-base-content input-bordered" />
+                        </slot>
+                     </td>
+                     <td v-if="edit || remove || show">
+                        <div class="flex gap-3">
+                           <button
+                              v-if="show"
+                              class="btn btn-sm btn-info"
+                              @click="show(row.id)">
+                              <Icon name="fa6-solid:eye" />
+                           </button>
+                           <button
+                              v-if="edit"
+                              class="btn btn-sm"
+                              :class="row.isEdit ? 'btn-accent' : 'btn-warning'"
+                              @click="onEdit(row)">
+                              <Icon
+                                 v-if="row.isEdit"
+                                 name="fa6-solid:floppy-disk" />
+                              <Icon v-else name="fa6-solid:pen-to-square" />
+                           </button>
+                           <button
+                              v-if="remove"
+                              class="btn btn-error btn-sm"
+                              @click="onRemove(row)">
+                              <Icon name="fa6-solid:trash" />
+                           </button>
+                        </div>
+                     </td>
+                  </tr>
+               </tbody>
+               <tfoot>
+                  <tr class="border-t-2 border-base-300">
+                     <td :colspan="columns.length + 1">
+                        <div class="flex justify-center">
+                           <div class="join">
+                              <button
+                                 class="join-item btn btn-sm btn-outline btn-primary">
+                                 «
+                              </button>
+                              <button
+                                 class="join-item btn btn-sm btn-outline btn-primary">
+                                 Page 1 of 1
+                              </button>
+                              <button
+                                 class="join-item btn btn-sm btn-outline btn-primary">
+                                 »
+                              </button>
+                           </div>
+                        </div>
+                     </td>
+                  </tr>
+               </tfoot>
+            </table>
+         </div>
       </div>
    </div>
 </template>
