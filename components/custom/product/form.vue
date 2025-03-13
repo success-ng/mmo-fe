@@ -92,7 +92,7 @@
                   <span class="label-text"> Danh mục: </span>
                </div>
                <select
-                  v-model="product.categoryID"
+                  v-model="product.categoryId"
                   class="select select-bordered">
                   <option disabled :value="undefined">Chọn danh mục</option>
                   <option

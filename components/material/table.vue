@@ -25,8 +25,23 @@
       create?: () => Promise<void>;
       show?: (id: number) => void;
    }>();
-   const searchTerms = ref<{ [key: string]: string }>({});
    const { $toast } = useNuxtApp();
+
+   const searchTerms = ref<{ [key: string]: string }>({});
+   function trimStringsInObject(obj: any): any {
+      if (typeof obj !== "object" || obj === null) return obj;
+
+      const trimmed: any = {};
+      for (const key in obj) {
+         const value = obj[key];
+         if (typeof value === "string") {
+            trimmed[key] = value.trim();
+         } else {
+            trimmed[key] = value;
+         }
+      }
+      return trimmed;
+   }
 
    const onRemove = (model: any) => {
       if (remove) {
@@ -105,7 +120,7 @@
          <button
             v-if="keyWords && keyWords.length"
             class="btn btn-primary btn-sm"
-            @click="fetch(searchTerms)">
+            @click="fetch(trimStringsInObject(searchTerms))">
             <Icon name="fa6-solid:search" />
             Search
          </button>
@@ -115,7 +130,7 @@
                   <th v-for="(col, index) in columns">
                      {{ col.label }}
                   </th>
-                  <th v-if="create || edit || remove">Action</th>
+                  <th v-if="edit || remove || show">Action</th>
                </tr>
             </thead>
             <tbody>
@@ -166,7 +181,7 @@
                            class="input input-sm disabled:text-base-content input-bordered" />
                      </slot>
                   </td>
-                  <td v-if="create || edit || remove || show">
+                  <td v-if="edit || remove || show">
                      <div class="flex gap-3">
                         <button
                            v-if="show"

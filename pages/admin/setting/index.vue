@@ -14,9 +14,9 @@
    const fetch = async () => {
       isLoading.value = true;
       settings.value = await settingService.index().then((res) => {
-         isLoading.value = false;
          return res;
       });
+      isLoading.value = false;
    };
    const show = async (id: number) => {
       router.push(`/admin/setting/${id}`);

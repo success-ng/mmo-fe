@@ -10,6 +10,7 @@
       5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000,
    ];
 
+   const loading = ref<boolean>(false);
    const selectedAmount = ref<number>(0);
 
    onMounted(() => {
@@ -22,12 +23,13 @@
    };
 
    // Gửi yêu cầu nạp tiền
-   const submitCashIn = () => {
-      transactionService
+   const submitCashIn = async () => {
+      loading.value = true;
+      await transactionService
          .credit({
             id: 0,
             amount: selectedAmount.value,
-            paymentMethod: "string",
+            paymentMethod: "deposit",
             transactionDate: new Date().toISOString(),
             status: "PAID",
             userId: 0,
@@ -35,11 +37,14 @@
             qrCode: "string",
             orderCode: 0,
             redirectUrl: `${config.public.domain}/cashin`,
+            username: "",
+            email: "",
          })
          .then((res) => {
             window.location.href = res.paymentLink;
          });
    };
+   loading.value = false;
 </script>
 
 <template>
@@ -50,8 +55,6 @@
             <p>Phương thức thanh toán</p>
             <select class="w-full max-w-xs select select-bordered">
                <option value="bank">Ngân hàng nội địa</option>
-               <!-- <option value="momo">Ví MoMo</option>
-               <option value="zalo">ZaloPay</option> -->
             </select>
 
             <p class="mt-4">Số tiền muốn nạp</p>
@@ -67,8 +70,13 @@
             </div>
 
             <div class="flex justify-end mt-6">
-               <button class="btn btn-success" @click="submitCashIn">
-                  Xác nhận nạp tiền
+               <button
+                  class="btn btn-success"
+                  @click="submitCashIn"
+                  :disabled="!selectedAmount && loading">
+                  <span v-if="loading" class="loading loading-bars loading-xs">
+                  </span>
+                  <span v-else> Xác nhận nạp tiền </span>
                </button>
             </div>
          </div>

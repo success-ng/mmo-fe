@@ -14,6 +14,7 @@
       { key: "product", label: "Sản phẩm" },
       { key: "price", label: "Giá" },
       { key: "orderCode", label: "Mã đơn hàng" },
+      { key: "orderDate", label: "Ngày mua" },
       // { key: "status", label: "Trạng thái" },
       { key: "via", label: "VIA" },
    ];

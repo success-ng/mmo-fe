@@ -24,10 +24,10 @@
    };
    const fetch = async () => {
       isLoading.value = true;
-      productService.info(id).then((response) => {
+      await productService.info(id).then((response) => {
          productInfos.value = response;
-         isLoading.value = false;
       });
+      isLoading.value = false;
    };
    const save = async () => {
       productService

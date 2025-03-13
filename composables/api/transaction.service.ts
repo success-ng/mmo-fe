@@ -24,5 +24,16 @@ export const useApiTransactionService = () => {
       return res.data
     })
   }
-  return { txs, credit, myTxs }
+
+  const get = async (id: number): Promise<TransactionModel> => {
+    const data = await axios.get(`${prefix}/${id}`)
+    return data.data;
+  }
+
+  const accept = async (id: number): Promise<TransactionModel> => {
+    const data = await axios.put(`${prefix}/${id}/accept`)
+    return data.data
+  }
+
+  return { txs, credit, myTxs, get, accept }
 }

@@ -6,18 +6,25 @@
    definePageMeta({
       layout: "admin",
    });
+   const router = useRouter();
    const transactionService = useApiTransactionService();
    const txs: Ref<TransactionModel[]> = ref([] as TransactionModel[]);
    const isLoading = ref(true);
    const fetch = async (params?: {}) => {
       isLoading.value = true;
-      transactionService.txs(params).then((res) => {
-         isLoading.value = false;
+      await transactionService.txs(params).then((res) => {
          txs.value = res;
       });
+      isLoading.value = false;
    };
+   const show = (id: number) => {
+      router.push(`/admin/transaction/${id}`);
+   };
+
    const keyWords: Column[] = [
       { key: "orderCode", label: "Mã giao dịch", type: "number" },
+      { key: "username", label: "Username" },
+      { key: "email", label: "Email" },
       {
          key: "transactionDate",
          label: "Ngày giao dịch",
@@ -27,10 +34,10 @@
 
    const columns: Column[] = [
       { key: "id", label: "#" },
-      { key: "userId", label: "User Id" },
+      { key: "userId", label: "Người thực hiện" },
       { key: "amount", label: "Số tiền" },
       // { key: "paymentMethod", label: "Loại giao dịch" },
-      { key: "orderCode", label: "Mã đơn hàng" },
+      { key: "orderCode", label: "Mã giao dịch" },
       { key: "status", label: "Trạng thái" },
       { key: "transactionDate", label: "Ngày giao dịch" },
    ];
@@ -44,9 +51,16 @@
          :key-words="keyWords"
          :columns="columns"
          :fetch="fetch"
+         :show="show"
          :is-loading="isLoading">
          <template #userId="{ row }">
-            <span class="font-bold">{{ row.userId }}</span>
+            <p class="font-bold">{{ row.email }}</p>
+            <p>
+               Id:
+               <span class="font-bold"
+                  >{{ row.userId }} - {{ row.username }}</span
+               >
+            </p>
          </template>
          <template #status="{ row }">
             <span class="font-bold badge badge-secondary">{{

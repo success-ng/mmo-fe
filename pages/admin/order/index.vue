@@ -11,10 +11,10 @@
    const isLoading = ref(true);
    const fetch = async (params?: {}) => {
       isLoading.value = true;
-      orderService.index(params).then((res) => {
+      await orderService.index(params).then((res) => {
          orders.value = res;
-         isLoading.value = false;
       });
+      isLoading.value = false;
    };
    const columns = [
       { key: "id", label: "#" },
@@ -28,6 +28,8 @@
    ];
    const keyWords: Column[] = [
       { key: "orderCode", label: "Mã đơn hàng" },
+      { key: "username", label: "Username" },
+      { key: "email", label: "Email" },
       { key: "orderDate", label: "Ngày mua", type: "datetime-local" },
    ];
    const copyToClipboard = (text: string) => {

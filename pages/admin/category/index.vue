@@ -13,17 +13,17 @@
       { key: "id", label: "#" },
       { key: "name", label: "Tên" },
       { key: "description", label: "Mô tả" },
-      { key: "productCount", label: "Sản phẩm" },
+      { key: "productCount", label: "Số loại via" },
    ];
 
    const router = useRouter();
 
    const fetch = async () => {
       isLoading.value = true;
-      categoryService.index().then((res) => {
+      await categoryService.index().then((res) => {
          data.value = res;
-         isLoading.value = false;
       });
+      isLoading.value = false;
    };
    const create = async () => {
       router.push("/admin/category/create");

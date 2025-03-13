@@ -13,20 +13,33 @@
    const analysisService = useApiAnalysisService();
    const analysis = ref<AnalysisModel[]>([] as AnalysisModel[]);
    const loading = ref(true);
-   onMounted(() => {
+   onMounted(async () => {
       loading.value = true;
-      analysisService.index().then((res) => {
-         loading.value = false;
+      await analysisService.index().then((res) => {
          analysis.value = res;
       });
+      loading.value = false;
       // webhooks.register().then((res) => {
       //    console.log(res);
       // });
    });
+   const { $toast } = useNuxtApp();
+   const webhookService = useApiWebhookService();
+   const registerWebhook = async () => {
+      await webhookService.register().then((res) => {
+         console.log(res);
+         $toast(res.message, {
+            type: "success",
+         });
+      });
+   };
 </script>
 
 <template>
    <section class="space-y-6">
+      <button class="w-full btn btn-primary" @click="registerWebhook">
+         Kiểm tra webhook
+      </button>
       <div class="grid gap-3 lg:grid-cols-3">
          <div class="card card-compact card-side bg-base-100 drop-shadow-lg">
             <div class="p-3 card-title">

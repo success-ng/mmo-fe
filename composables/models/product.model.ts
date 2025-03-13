@@ -16,7 +16,7 @@ export type ProductModel = {
   stock: number;
   description: string;
   country: string;
-  categoryID: number;
+  categoryId: number;
   createdAt: string;
   isEdit: boolean;
 }

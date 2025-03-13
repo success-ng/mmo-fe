@@ -1,6 +1,5 @@
 <script setup lang="ts">
    import { useApiProductService } from "~/composables/api/product.service";
-   import { useApiUserService } from "~/composables/api/user.service";
    import type { ProductModel } from "~/composables/models/product.model";
    import type { Column } from "~/composables/types/table.type";
    const data: Ref<ProductModel[]> = ref([] as ProductModel[]);
@@ -15,13 +14,17 @@
 
    const fetch = async (params?: {}) => {
       loading.value = true;
-      productService.index(params).then((response) => {
-         loading.value = false;
+      await productService.index(params).then((response) => {
          data.value = response;
       });
+      loading.value = false;
    };
 
-   const keyWords: Column[] = [{ key: "name", label: "Tên sản phẩm" }];
+   const keyWords: Column[] = [
+      { key: "name", label: "Tên sản phẩm" },
+      { key: "categoryName", label: "Tên danh mục" },
+      { key: "country", label: "Quốc gia" },
+   ];
 
    const create = async () => {
       router.push("/admin/product/create");
@@ -39,7 +42,7 @@
       { key: "id", label: "#" },
       { key: "country", label: "Quốc gia" },
       { key: "name", label: "Tên" },
-      { key: "categoryID", label: "Danh mục" },
+      { key: "categoryName", label: "Danh mục" },
       { key: "price", label: "Giá" },
       { key: "stock", label: "Số lượng" },
       { key: "createdAt", label: "Ngày tạo" },
@@ -57,11 +60,21 @@
       :remove="del"
       :is-loading="loading"
       :columns="columns">
+      <template #country="{ row }">
+         <p class="font-bold">{{ row.country }}</p>
+      </template>
+      <template #name="{ row }">
+         <p class="font-bold">{{ row.name }}</p>
+      </template>
+      <template #price="{ row }">
+         <p class="font-bold">{{ row.price }}</p>
+      </template>
       <template #stock="{ row }">
          <span class="font-bold badge badge-secondary">{{ row.stock }}</span>
       </template>
-      <template #categoryID="{ row }">
-         <span class="font-bold badge badge-primary">{{ row.categoryID }}</span>
+      <template #categoryName="{ row }">
+         <p class="font-bold">{{ row.categoryName }}</p>
+         <p class="">Mã danh mục: {{ row.categoryId }}</p>
       </template>
       <template #createdAt="{ row }">
          {{ row.createdAt }}

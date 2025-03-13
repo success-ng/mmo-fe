@@ -1,6 +1,8 @@
 export type TransactionModel = {
   id: number,
   userId: number,
+  username: string,
+  email: string,
   amount: number,
   paymentMethod: string,
   status: string,

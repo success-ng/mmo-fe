@@ -12,10 +12,10 @@
    const isLoading = ref(true);
    const fetch = async (params?: {}) => {
       isLoading.value = true;
-      userService.index(params).then((res) => {
+      await userService.index(params).then((res) => {
          users.value = res;
-         isLoading.value = false;
       });
+      isLoading.value = false;
    };
 
    const show = async (id: number) => {
