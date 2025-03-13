@@ -5,7 +5,9 @@
 <template>
    <div class="flex flex-col h-dvh bg-base-300">
       <header><UiHeader /></header>
-      <div class="flex flex-col justify-between flex-1 overflow-y-auto">
+      <div
+         class="flex flex-col justify-between flex-1 overflow-y-auto"
+         style="-webkit-overflow-scrolling: touch">
          <main class="flex-1 p-3">
             <div class="flex flex-col gap-3 md:flex-row">
                <!-- <CustomProfileMenu /> -->
