@@ -129,7 +129,7 @@
    <div class="shadow-lg card card-compact bg-base-100">
       <form class="card-body" @submit="onSubmit">
          <h1 class="card-title">Thông tin người dùng</h1>
-         <div class="grid gap-3 md:grid-cols-3">
+         <div class="grid gap-3 lg:grid-cols-3">
             <label class="form-control">
                <p>Tên đăng nhập</p>
                <input
