@@ -47,7 +47,7 @@
    <section>
       <MaterialTable
          title="Giao dịch"
-         :data="txs"
+         :data="txs.slice().reverse()"
          :key-words="keyWords"
          :columns="columns"
          :fetch="fetch"

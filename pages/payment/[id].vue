@@ -23,7 +23,7 @@
             <h3 class="card-title">Giao dịch thành công</h3>
             <div class="join join-vertical">
                <button
-                  class="btn btn-sm btn-outline join-item"
+                  class="max-w-full overflow-hidden h-fit btn btn-sm btn-outline join-item"
                   v-for="via in vias"
                   @click="copyToClipboard(via)">
                   {{ via }}

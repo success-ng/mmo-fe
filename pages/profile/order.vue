@@ -41,7 +41,7 @@
    <section class="space-y-6">
       <MaterialTable
          title="Danh sách đơn hàng"
-         :data="orders"
+         :data="orders.slice().reverse()"
          :fetch="fetch"
          :columns="columns"
          :key-words="keyWords"
@@ -65,7 +65,7 @@
             </div>
          </template>
          <template #orderCode="{ row }">
-            <span class="font-bold badge badge-ghost">{{ row.orderCode }}</span>
+            <span class="font-bold">{{ row.orderCode }}</span>
          </template>
          <template #product="{ row }">
             <p>
@@ -80,12 +80,9 @@
             </p>
          </template>
          <template #price="{ row }">
-            <div class="flex items-center gap-3">
-               <div class="">
-                  <p>Đơn giá: {{ row.price }} đ</p>
-                  <p>Số lượng: x{{ row.quantity }}</p>
-               </div>
-               <div class="font-bold">= {{ row.totalAmount }} đ</div>
+            <div class="flex flex-col items-center gap-3">
+               <p>Đơn giá: {{ row.price }} đ x{{ row.quantity }}</p>
+               <div class="font-bold">Thành tiền: {{ row.totalAmount }} đ</div>
             </div>
          </template>
          <template #via="{ row }">

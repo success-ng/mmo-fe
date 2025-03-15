@@ -39,7 +39,7 @@
       <MaterialTable
          title="Lịch sử nạp"
          :key-words="keyWords"
-         :data="txs"
+         :data="txs.slice().reverse()"
          :fetch="fetch"
          :columns="columns"
          :is-loading="isLoadingTxs">

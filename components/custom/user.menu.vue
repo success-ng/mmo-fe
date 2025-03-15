@@ -30,12 +30,11 @@
          icon: "fa6-solid:cart-shopping",
          name: "Đơn hàng",
       },
-      {
-         to: "/auth",
-         icon: "fa6-solid:right-from-bracket",
-         name: "Đăng xuất",
-      },
    ];
+   const isOpenModal = ref(false);
+   const changeModal = async () => {
+      isOpenModal.value = !isOpenModal.value;
+   };
 </script>
 
 <template>
@@ -49,7 +48,30 @@
             </span>
          </NuxtLink>
       </li>
+      <li>
+         <NuxtLink @click="changeModal" class="text-error">
+            <Icon name="fa6-solid:right-from-bracket" class="basis-1/4" />
+            <span class="hidden font-bold md:block">Đăng xuất</span>
+         </NuxtLink>
+      </li>
    </ul>
+   <dialog class="modal" :class="{ 'modal-open': isOpenModal }">
+      <div class="relative modal-box">
+         <label
+            class="absolute btn btn-sm btn-circle right-2 top-2"
+            @click="changeModal"
+            >✕</label
+         >
+         <h2 class="card-title">Bạn có chắc chắn muốn đăng xuất!</h2>
+         <div class="modal-action">
+            <NuxtLink class="btn btn-success" to="/auth" @click="changeModal">
+               Đăng xuất
+            </NuxtLink>
+            <button class="btn btn-error" @click="changeModal">Hủy</button>
+         </div>
+         <div class="modal-backdrop" @click="changeModal"></div>
+      </div>
+   </dialog>
 </template>
 
 <style scoped></style>

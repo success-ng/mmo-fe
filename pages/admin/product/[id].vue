@@ -67,7 +67,7 @@
             <span class="font-bold">{{ row.value }}</span>
          </template>
       </MaterialTable>
-      <div class="modal" :class="{ 'modal-open': isOpenModal }">
+      <dialog class="modal" :class="{ 'modal-open': isOpenModal }">
          <div class="relative modal-box">
             <label
                class="absolute btn btn-sm btn-circle right-2 top-2"
@@ -83,11 +83,16 @@
                   v-model="newVia"></textarea>
             </label>
             <div class="modal-action">
-               <button class="btn btn-success" @click="save">Thêm</button>
+               <button
+                  class="btn btn-success"
+                  :disabled="!newVia"
+                  @click="save">
+                  Thêm
+               </button>
                <button class="btn btn-error" @click="changeModal">Hủy</button>
             </div>
             <div class="modal-backdrop" @click="changeModal"></div>
          </div>
-      </div>
+      </dialog>
    </section>
 </template>

@@ -128,7 +128,9 @@
             <table class="table table-pin-rows">
                <thead>
                   <tr class="border-b-2 border-base-300">
-                     <th v-for="(col, index) in columns">
+                     <th
+                        v-for="(col, index) in columns"
+                        class="text-lg font-bold">
                         {{ col.label }}
                      </th>
                      <th v-if="edit || remove || show">Action</th>

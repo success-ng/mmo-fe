@@ -9,6 +9,7 @@
    const loading = ref(false);
    const router = useRouter();
    const authService = useAuthService();
+   const showPassword = ref(false);
    const loginForm = ref<LoginForm>({
       username: "",
       password: "",
@@ -40,10 +41,16 @@
          <label class="flex items-center gap-2 input input-bordered">
             <Icon name="fa6-solid:key" />
             <input
+               :type="showPassword ? 'text' : 'password'"
                v-model="loginForm.password"
-               type="password"
                class="grow"
                placeholder="Password" />
+            <button type="button" @click="showPassword = !showPassword">
+               <Icon
+                  :name="
+                     showPassword ? 'fa6-solid:eye-slash' : 'fa6-solid:eye'
+                  " />
+            </button>
          </label>
       </div>
       <div class="">
@@ -56,21 +63,21 @@
          </button>
          <p class="flex-none text-center">
             Bạn chưa có tài khoản?
-            <button
+            <NuxtLink
                type="reset"
-               @click="router.push('/auth/register')"
+               to="/auth/register"
                class="btn btn-primary btn-sm btn-ghost text-primary">
                Đăng ký ngay
-            </button>
+            </NuxtLink>
          </p>
          <p class="flex-none text-center">
             Quên mật khẩu?
-            <button
+            <NuxtLink
                type="reset"
-               @click="router.push('/auth/forget')"
+               to="/auth/forget"
                class="btn btn-primary btn-sm btn-ghost text-primary">
                Lấy lại mật khẩu
-            </button>
+            </NuxtLink>
          </p>
       </div>
    </form>

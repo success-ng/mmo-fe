@@ -78,11 +78,18 @@
             </div>
          </template>
          <template #contact="{ row }">
-            <span class="badge badge-ghost badge-sm">
-               {{ row.email }}
-            </span>
-            <br />
-            <span class="badge badge-ghost badge-sm">{{ row.phone }}</span>
+            <p>
+               Email:
+               <span class="font-bold">
+                  {{ row.email }}
+               </span>
+            </p>
+            <p>
+               Phone:
+               <span class="font-bold">
+                  {{ row.phone }}
+               </span>
+            </p>
          </template>
          <template #active="{ row }">
             <div

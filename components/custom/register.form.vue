@@ -6,8 +6,8 @@
    const { change } = defineProps<{
       change: () => void;
    }>();
-   const router = useRouter();
    const authService = useAuthService();
+   const showPassword = ref(false);
    const registerForm = ref<RegisterForm>({
       username: "",
       fullname: "",
@@ -77,38 +77,46 @@
       <label class="flex items-center gap-2 input input-bordered">
          <Icon name="fa6-solid:key" />
          <input
-            type="password"
+            :type="showPassword ? 'text' : 'password'"
             class="grow"
             placeholder="Input your password..."
             v-model="registerForm.password" />
+         <button type="button" @click="showPassword = !showPassword">
+            <Icon
+               :name="showPassword ? 'fa6-solid:eye-slash' : 'fa6-solid:eye'" />
+         </button>
       </label>
       <label class="flex items-center gap-2 input input-bordered">
          <Icon name="fa6-solid:key" />
          <input
-            type="password"
+            :type="showPassword ? 'text' : 'password'"
             class="grow"
             placeholder="Confirm your password..."
             v-model="confirmPassword" />
+         <button type="button" @click="showPassword = !showPassword">
+            <Icon
+               :name="showPassword ? 'fa6-solid:eye-slash' : 'fa6-solid:eye'" />
+         </button>
       </label>
       <div class="">
          <button type="submit" class="w-full btn btn-primary">Đăng ký</button>
          <p class="flex-none text-center">
             Bạn đã có tài khoản?
-            <button
-               @click="router.push('/auth')"
+            <NuxtLink
+               to="/auth"
                type="reset"
                class="btn btn-primary btn-sm btn-ghost text-primary">
                Đăng nhập ngay
-            </button>
+            </NuxtLink>
          </p>
          <p class="flex-none text-center">
             Quên mật khẩu?
-            <button
+            <NuxtLink
                type="reset"
-               @click="router.push('/auth/forget')"
+               to="/auth/forget"
                class="btn btn-primary btn-sm btn-ghost text-primary">
                Lấy lại mật khẩu
-            </button>
+            </NuxtLink>
          </p>
       </div>
    </form>
