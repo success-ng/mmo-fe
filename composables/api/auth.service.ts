@@ -12,7 +12,7 @@ export const useAuthService = () => {
     return await axios.post(`${prefix}/login`, form).then(res => {
       var token = useCookie("authToken")
       token.value = res.data.token;
-      return res
+      return res.data
     }).catch(err => {
       $toast("Tài khoản hoặc mật khẩu không chính xác", {
         type: "error",

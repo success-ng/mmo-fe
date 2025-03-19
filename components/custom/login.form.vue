@@ -2,23 +2,21 @@
    import { useAuthService } from "~/composables/api/auth.service";
    import type { LoginForm } from "~/composables/forms/login.form";
 
-   const { change } = defineProps<{
-      change: () => void;
-   }>();
-
+   const otp = ref(false);
    const loading = ref(false);
    const router = useRouter();
    const authService = useAuthService();
    const showPassword = ref(false);
-   const loginForm = ref<LoginForm>({
-      username: "",
-      password: "",
-   });
+   const loginForm = ref<LoginForm>({} as LoginForm);
    const login = async () => {
       loading.value = true;
       try {
-         await authService.login(loginForm.value);
-         router.back();
+         const data = await authService.login(loginForm.value);
+         if (data.verify) {
+            otp.value = true;
+         } else {
+            router.back();
+         }
       } catch (error) {
          console.error(error);
       }
@@ -51,6 +49,16 @@
                      showPassword ? 'fa6-solid:eye-slash' : 'fa6-solid:eye'
                   " />
             </button>
+         </label>
+         <label v-if="otp" class="flex items-center gap-2 input input-bordered">
+            <Icon name="fa6-solid:envelope-open-text" />
+            <input
+               type="number"
+               class="grow"
+               minlength="6"
+               maxlength="6"
+               placeholder="OTP"
+               v-model="loginForm.otp" />
          </label>
       </div>
       <div class="">
