@@ -1,7 +1,9 @@
 <script setup lang="ts">
    import { useAuthService } from "~/composables/api/auth.service";
    import type { LoginForm } from "~/composables/forms/login.form";
+   import { useUserStore } from "~/composables/stores/user.store";
 
+   const userStore = useUserStore();
    const otp = ref(false);
    const loading = ref(false);
    const router = useRouter();
@@ -15,6 +17,7 @@
          if (data.verify) {
             otp.value = true;
          } else {
+            userStore.setUser(data.userInfo);
             router.back();
          }
       } catch (error) {

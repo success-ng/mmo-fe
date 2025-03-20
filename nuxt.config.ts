@@ -8,13 +8,11 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/tailwindcss', // 'vuetify-nuxt-module',
-    '@nuxt/fonts', // '@nuxtjs/i18n'
-    // '@nuxt/eslint'
-    '@nuxt/icon',
-    // '@nuxtjs/color-mode'
-  ],
+  modules: [// 'vuetify-nuxt-module',
+  '@nuxtjs/tailwindcss', // '@nuxtjs/i18n'
+  '@nuxt/fonts', // '@nuxt/eslint'
+  // '@nuxtjs/color-mode'
+  '@nuxt/icon', '@pinia/nuxt'],
   postcss: {
     plugins: {
       tailwindcss: {},

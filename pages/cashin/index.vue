@@ -14,9 +14,7 @@
    const selectedAmount = ref<number>(0);
 
    onMounted(() => {
-      userService.profile().then((res) => {
-         console.log(res);
-      });
+      userService.profile();
    });
    const selectAmount = (amt: number) => {
       selectedAmount.value = amt;

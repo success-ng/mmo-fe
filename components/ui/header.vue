@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+   import { useUserStore } from "~/composables/stores/user.store";
+
+   const userStore = useUserStore();
+   const role = computed(() => userStore.getRole);
+</script>
 
 <template>
    <nav class="items-center justify-between shadow-xl navbar bg-base-100">
@@ -11,19 +16,13 @@
             ViaClone68
          </NuxtLink>
       </div>
-      <ul class="flex gap-3">
-         <li>
+      <ClientOnly>
+         <div class="flex gap-3" v-if="role == 'ADMIN'">
             <NuxtLink to="/admin" class="btn btn-ghost">Admin</NuxtLink>
-         </li>
-      </ul>
+         </div>
+      </ClientOnly>
       <div class="flex-none gap-2">
          <MaterialSwitchTheme />
-         <!-- <div class="form-control">
-            <input
-               type="text"
-               placeholder="Search"
-               class="w-24 input input-bordered md:w-auto" />
-         </div> -->
          <div
             tabindex="0"
             role="button"

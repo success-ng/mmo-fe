@@ -2,6 +2,7 @@ import { useCoreAxiosInstance } from "../core/axios.instance"
 import type { LoginForm } from "../forms/login.form"
 import type { RegisterForm } from "../forms/register.form"
 import type { ResetPasswordModel } from "../models/reset-password.model"
+import type { UserModel } from "../models/user.model"
 
 export const useAuthService = () => {
   const axios = useCoreAxiosInstance()
@@ -72,5 +73,15 @@ export const useAuthService = () => {
         return Promise.reject(err)
       })
   }
-  return { login, register, forget, reset }
+
+  const profile = async (): Promise<UserModel> => {
+    const data = await axios.get(`${prefix}/profile`)
+    return {
+      ...data.data.userInfo,
+      avatar: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp",
+    };
+  }
+
+
+  return { login, register, forget, reset, profile }
 }

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+   import { useUserStore } from "~/composables/stores/user.store";
    const links = [
       {
          name: "Home",
@@ -35,6 +36,12 @@
    const changeModal = async () => {
       isOpenModal.value = !isOpenModal.value;
    };
+
+   const userStore = useUserStore();
+   const { isLoggedIn } = storeToRefs(userStore);
+   watch(isLoggedIn, (val) => {
+      console.log("Login state changed:", val);
+   });
 </script>
 
 <template>
@@ -48,12 +55,20 @@
             </span>
          </NuxtLink>
       </li>
-      <li>
-         <NuxtLink @click="changeModal" class="text-error">
-            <Icon name="fa6-solid:right-from-bracket" class="basis-1/4" />
-            <span class="hidden font-bold md:block">Đăng xuất</span>
-         </NuxtLink>
-      </li>
+      <ClientOnly>
+         <li v-if="isLoggedIn">
+            <NuxtLink @click="changeModal" class="text-error">
+               <Icon name="fa6-solid:right-from-bracket" class="basis-1/4" />
+               <span class="hidden font-bold md:block">Đăng xuất</span>
+            </NuxtLink>
+         </li>
+         <li v-else>
+            <NuxtLink to="/auth" class="text-success">
+               <Icon name="fa6-solid:right-from-bracket" class="basis-1/4" />
+               <span class="hidden font-bold md:block">Đăng nhập</span>
+            </NuxtLink>
+         </li>
+      </ClientOnly>
    </ul>
    <dialog class="modal" :class="{ 'modal-open': isOpenModal }">
       <div class="relative modal-box">

@@ -1,11 +1,13 @@
 <script setup lang="ts">
    import { useApiUserService } from "~/composables/api/user.service";
+   import { useUserStore } from "~/composables/stores/user.store";
 
    const userService = useApiUserService();
    const isLogin = ref(true);
+   const userStore = useUserStore();
    onMounted(() => {
       userService.logout().then((res) => {
-         console.log(res);
+         userStore.$reset();
       });
    });
    const changeLogin = () => {

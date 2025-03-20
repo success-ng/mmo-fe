@@ -69,7 +69,7 @@
       <label class="flex items-center gap-2 input input-bordered">
          <Icon name="fa6-solid:phone" />
          <input
-            type="text"
+            type="tel"
             class="grow"
             placeholder="Phone number..."
             v-model="registerForm.phone" />
