@@ -49,7 +49,7 @@ export const useCoreAxiosInstance = () => {
         // Nếu lỗi kết nối mạng (server không phản hồi)
         router.push("/500");
       }
-      toast.error(`Request failed!\n${error.response?.data?.data.errors ?? error.code}`);
+      toast.error(`${error.response?.data?.data.errors ?? error.code}`);
       // toast.error(`Request failed! Status: ${error.response?.status}`);
       return Promise.reject(error);
     }
