@@ -22,8 +22,10 @@
          .then((res) => {
             $toast("Đặt lại mật khẩu thành công!", {
                type: "success",
+               onClose: () => {
+                  router.push("/auth");
+               },
             });
-            router.push("/auth");
          })
          .catch((err) => {
             $toast("Đặt lại mật khẩu thất bại!", {
@@ -43,7 +45,7 @@
             <Icon name="fa6-solid:at" />
             <input
                type="password"
-               class="grow "
+               class="grow"
                placeholder="New password"
                v-model="form.newPassword" />
          </label>

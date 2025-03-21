@@ -7,9 +7,7 @@
    const isLoading = ref(false);
    const submit = async () => {
       isLoading.value = true;
-      await authService.forget(email.value).then((res) => {
-         router.push("/auth");
-      });
+      await authService.forget(email.value);
       isLoading.value = false;
    };
 </script>

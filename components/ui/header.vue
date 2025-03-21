@@ -24,7 +24,7 @@
          </div>
       </ClientOnly>
       <div class="flex-none gap-2">
-         <MaterialSwitchTheme />
+         <!-- <MaterialSwitchTheme /> -->
          <div>
             <div class="font-bold">{{ username }}</div>
             <div class="text-sm opacity-50">Số dư: {{ balance }} VND</div>
