@@ -14,11 +14,6 @@ export const useAuthService = () => {
       var token = useCookie("authToken")
       token.value = res.data.token;
       return res.data
-    }).catch(err => {
-      $toast("Tài khoản hoặc mật khẩu không chính xác", {
-        type: "error",
-      });
-      return Promise.reject(err)
     })
   }
 
