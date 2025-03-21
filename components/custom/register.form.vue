@@ -14,7 +14,7 @@
       email: "",
       password: "",
       rewritePassword: "",
-      phone: "",
+      // phone: "",
    });
    const confirmPassword = ref("");
    const OnSubmit = async (event: Event) => {
@@ -66,14 +66,14 @@
             placeholder="Full name"
             v-model="registerForm.fullname" />
       </label>
-      <label class="flex items-center gap-2 input input-bordered">
+      <!-- <label class="flex items-center gap-2 input input-bordered">
          <Icon name="fa6-solid:phone" />
          <input
             type="tel"
             class="grow"
             placeholder="Phone number..."
             v-model="registerForm.phone" />
-      </label>
+      </label> -->
       <label class="flex items-center gap-2 input input-bordered">
          <Icon name="fa6-solid:key" />
          <input

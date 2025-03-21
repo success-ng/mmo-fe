@@ -131,8 +131,7 @@
                      placeholder="Name"
                      v-model="data.fullname" />
                </label>
-               <label class="w-full max-w-xs form-control">
-                  <!-- <Icon name="fa6-solid:phone" /> -->
+               <!-- <label class="w-full max-w-xs form-control">
                   <div class="label">
                      <span class="label-text"> Phone: </span>
                   </div>
@@ -142,7 +141,7 @@
                      class="input input-bordered"
                      placeholder="Phone"
                      v-model="data.phone" />
-               </label>
+               </label> -->
                <label class="w-full max-w-xs form-control">
                   <div class="label">
                      <span class="label-text"> Address: </span>

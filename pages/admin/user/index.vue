@@ -84,12 +84,12 @@
                   {{ row.email }}
                </span>
             </p>
-            <p>
+            <!-- <p>
                Phone:
                <span class="font-bold">
                   {{ row.phone }}
                </span>
-            </p>
+            </p> -->
          </template>
          <template #active="{ row }">
             <div

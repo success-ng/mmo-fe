@@ -149,7 +149,7 @@
                   class="input input-bordered"
                   v-model="user.email" />
             </label>
-            <label class="form-control">
+            <!-- <label class="form-control">
                <p>Số điện thoại</p>
                <input
                   type="tel"
@@ -157,7 +157,7 @@
                   id=""
                   class="input input-bordered"
                   v-model="user.phone" />
-            </label>
+            </label> -->
             <label class="form-control">
                <p>Họ và tên</p>
                <input

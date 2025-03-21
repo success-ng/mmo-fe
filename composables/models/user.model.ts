@@ -4,7 +4,7 @@ export type UserModel = {
   password: string,
   fullname: string,
   email: string,
-  phone: string,
+  // phone: string,
   avatar: string,
   language: string,
   country: string,
