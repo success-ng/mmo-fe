@@ -7,9 +7,9 @@
    const txs: Ref<TransactionModel[]> = ref([] as TransactionModel[]);
    const transactionService = useApiTransactionService();
 
-   const fetch = async () => {
+   const fetch = async (params?: {}) => {
       isLoadingTxs.value = true;
-      transactionService.myTxs().then((res) => {
+      transactionService.myTxs(params).then((res) => {
          isLoadingTxs.value = false;
          txs.value = res;
       });
