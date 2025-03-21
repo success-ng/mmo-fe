@@ -56,7 +56,6 @@
          <label v-if="otp" class="flex items-center gap-2 input input-bordered">
             <Icon name="fa6-solid:envelope-open-text" />
             <input
-               type="number"
                class="grow"
                minlength="6"
                maxlength="6"

@@ -23,12 +23,13 @@
       //    console.log(res);
       // });
    });
+
    const { $toast } = useNuxtApp();
    const webhookService = useApiWebhookService();
    const registerWebhook = async () => {
-      await webhookService.register().then((res) => {
+      await webhookService.register().then((res: any) => {
          console.log(res);
-         $toast(res.message, {
+         $toast(res?.message, {
             type: "success",
          });
       });
