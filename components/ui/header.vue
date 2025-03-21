@@ -3,6 +3,8 @@
 
    const userStore = useUserStore();
    const role = computed(() => userStore.getRole);
+   const username = computed(() => userStore.getUserName);
+   const balance = computed(() => userStore.getBalance);
 </script>
 
 <template>
@@ -23,6 +25,10 @@
       </ClientOnly>
       <div class="flex-none gap-2">
          <MaterialSwitchTheme />
+         <div>
+            <div class="font-bold">{{ username }}</div>
+            <div class="text-sm opacity-50">Số dư: {{ balance }} VND</div>
+         </div>
          <div
             tabindex="0"
             role="button"

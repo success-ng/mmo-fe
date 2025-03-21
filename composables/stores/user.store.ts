@@ -20,5 +20,6 @@ export const useUserStore = defineStore('user', {
     isLoggedIn: (state) => !!state.user,
     getRole: (state) => state.user?.role,
     getUserName: (state) => state.user?.username || 'Guest',
+    getBalance: (state) => state.user?.balance,
   },
 })

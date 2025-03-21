@@ -31,7 +31,7 @@
 
    const fetch = async (params?: {}) => {
       isLoading.value = true;
-      orderService.index(params).then((res) => {
+      orderService.myOrder(params).then((res) => {
          orders.value = res;
          isLoading.value = false;
       });

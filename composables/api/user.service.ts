@@ -1,6 +1,7 @@
 import { useCoreAxiosInstance } from "../core/axios.instance"
 import type { RegisterForm } from "../forms/register.form"
 import type { UserModel } from "../models/user.model"
+import { useUserStore } from "../stores/user.store"
 
 export const useApiUserService = () => {
   const axios = useCoreAxiosInstance()
@@ -15,6 +16,8 @@ export const useApiUserService = () => {
 
   const updateProfile = async (form: UserModel) => {
     const data = await axios.put('/auth/profile', form)
+    const userStore = useUserStore();
+    userStore.setUser(data.data)
     return data.data
   }
 
