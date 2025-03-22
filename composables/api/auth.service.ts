@@ -61,12 +61,7 @@ export const useAuthService = () => {
         });
         return res
       }
-      ).catch(err => {
-        $toast("Đặt lại mật khẩu thất bại", {
-          type: "error",
-        });
-        return Promise.reject(err)
-      })
+      )
   }
 
   const profile = async (): Promise<UserModel> => {
