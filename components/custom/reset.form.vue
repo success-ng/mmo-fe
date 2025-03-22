@@ -39,7 +39,7 @@
    <form
       class="flex flex-col justify-center space-y-4"
       @submit.prevent="submit">
-      <p class="justify-center flex-none card-title">Đăng nhập</p>
+      <p class="justify-center flex-none card-title">Nhập mật khẩu mới</p>
       <div class="space-y-4">
          <label class="flex items-center gap-2 input input-bordered">
             <Icon name="fa6-solid:at" />
