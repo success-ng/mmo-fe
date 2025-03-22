@@ -18,7 +18,7 @@
             otp.value = true;
          } else {
             userStore.setUser(data.userInfo);
-            router.back();
+            navigateTo("/");
          }
       } catch (error) {
          console.error(error);
