@@ -47,6 +47,9 @@ export const useCoreAxiosInstance = () => {
       else if (error.code === "ECONNABORTED" || error.message === "Network Error") {
         // Nếu lỗi kết nối mạng (server không phản hồi)
         router.push("/500");
+      } else if (error.response?.data.data.errorCode == 1000) {
+        toast.error(`${error.response?.data?.data.errors}`);
+        return Promise.reject(error);
       }
       toast.error(`${error.response?.data?.responseMessage.message ?? error.code}`);
       // toast.error(`Request failed! Status: ${error.response?.status}`);
