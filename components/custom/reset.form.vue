@@ -17,21 +17,14 @@
          });
          return;
       }
-      authService
-         .reset(form.value)
-         .then((res) => {
-            $toast("Đặt lại mật khẩu thành công!", {
-               type: "success",
-               onClose: () => {
-                  router.push("/auth");
-               },
-            });
-         })
-         .catch((err) => {
-            $toast("Đặt lại mật khẩu thất bại!", {
-               type: "error",
-            });
+      authService.reset(form.value).then((res) => {
+         $toast("Đặt lại mật khẩu thành công!", {
+            type: "success",
+            onClose: () => {
+               router.push("/auth");
+            },
          });
+      });
    };
 </script>
 
