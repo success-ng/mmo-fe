@@ -68,7 +68,8 @@
                </span>
                <span
                   class="gap-2 badge badge-warning text-warning-content text-nowrap">
-                  <Icon name="fa6-solid:coins" />Giá: {{ product.price }} đ
+                  <Icon name="fa6-solid:coins" />Giá:
+                  {{ product.price.toLocaleString() }} đ
                </span>
             </div>
             <div class="">
