@@ -75,14 +75,14 @@
             <div class="">
                <p class="" v-html="product.description" />
                <p>
-                  - Quốc gia <Icon name="fa6-solid:earth-asia" /> :
+                  🌍 Quốc gia:
                   {{ product.country }}
                </p>
                <!-- <p class="overflow-hidden text-nowrap">{{ product.description }}</p> -->
                <!-- <div class="my-0 divider" /> -->
-               <p>- Change thông tin <Icon name="fa6-solid:pen-to-square" /></p>
+               <p>🛠 Change thông tin </p>
                <!-- <div class="my-0 divider" /> -->
-               <p>- Hỗ trợ backup</p>
+               <p>🛡 Hỗ trợ backup</p>
                <!-- <div class="">
                </div> -->
             </div>
@@ -142,4 +142,8 @@
    </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+::v-deep(ul li::before) {
+  content: "💥";
+}
+</style>

@@ -38,3 +38,11 @@
       </MaterialDialog>
    </section>
 </template>
+
+
+
+<style scoped>
+::v-deep(ul li::before) {
+  content: "📢";
+}
+</style>
