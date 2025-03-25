@@ -55,4 +55,8 @@
    </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+::v-deep(ul li::before) {
+  content: "📢";
+}
+</style>
