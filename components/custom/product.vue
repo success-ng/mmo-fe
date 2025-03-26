@@ -54,7 +54,7 @@
       class="card card-compact bg-base-100 text-base-content drop-shadow-lg"
       style="-webkit-overflow-scrolling: touch">
       <p
-         class="flex-none p-4 text-base text-center text-white bg-blue-500 rounded-t-lg card-title">
+         class="flex-none p-4 text-lg text-center text-white bg-blue-500 rounded-t-xl card-title">
          {{ product.name }}
       </p>
       <div class="justify-between gap-3 card-body">
@@ -70,7 +70,7 @@
                   {{ product.price.toLocaleString() }} đ
                </span>
             </div>
-            <div class="">
+            <div class="space-y-1">
                <p class="" v-html="product.description" />
                <p>
                   🌍 Quốc gia:
@@ -143,5 +143,9 @@
 <style scoped>
    ::v-deep(ul li::before) {
       content: "💥";
+      margin-right: 5px;
+   }
+   ::v-deep(ul li) {
+      margin-bottom: 5px;
    }
 </style>

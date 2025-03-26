@@ -30,7 +30,7 @@
          <figure>
             <img :src="category.icon" alt="" class="w-[2em]" />
          </figure>
-         <span class="text-neutral-content">{{ category.name }}</span>
+         <span class="text-xl text-neutral-content">{{ category.name }}</span>
       </div>
       <div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
          <CustomProduct
