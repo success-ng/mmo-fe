@@ -55,12 +55,26 @@
             </p>
          </template>
          <template #status="{ row }">
-            <span class="font-bold badge badge-secondary">{{
-               row.status
-            }}</span>
+            <div
+               class="space-x-1 font-bold badge badge-outline"
+               :class="[
+                  row.status == 'PAID' ? 'badge-primary' : 'badge-error',
+               ]">
+               <Icon
+                  name="fa6-solid:circle"
+                  :class="[
+                     row.status == 'PAID' ? 'badge-primary' : 'badge-error',
+                  ]"
+                  size="8" />
+               <span>
+                  {{
+                     row.status == "PAID" ? "Đã thanh toán" : "Chưa thanh toán"
+                  }}
+               </span>
+            </div>
          </template>
          <template #amount="{ row }">
-            <span class="font-bold">{{ row.amount }} đ</span>
+            <span class="font-bold">{{ row.amount.toLocaleString() }} đ</span>
          </template>
          <template #paymentMethod="{ row }">
             <span class="font-bold">{{ row.paymentMethod }}</span>

@@ -79,9 +79,12 @@
          :remove="remove"
          :columns="columns">
          <template #productCount="{ row }">
-            <span class="font-bold badge badge-md badge-secondary">
-               {{ row.products.length }}
-            </span>
+            <div class="space-x-1 font-bold badge badge-outline badge-primary">
+               <Icon name="fa6-solid:xmark" class="text-primary" size="10" />
+               <span>
+                  {{ row.products.length }}
+               </span>
+            </div>
          </template>
       </MaterialTable>
    </section>

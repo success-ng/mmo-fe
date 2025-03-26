@@ -8,8 +8,9 @@
    const route = useRoute();
    const token = route.query.token as string;
    const confirmPass = ref("");
+   const loading = ref(false);
    const form: Ref<ResetPasswordModel> = ref({} as ResetPasswordModel);
-   const submit = () => {
+   const submit = async () => {
       form.value.token = token;
       if (form.value.newPassword !== confirmPass.value) {
          $toast("Mật khẩu xác nhận không khớp!", {
@@ -17,7 +18,8 @@
          });
          return;
       }
-      authService.reset(form.value).then((res) => {
+      loading.value = true;
+      await authService.reset(form.value).then((res) => {
          $toast("Đặt lại mật khẩu thành công!", {
             type: "success",
             onClose: () => {
@@ -25,6 +27,7 @@
             },
          });
       });
+      loading.value = false;
    };
 </script>
 
@@ -35,7 +38,7 @@
       <p class="justify-center flex-none card-title">Nhập mật khẩu mới</p>
       <div class="space-y-4">
          <label class="flex items-center gap-2 input input-bordered">
-            <Icon name="fa6-solid:at" />
+            <Icon name="fa6-solid:unlock-keyhole" />
             <input
                type="password"
                class="grow"
@@ -52,8 +55,12 @@
          </label>
       </div>
       <div class="">
-         <button class="w-full btn btn-primary" @submit.prevent="">
-            Đặt lại mât khẩu
+         <button
+            type="submit"
+            class="w-full btn btn-primary"
+            :disabled="loading">
+            <span v-if="loading" class="loading loading-spinner loading-sm" />
+            <span v-else> Đặt lại mât khẩu</span>
          </button>
       </div>
    </form>

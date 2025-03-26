@@ -6,7 +6,6 @@
    const userStore = useUserStore();
    const otp = ref(false);
    const loading = ref(false);
-   const router = useRouter();
    const authService = useAuthService();
    const showPassword = ref(false);
    const loginForm = ref<LoginForm>({} as LoginForm);

@@ -54,20 +54,18 @@
       class="card card-compact bg-base-100 text-base-content drop-shadow-lg"
       style="-webkit-overflow-scrolling: touch">
       <p
-         class="flex-none p-4 text-base text-center text-white bg-blue-500 card-title">
+         class="flex-none p-4 text-base text-center text-white bg-blue-500 rounded-t-lg card-title">
          {{ product.name }}
       </p>
       <div class="justify-between gap-3 card-body">
          <div class="space-y-4">
             <div class="flex gap-3">
-               <span
-                  class="gap-2 badge badge-accent text-accent-content text-nowrap">
+               <span class="gap-2 font-bold badge badge-accent text-nowrap">
                   <Icon name="lucide:package-open" />
                   Còn lại:
                   {{ product.stock }}
                </span>
-               <span
-                  class="gap-2 badge badge-warning text-warning-content text-nowrap">
+               <span class="gap-2 font-bold badge badge-warning text-nowrap">
                   <Icon name="fa6-solid:coins" />Giá:
                   {{ product.price.toLocaleString() }} đ
                </span>
@@ -80,7 +78,7 @@
                </p>
                <!-- <p class="overflow-hidden text-nowrap">{{ product.description }}</p> -->
                <!-- <div class="my-0 divider" /> -->
-               <p>🛠 Change thông tin </p>
+               <p>🛠 Change thông tin</p>
                <!-- <div class="my-0 divider" /> -->
                <p>🛡 Hỗ trợ backup</p>
                <!-- <div class="">
@@ -143,7 +141,7 @@
 </template>
 
 <style scoped>
-::v-deep(ul li::before) {
-  content: "💥";
-}
+   ::v-deep(ul li::before) {
+      content: "💥";
+   }
 </style>

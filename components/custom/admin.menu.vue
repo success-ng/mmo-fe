@@ -44,11 +44,11 @@
 
 <template>
    <ul
-      class="sticky flex flex-row flex-wrap justify-between drop-shadow-lg top-3 menu menu-md bg-base-100 rounded-box lg:block">
+      class="sticky flex flex-row flex-wrap justify-between drop-shadow-lg top-3 menu bg-base-100 rounded-box lg:block">
       <li v-for="link in links">
          <NuxtLink :to="link.to">
             <Icon :name="link.icon" class="basis-1/4" />
-            <span class="hidden md:block">
+            <span class="hidden font-bold md:block">
                {{ link.name }}
             </span>
          </NuxtLink>

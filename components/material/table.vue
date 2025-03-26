@@ -124,7 +124,7 @@
             <Icon name="fa6-solid:search" />
             Search
          </button>
-         <div class="w-full overflow-auto">
+         <div class="overflow-auto">
             <table class="table table-pin-rows">
                <thead>
                   <tr class="border-b-2 border-base-300">

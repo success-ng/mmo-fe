@@ -50,7 +50,7 @@
       <li v-for="link in links">
          <NuxtLink :to="link.to">
             <Icon :name="link.icon" class="basis-1/4" />
-            <span class="hidden md:block">
+            <span class="hidden font-bold text md:block">
                {{ link.name }}
             </span>
          </NuxtLink>

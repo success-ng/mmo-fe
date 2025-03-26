@@ -67,17 +67,22 @@
          <p class="font-bold">{{ row.name }}</p>
       </template>
       <template #price="{ row }">
-         <p class="font-bold">{{ row.price }}</p>
+         <p class="font-bold">{{ row.price.toLocaleString() }} đ</p>
       </template>
       <template #stock="{ row }">
-         <span class="font-bold badge badge-secondary">{{ row.stock }}</span>
+         <div class="space-x-1 font-bold badge badge-outline badge-primary">
+            <Icon name="fa6-solid:xmark" class="text-primary" size="10" />
+            <span>
+               {{ row.stock }}
+            </span>
+         </div>
       </template>
       <template #categoryName="{ row }">
          <p class="font-bold">{{ row.categoryName }}</p>
          <p class="">Mã danh mục: {{ row.categoryId }}</p>
       </template>
       <template #createdAt="{ row }">
-         {{ row.createdAt }}
+         <p class="font-bold">{{ row.createdAt }}</p>
       </template>
    </MaterialTable>
 </template>

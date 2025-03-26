@@ -1,13 +1,15 @@
 <script setup lang="ts">
    import { useApiUserService } from "~/composables/api/user.service";
    import type { UserModel } from "~/composables/models/user.model";
+   import { useUserStore } from "~/composables/stores/user.store";
 
    const userService = useApiUserService();
    const { $toast } = useNuxtApp();
    const user: Ref<UserModel> = ref({} as UserModel);
-
+   const isLoading = ref(true);
    const router = useRouter();
 
+   const userStore = useUserStore();
    const changePassword = ref({
       current_password: "",
       password: "",
@@ -15,7 +17,9 @@
    });
 
    onMounted(async () => {
+      isLoading.value = true;
       user.value = await userService.profile();
+      isLoading.value = false;
    });
 
    const onChangePassword = async (event: Event) => {
@@ -24,7 +28,7 @@
          changePassword.value.password !==
          changePassword.value.password_confirmation
       ) {
-         $toast("Mật khẩu không trùng khớp", {
+         $toast("Mật khẩu mới không trùng khớp", {
             type: "error",
          });
          return;
@@ -39,6 +43,7 @@
             $toast("Đổi mật khẩu thành công", {
                type: "success",
                onClose: () => {
+                  userStore.clearUser();
                   router.push("/");
                },
             });
@@ -50,7 +55,6 @@
                   status: number;
                };
             };
-            alert(data.toString());
             console.log(data);
             const message =
                data.responseMessage.message ||
@@ -89,7 +93,9 @@
       <div class="gap-3 md:items-center md:flex-row card-body">
          <div class="flex items-center gap-3 basis-1/2">
             <div class="avatar">
-               <div class="w-24 rounded-full">
+               <div
+                  class="w-24 rounded-full"
+                  :class="isLoading ? 'skeleton' : ''">
                   <img :src="user.avatar" />
                </div>
             </div>
