@@ -9,4 +9,11 @@
    <div v-html="content" />
 </template>
 
-<style lang="css"></style>
+<style scoped>
+   ::v-deep(ul li::before) {
+      margin-right: 5px;
+   }
+   ::v-deep(ul li) {
+      margin-bottom: 5px;
+   }
+</style>
