@@ -54,7 +54,7 @@
       class="card card-compact bg-base-100 text-base-content drop-shadow-lg"
       style="-webkit-overflow-scrolling: touch">
       <p
-         class="flex-none p-4 text-lg text-center text-white bg-primary rounded-t-xl card-title">
+         class="flex-none p-4 text-lg text-center text-white bg-blue-500 rounded-t-xl card-title">
          {{ product.name }}
       </p>
       <div class="justify-between gap-3 card-body">
@@ -89,7 +89,7 @@
          <div class="justify-self-end card-actions">
             <a
                v-if="product.stock > 0"
-               class="w-full text-white btn btn-primary btn-sm bg-gradient-to-r from-[#004AAD] to-[#cb6ce6]"
+               class="w-full text-white btn btn-primary btn-sm bg-gradient-to-l from-sky-400 to-sky-700"
                :href="`#my_modal_${product.id}`">
                MUA NGAY
             </a>

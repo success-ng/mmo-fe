@@ -39,12 +39,4 @@
    </section>
 </template>
 
-<style scoped>
-   ::v-deep(ul li::before) {
-      content: "📢";
-      margin-right: 5px;
-   }
-   ::v-deep(ul li) {
-      margin-bottom: 5px;
-   }
-</style>
+<style scoped></style>
