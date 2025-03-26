@@ -54,7 +54,7 @@
       class="card card-compact bg-base-100 text-base-content drop-shadow-lg"
       style="-webkit-overflow-scrolling: touch">
       <p
-         class="flex-none p-4 text-lg text-center text-white bg-blue-500 rounded-t-xl card-title">
+         class="p-4 text-lg font-bold text-center text-white bg-blue-500 rounded-t-xl">
          {{ product.name }}
       </p>
       <div class="justify-between gap-3 card-body">
