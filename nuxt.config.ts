@@ -9,10 +9,23 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [// 'vuetify-nuxt-module',
-  '@nuxtjs/tailwindcss', // '@nuxtjs/i18n'
-  '@nuxt/fonts', // '@nuxt/eslint'
-  // '@nuxtjs/color-mode'
-  '@nuxt/icon', '@pinia/nuxt'],
+    // '@nuxtjs/i18n'
+    '@nuxtjs/tailwindcss', // '@nuxt/fonts', // '@nuxt/eslint'
+    // '@nuxtjs/color-mode'
+    '@nuxt/icon', '@pinia/nuxt', '@nuxtjs/google-fonts'],
+  googleFonts: {
+    families: {
+      Poppins: [300, 400, 500, 600, 700],
+      Roboto: [300, 400, 500, 600, 700],
+      "Noto Sans": [300, 400, 500, 600, 700],
+    },
+    display: 'swap', // Tùy chọn hiển thị
+    prefetch: true, // Tăng tốc độ tải font
+    preconnect: true, // Tăng tốc độ kết nối tới nguồn font
+    preload: true, // Tải trước font
+    download: true, // Tải font về và phục vụ từ máy chủ của bạn
+    base64: false, // Không mã hóa font dưới dạng base64
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
