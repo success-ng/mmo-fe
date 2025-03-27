@@ -77,7 +77,12 @@
             <div class="justify-center card-body">
                <h3 class="text-current/20">Tổng giá trị đơn hàng</h3>
                <p class="text-3xl font-bold" :class="{ loading: loading }">
-                  {{ getAnalysis(analysis, "totalOrderAmt") }} VND
+                  {{
+                     Number(
+                        getAnalysis(analysis, "totalOrderAmt")
+                     ).toLocaleString()
+                  }}
+                  VND
                </p>
             </div>
          </div>
@@ -103,7 +108,12 @@
             <div class="justify-center card-body">
                <h3 class="text-current/20">Số tiền đã nạp</h3>
                <p class="text-3xl font-bold" :class="{ loading: loading }">
-                  {{ getAnalysis(analysis, "txsDepositAmt") }}
+                  {{
+                     Number(
+                        getAnalysis(analysis, "txsDepositAmt")
+                     )?.toLocaleString()
+                  }}
+                  VND
                </p>
             </div>
          </div>
@@ -117,7 +127,12 @@
             <div class="justify-center card-body">
                <h3 class="text-current/20">Số tiền đã nạp trong tháng này</h3>
                <p class="text-3xl font-bold" :class="{ loading: loading }">
-                  {{ getAnalysis(analysis, "txsThisMonth") }}
+                  {{
+                     Number(
+                        getAnalysis(analysis, "txsThisMonth")
+                     ).toLocaleString()
+                  }}
+                  VND
                </p>
             </div>
          </div>
@@ -130,7 +145,11 @@
             <div class="justify-center card-body">
                <h3 class="text-current/20">Số tiền đã nạp trong tháng trước</h3>
                <p class="text-3xl font-bold" :class="{ loading: loading }">
-                  {{ getAnalysis(analysis, "txsLastMonth") }}
+                  {{
+                     Number(
+                        getAnalysis(analysis, "txsLastMonth")
+                     ).toLocaleString()
+                  }}
                </p>
             </div>
          </div>

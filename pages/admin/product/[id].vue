@@ -1,5 +1,6 @@
 <script setup lang="ts">
    import { useApiProductService } from "~/composables/api/product.service";
+   import { useApiProductInfoService } from "~/composables/api/productInfo.service";
    import type { ProductInfoModel } from "~/composables/models/productinfo.model";
    import type { Column } from "~/composables/types/table.type";
 
@@ -13,6 +14,7 @@
    const { $toast } = useNuxtApp();
    const id = Number(router.params.id);
    const productService = useApiProductService();
+   const productInfoService = useApiProductInfoService();
    const productInfos: Ref<ProductInfoModel[]> = ref({} as ProductInfoModel[]);
    const columns: Column[] = [
       { key: "id", label: "#" },
@@ -28,6 +30,21 @@
          productInfos.value = response;
       });
       isLoading.value = false;
+   };
+
+   const remove = async () => {
+      isLoading.value = true;
+      await productInfoService
+         .remove(id)
+         .then(() => {
+            $toast("Xóa thành công", {
+               type: "success",
+            });
+            fetch();
+         })
+         .finally(() => {
+            isLoading.value = false;
+         });
    };
    const save = async () => {
       productService
@@ -58,6 +75,7 @@
          :fetch="fetch"
          :is-loading="isLoading"
          :data="productInfos"
+         :remove="remove"
          :create="changeModal"
          :columns="columns">
          <template #productId="{ row }">
