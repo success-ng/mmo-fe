@@ -14,7 +14,6 @@
    const { $toast } = useNuxtApp();
    const id = Number(router.params.id);
    const productService = useApiProductService();
-   const productInfoService = useApiProductInfoService();
    const productInfos: Ref<ProductInfoModel[]> = ref({} as ProductInfoModel[]);
    const columns: Column[] = [
       { key: "id", label: "#" },
@@ -34,8 +33,8 @@
 
    const remove = async () => {
       isLoading.value = true;
-      await productInfoService
-         .remove(id)
+      await productService
+         .removeVia(id)
          .then(() => {
             $toast("Xóa thành công", {
                type: "success",
@@ -47,20 +46,13 @@
          });
    };
    const save = async () => {
-      productService
-         .add({ value: newVia.value, productId: id })
-         .then(() => {
-            $toast("Thêm thành công", {
-               type: "success",
-            });
-            fetch();
-            changeModal();
-         })
-         .catch(() => {
-            $toast("Thêm thất bại", {
-               type: "error",
-            });
+      productService.add({ value: newVia.value, productId: id }).then(() => {
+         $toast("Thêm thành công", {
+            type: "success",
          });
+         fetch();
+         changeModal();
+      });
    };
 </script>
 

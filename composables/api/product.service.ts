@@ -38,5 +38,8 @@ export const useApiProductService = () => {
     return data.data
   }
 
-  return { index, get, update, add, create, info, del }
+  const removeVia = async (id: number) => {
+    const data = await axios.delete(`${prefix}/info/${id}`)
+  }
+  return { index, get, update, add, create, info, del, removeVia }
 }
