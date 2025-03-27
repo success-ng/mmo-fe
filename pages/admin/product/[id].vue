@@ -31,7 +31,7 @@
       isLoading.value = false;
    };
 
-   const remove = async () => {
+   const remove = async (id: number) => {
       isLoading.value = true;
       await productService
          .removeVia(id)

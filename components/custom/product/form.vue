@@ -15,6 +15,19 @@
    const router = useRouter();
    const category = ref([] as CategoryModel[]);
    const product = ref({} as ProductModel);
+   const isNotValid = computed(() => {
+      return (
+         !product.value ||
+         Object.keys(product.value).length === 0 ||
+         !product.value.name ||
+         !product.value.price ||
+         !product.value.country ||
+         !product.value.categoryId ||
+         !product.value.createdAt ||
+         !product.value.description
+      );
+   });
+
    const fetch = () => {
       categoryService.index().then((res) => {
          category.value = res;
@@ -30,25 +43,15 @@
    };
    const save = () => {
       if (props.id) {
-         productService
-            .update(product.value)
-            .then((res) => {
-               product.value = res;
-               $toast.success("Lưu thành công");
-            })
-            .catch((err) => {
-               $toast.error("Lưu thất bại\n" + err);
-            });
+         productService.update(product.value).then((res) => {
+            product.value = res;
+            $toast.success("Lưu thành công");
+         });
       } else {
-         productService
-            .create(product.value)
-            .then((res) => {
-               product.value = res;
-               $toast.success("Lưu thành công");
-            })
-            .catch((err) => {
-               $toast.error("Lưu thất bại\n" + err);
-            });
+         productService.create(product.value).then((res) => {
+            product.value = res;
+            $toast.success("Lưu thành công");
+         });
       }
    };
    onMounted(() => {
@@ -126,7 +129,12 @@
                </ClientOnly>
             </label>
             <div class="flex col-span-2 gap-3">
-               <button type="submit" class="grow btn btn-primary">Lưu</button>
+               <button
+                  type="submit"
+                  :disabled="isNotValid"
+                  class="grow btn btn-primary">
+                  Lưu
+               </button>
                <button
                   type="button"
                   @click="router.back()"
