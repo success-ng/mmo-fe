@@ -27,7 +27,9 @@
          <MaterialSwitchTheme />
          <div>
             <div class="font-bold">{{ username }}</div>
-            <div class="text-sm opacity-50">Số dư: {{ balance }} VND</div>
+            <div class="text-sm opacity-50">
+               Số dư: {{ balance?.toLocaleString() }} VND
+            </div>
          </div>
          <div
             tabindex="0"
