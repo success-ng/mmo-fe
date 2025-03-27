@@ -35,7 +35,9 @@
       <div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
          <CustomProduct
             :product="product"
-            v-for="product in category.products" />
+            v-for="product in category.products.filter(
+               (product) => product.stock !== 0
+            )" />
       </div>
    </div>
    <!-- <div
