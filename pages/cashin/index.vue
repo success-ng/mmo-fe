@@ -99,26 +99,28 @@
                   </button>
                </div>
             </div>
-            <div v-else class="flex flex-col items-center mt-4 space-y-4">
-               <figure class="w-64 overflow-hidden rounded-lg shadow-md">
+            <div v-else class="flex flex-col items-center mt-6 space-y-6">
+               <figure class="w-48 h-48 overflow-hidden rounded-lg shadow-lg">
                   <img
                      src="/images/bnb_qr.jpeg"
                      alt="QR Code"
-                     class="mx-auto" />
+                     class="object-cover w-full h-full" />
                </figure>
                <div
-                  class="flex flex-col items-center p-4 space-y-4 border rounded-md shadow-sm bg-gray-50">
-                  <fieldset class="w-full fieldset">
-                     <legend class="font-bold fieldset-legend">
+                  class="flex flex-col items-center p-6 space-y-4 bg-gray-100 border rounded-lg shadow-md">
+                  <fieldset class="w-full">
+                     <legend class="font-semibold text-gray-700">
                         Mạng lưới:
                      </legend>
-                     <p class="font-medium text-center input">{{ network }}</p>
+                     <p class="font-medium text-center text-gray-800">
+                        {{ network }}
+                     </p>
                   </fieldset>
-                  <fieldset class="w-full fieldset">
-                     <legend class="font-bold fieldset-legend">
+                  <fieldset class="w-full">
+                     <legend class="font-semibold text-gray-700">
                         Địa chỉ ví:
                      </legend>
-                     <p class="font-medium text-center break-all input">
+                     <p class="font-medium text-center text-gray-800 break-all">
                         {{ address }}
                      </p>
                   </fieldset>
@@ -129,13 +131,18 @@
                   </button>
                   <p class="text-sm text-center text-gray-600">
                      Vui lòng liên hệ qua
-                     <strong class="text-blue-600">SDT</strong> hoặc
-                     <strong class="text-blue-600">Telegram</strong> để xác nhận
-                     sau khi thanh toán:
-                     <a href="tel:0779266757" class="text-blue-500 underline"
-                        >0779266757</a
-                     >
+                     <strong class="text-blue-600 cursor-pointer">
+                        Telegram
+                     </strong>
+                     để xác nhận sau khi thanh toán:
                   </p>
+                  <figure
+                     class="w-32 h-32 overflow-hidden rounded-lg shadow-lg">
+                     <img
+                        src="/images/telegram_qr.jpeg"
+                        alt="Telegram QR Code"
+                        class="object-cover w-full h-full" />
+                  </figure>
                </div>
             </div>
          </div>
