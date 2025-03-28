@@ -59,7 +59,7 @@
       </p>
       <div class="justify-between gap-3 card-body">
          <div class="space-y-4">
-            <div class="flex gap-3">
+            <div class="flex flex-wrap gap-3">
                <span class="gap-2 font-bold badge badge-accent text-nowrap">
                   <Icon name="lucide:package-open" />
                   Còn lại:
