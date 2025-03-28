@@ -53,12 +53,12 @@
                   </span>
                   https://zalo.me/g/etlzlc963
                </a>
-               <div class="flex justify-center">
+               <figure class="flex justify-center">
                   <img
                      src="/images/telegram_qr.jpeg"
                      alt="Telegram QR"
-                     class="w-32 h-32 rounded-lg shadow-md" />
-               </div>
+                     class="w-64 h-64 rounded-lg shadow-md" />
+               </figure>
             </div>
          </div>
          <div
