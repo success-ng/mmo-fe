@@ -129,12 +129,7 @@
                </ClientOnly>
             </label>
             <div class="flex col-span-2 gap-3">
-               <button
-                  type="submit"
-                  :disabled="isNotValid"
-                  class="grow btn btn-primary">
-                  Lưu
-               </button>
+               <button type="submit" class="grow btn btn-primary">Lưu</button>
                <button
                   type="button"
                   @click="router.back()"
