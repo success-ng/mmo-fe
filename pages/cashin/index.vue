@@ -12,12 +12,18 @@
 
    const loading = ref<boolean>(false);
    const selectedAmount = ref<number>(0);
+   const customAmount = ref<number | null>(null);
 
    onMounted(() => {
       userService.profile();
    });
    const selectAmount = (amt: number) => {
       selectedAmount.value = amt;
+      customAmount.value = null; // Reset custom amount when selecting predefined amount
+   };
+
+   const updateCustomAmount = () => {
+      selectedAmount.value = customAmount.value || 0; // Update selected amount with custom input
    };
 
    const type = ref<string>("bank");
@@ -84,6 +90,16 @@
                      @click="selectAmount(amt)">
                      {{ amt.toLocaleString() }} VND
                   </button>
+               </div>
+
+               <div class="mt-4">
+                  <p>Hoặc nhập số tiền tùy chọn:</p>
+                  <input
+                     type="number"
+                     class="w-full max-w-xs input input-bordered"
+                     v-model="customAmount"
+                     @input="updateCustomAmount"
+                     placeholder="Nhập số tiền muốn nạp" />
                </div>
 
                <div class="flex justify-end mt-6">
