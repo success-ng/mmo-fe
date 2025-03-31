@@ -10,6 +10,14 @@
          type: "success",
       });
    };
+
+   const copyAllToClipboard = () => {
+      const allText = vias.value?.join("\n") || "";
+      navigator.clipboard.writeText(allText);
+      $toast("Đã copy toàn bộ via vào clipboard, CTRL+V để dán!!!", {
+         type: "success",
+      });
+   };
 </script>
 
 <template>
@@ -29,6 +37,11 @@
                   {{ via }}
                </button>
             </div>
+            <button
+               class="mt-4 btn btn-primary btn-sm"
+               @click="copyAllToClipboard">
+               Copy toàn bộ
+            </button>
             <p class="text-center">
                Vui lòng kiểm tra đơn hàng
                <NuxtLink href="/profile/order" class="link badge badge-primary"
