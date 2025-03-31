@@ -56,7 +56,7 @@
       <MaterialTable
          title="Danh sách người dùng"
          :is-loading="isLoading"
-         :data="users"
+         :data="users.reverse()"
          :key-words="keyWords"
          :columns="columns"
          :fetch="fetch">
