@@ -12,6 +12,15 @@
 
    const loading = ref<boolean>(false);
    const selectedAmount = ref<number>(0);
+
+   watch(selectedAmount, (newVal) => {
+      if (newVal < 5000) {
+         $toast("Số tiền nạp phải lớn hơn 5,000 VND", {
+            type: "error",
+         });
+         selectedAmount.value = 0; // Reset to 0 if invalid
+      }
+   });
    const customAmount = ref<number | null>(null);
 
    onMounted(() => {
