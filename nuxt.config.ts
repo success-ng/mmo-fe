@@ -32,25 +32,18 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  gtag: {
+    id: 'AW-16967853926',
+    config: {
+      anonymize_ip: true,
+      send_page_view: false,
+    },
+  },
   app: {
     head: {
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
       ],
-      script: [
-        {
-          // Removed invalid 'hid' property
-          innerHTML: `
-            gtag('event', 'conversion', {
-                'send_to': 'AW-16967853926/f3Q8COaRt7IaEObO85o_',
-                'value': 1.0,
-                'currency': 'VND'
-            });
-          `,
-          type: 'text/javascript',
-          charset: 'utf-8'
-        }
-      ]
     }
   }
 })
