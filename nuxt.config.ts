@@ -10,9 +10,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [// 'vuetify-nuxt-module',
     // '@nuxtjs/i18n'
-    '@nuxtjs/tailwindcss', // '@nuxt/fonts', // '@nuxt/eslint'
-    // '@nuxtjs/color-mode'
-    '@nuxt/icon', '@pinia/nuxt', '@nuxtjs/google-fonts'],
+    // '@nuxt/fonts', // '@nuxt/eslint'
+    '@nuxtjs/tailwindcss', // '@nuxtjs/color-mode'
+    '@nuxt/icon', '@pinia/nuxt', '@nuxtjs/google-fonts', 'nuxt-gtag'],
   googleFonts: {
     families: {
       Poppins: [300, 400, 500, 600, 700],
@@ -36,6 +36,20 @@ export default defineNuxtConfig({
     head: {
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+      ],
+      script: [
+        {
+          // Removed invalid 'hid' property
+          innerHTML: `
+            gtag('event', 'conversion', {
+                'send_to': 'AW-16967853926/f3Q8COaRt7IaEObO85o_',
+                'value': 1.0,
+                'currency': 'VND'
+            });
+          `,
+          type: 'text/javascript',
+          charset: 'utf-8'
+        }
       ]
     }
   }
