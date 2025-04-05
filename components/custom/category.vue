@@ -1,21 +1,21 @@
 <script setup lang="ts">
    import { useApiCategoryService } from "~/composables/api/category.service";
-   import { useApiClonemupService } from "~/composables/api/clonemup.service";
-   import type { CategoryClonemupResponse } from "~/composables/models/category.clonemup.model";
+   // import { useApiClonemupService } from "~/composables/api/clonemup.service";
+   // import type { CategoryClonemupResponse } from "~/composables/models/category.clonemup.model";
    import type { CategoryModel } from "~/composables/models/category.model";
 
    const categoryService = useApiCategoryService();
-   const cloneMup = useApiClonemupService();
-   const clonemup_categories = ref<CategoryClonemupResponse>(
-      {} as CategoryClonemupResponse
-   );
+   // const cloneMup = useApiClonemupService();
+   // const clonemup_categories = ref<CategoryClonemupResponse>(
+   //    {} as CategoryClonemupResponse
+   // );
 
    const categories: Ref<CategoryModel[]> = ref([] as CategoryModel[]);
 
    onMounted(() => {
-      cloneMup.productCategory().then((res) => {
-         clonemup_categories.value = res;
-      });
+      // cloneMup.productCategory().then((res) => {
+      //    clonemup_categories.value = res;
+      // });
       categoryService.index().then((res) => {
          categories.value = res;
       });
