@@ -1,11 +1,36 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+   import { useApiSettingService } from "~/composables/api/setting.service";
+   import type { SettingModel } from "~/composables/models/setting.model";
+
+   const note_header = ref<SettingModel>({} as SettingModel);
+   const note_content = ref<SettingModel>({} as SettingModel);
+   const settingService = useApiSettingService();
+   const contact_zalo = ref<SettingModel>({} as SettingModel);
+   const loading = ref(true);
+
+   onMounted(async () => {
+      loading.value = true;
+      try {
+         const [headerRes, contentRes, zaloRes] = await Promise.all([
+            settingService.getByName("NOTE_HEADER"),
+            settingService.getByName("CONTENT"),
+            settingService.getByName("ZALO"),
+         ]);
+         note_header.value = headerRes;
+         note_content.value = contentRes;
+         contact_zalo.value = zaloRes;
+      } finally {
+         loading.value = false;
+      }
+   });
+</script>
 
 <template>
    <section class="flex justify-center">
       <div class="grid grid-cols-5 grid-rows-4 gap-3 max-w-7xl">
          <div
             class="col-span-3 row-span-1 p-10 font-bold text-center text-white align-middle shadow-lg card bg-gradient-to-t from-red-700 to-red-400">
-            Chúng tôi sẵn sàng hỗ trợ xử lý và tư vấn bảo hành 24/24
+            <p v-html="note_header.val"></p>
          </div>
          <div
             class="h-full col-span-2 row-span-4 p-10 space-y-3 shadow-lg card bg-base-100 text-base-content">
@@ -51,7 +76,7 @@
                            d="M21.25,18h-8v1.5h5.321L13,26h0.026c-0.163,0.211-0.276,0.463-0.276,0.75V27h7.5	c0.276,0,0.5-0.224,0.5-0.5v-1h-5.321L21,19h-0.026c0.163-0.211,0.276-0.463,0.276-0.75V18z"></path>
                      </svg>
                   </span>
-                  https://zalo.me/g/etlzlc963
+                  {{ contact_zalo.val }}
                </a>
                <figure class="flex justify-center">
                   <img
@@ -66,18 +91,7 @@
             <h1 class="text-xl font-bold border-l-4 ps-3 border-error">
                Lưu ý
             </h1>
-            <p>
-               Chúng tôi hỗ trợ tư vấn mua hàng hoặc bảo hành từ 10h00 đến 00h00
-               hàng ngày (kể cả ngày lễ). Chúng tôi xử lý rất nhiều đơn hàng mỗi
-               ngày và sẽ xử lý từng yêu cầu theo thứ tự. Chúng tôi sẽ hỗ trợ
-               nhanh chóng trong vòng 24h sau khi nhận được yêu cầu.
-               <br />
-               <br />
-               Để được hỗ trợ bảo hành nhanh chóng, bạn vui lòng điền vấn đề cụ
-               thể vào form yêu cầu hỗ trợ. Chúng tôi sẽ kiểm tra, hướng dẫn
-               cách sửa lỗi hoặc gửi tài khoản mới tự động qua Email/Zalo của
-               bạn.
-            </p>
+            <p v-html="note_content.val" />
          </div>
       </div>
    </section>

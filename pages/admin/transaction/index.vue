@@ -62,11 +62,6 @@
                >
             </p>
          </template>
-         <template #amount="{ row }">
-            <span class="font-bold"
-               >{{ Number(row.amount).toLocaleString() }} đ</span
-            >
-         </template>
          <template #status="{ row }">
             <div
                class="space-x-1 font-bold badge badge-outline"
@@ -87,7 +82,9 @@
             </div>
          </template>
          <template #amount="{ row }">
-            <span class="font-bold">{{ row.amount }} đ</span>
+            <span class="font-bold"
+               >{{ Number(row.amount).toLocaleString() }} đ</span
+            >
          </template>
          <template #transactionDate="{ row }">
             <span class="font-bold">{{ row.transactionDate }}</span>
