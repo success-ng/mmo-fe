@@ -62,6 +62,11 @@
                >
             </p>
          </template>
+         <template #amount="{ row }">
+            <span class="font-bold"
+               >{{ Number(row.amount).toLocaleString() }} đ</span
+            >
+         </template>
          <template #status="{ row }">
             <div
                class="space-x-1 font-bold badge badge-outline"
