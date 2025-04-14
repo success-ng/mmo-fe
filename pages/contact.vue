@@ -76,7 +76,7 @@
                            d="M21.25,18h-8v1.5h5.321L13,26h0.026c-0.163,0.211-0.276,0.463-0.276,0.75V27h7.5	c0.276,0,0.5-0.224,0.5-0.5v-1h-5.321L21,19h-0.026c0.163-0.211,0.276-0.463,0.276-0.75V18z"></path>
                      </svg>
                   </span>
-                  {{ contact_zalo.val }}
+                  <p v-html="contact_zalo.val"></p>
                </a>
                <figure class="flex justify-center">
                   <img
