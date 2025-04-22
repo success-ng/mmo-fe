@@ -16,6 +16,18 @@
       });
       isLoading.value = false;
    };
+
+   const remove = async (id: number) => {
+      isLoading.value = true;
+      await orderService.remove(id).then((res) => {
+         if (res) {
+            $toast("Xóa thành công", { type: "success" });
+         } else {
+            $toast("Xóa thất bại", { type: "error" });
+         }
+      });
+      isLoading.value = false;
+   };
    const columns = [
       { key: "id", label: "#" },
       { key: "user", label: "Người dùng" },
@@ -47,6 +59,7 @@
          :data="orders.slice().reverse()"
          :fetch="fetch"
          :columns="columns"
+         :remove="remove"
          :key-words="keyWords"
          :is-loading="isLoading">
          <template #user="{ row }">

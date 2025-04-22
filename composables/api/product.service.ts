@@ -10,6 +10,11 @@ export const useApiProductService = () => {
     return data.data
   }
 
+  const latestProducts = async () => {
+    const data = await axios.get(`${prefix}/new`)
+    return data.data
+  }
+
   const get = async (id: number): Promise<ProductModel> => {
     const data = await axios.get(`${prefix}/${id}`)
     return data.data
@@ -42,5 +47,5 @@ export const useApiProductService = () => {
     const data = await axios.delete(`${prefix}/info/${id}`)
     return data.data
   }
-  return { index, get, update, add, create, info, del, removeVia }
+  return { index, get, update, add, create, info, del, removeVia, latestProducts }
 }

@@ -25,5 +25,11 @@ export const useApiOrderService = () => {
     const data = await axios.get(`${prefix}/user` + (query ? `?${query}` : ''))
     return data.data
   }
-  return { index, save, buy, myOrder }
+
+  const remove = async (id: number) => {
+    const data = await axios.delete(`${prefix}/${id}`)
+    return data.data
+  }
+
+  return { index, save, buy, myOrder, remove }
 }
