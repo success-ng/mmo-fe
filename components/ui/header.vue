@@ -15,7 +15,7 @@
             <figure class="w-12">
                <img src="/public/images/icon.png" alt="" height="18" />
             </figure>
-            ViaClone68
+            ViaBmTrust
          </NuxtLink>
       </div>
       <ClientOnly>
