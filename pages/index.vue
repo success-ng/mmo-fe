@@ -6,6 +6,15 @@
    const intro = ref<SettingModel>({} as SettingModel);
    const dialog = ref<SettingModel>({} as SettingModel);
    const loading = ref(true);
+   useHead({
+      meta: [
+         {
+            name: "description",
+            content:
+               "Kho nguyên liệu ''xịn sò'' dành cho anh em chạy Facebook Ads! Chuyên cung cấp via chất lượng cao, BM uy tín, page sạch đủ loại – tối ưu cho mọi chiến dịch quảng cáo. Thanh toán tự động – Hỗ trợ tận tâm 24/7 – Bảo hành đầy đủ Giải pháp tối ưu giúp bạn scale camp mượt mà, ổn định, bền vững!",
+         },
+      ],
+   });
    onMounted(async () => {
       loading.value = true;
       try {
