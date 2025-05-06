@@ -5,6 +5,24 @@
 <template>
    <div class="flex flex-col h-dvh bg-base-300">
       <header><UiHeader /></header>
+      <!-- Ví dụ góc phải dưới -->
+      <div class="fixed z-50 flex flex-col gap-3 bottom-4 right-4">
+         <a
+            target="_blank"
+            href="https://zalo.me/g/etlzlc963"
+            class="flex items-center gap-2 p-3 text-white bg-green-600 rounded-full shadow-lg hover:bg-green-700">
+            <Icon name="fa6-solid:phone" />
+            Liên hệ Zalo
+         </a>
+         <a
+            target="_blank"
+            href="https://t.me/anhthanh"
+            class="flex items-center gap-2 p-3 text-white bg-blue-500 rounded-full shadow-lg hover:bg-blue-600">
+            <Icon name="fa6-brands:telegram" />
+            Liên hệ Telegram
+         </a>
+      </div>
+
       <div
          class="flex flex-col justify-between flex-1 overflow-y-auto"
          style="-webkit-overflow-scrolling: touch">

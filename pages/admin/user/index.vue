@@ -107,8 +107,8 @@
          <template #amount="{ row }">
             <span class="badge badge-ghost">
                {{ Number(row.balance | 0).toLocaleString() }} đ /
-               {{ Number(row.paid | 0).toLocaleString() }} đ /
-               {{ Number(row.deposited | 0).toLocaleString() }} đ
+               {{ Number(row.deposited | 0).toLocaleString() }} đ /
+               {{ Number(row.paid | 0).toLocaleString() }} đ
             </span>
          </template>
          <template #discount="{ row }">
