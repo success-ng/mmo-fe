@@ -16,7 +16,7 @@
          </a>
          <a
             target="_blank"
-            href="https://t.me/anhthanh"
+            href="https://t.me/Viabmtrust"
             class="flex items-center gap-2 p-3 text-white bg-blue-500 rounded-full shadow-lg hover:bg-blue-600">
             <Icon name="fa6-brands:telegram" />
             Liên hệ Telegram
