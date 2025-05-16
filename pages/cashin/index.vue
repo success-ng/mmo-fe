@@ -115,7 +115,7 @@
                   <button
                      class="btn btn-success"
                      @click="submitCashIn"
-                     :disabled="!selectedAmount && loading">
+                     :disabled="!selectedAmount || loading">
                      <span
                         v-if="loading"
                         class="loading loading-bars loading-xs">
