@@ -35,5 +35,11 @@ export const useApiTransactionService = () => {
     return data.data
   }
 
-  return { txs, credit, myTxs, get, accept }
+  const create = async (data: TransactionModel): Promise<TransactionModel> => {
+    return await axios.post(`${prefix}/admin/create-transaction`, data).then(res => {
+      return res.data
+    })
+  }
+
+  return { txs, credit, myTxs, get, accept, create }
 }

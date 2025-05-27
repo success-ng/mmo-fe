@@ -55,7 +55,7 @@
 
       loading.value = true;
       try {
-         await transactionService.credit(transaction.value as TransactionModel);
+         await transactionService.create(transaction.value as TransactionModel);
          $toast("Tạo giao dịch thành công", {
             type: "success",
             onClose: () => {
