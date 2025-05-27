@@ -16,7 +16,8 @@ export default {
             sans: ["Poppins", "sans-serif"], // Đặt Poppins làm mặc định
          },
       },
-   }, plugins: [daisyui, typography],
+   },
+   plugins: [daisyui, typography],
    daisyui: {
       themes: ["light", "cupcake"],
       // darkTheme: "dark", // name of one of the included themes for dark mode
