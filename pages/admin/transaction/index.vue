@@ -21,6 +21,10 @@
       router.push(`/admin/transaction/${id}`);
    };
 
+   const create = async () => {
+      router.push("/admin/transaction/create");
+   };
+
    const keyWords: Column[] = [
       { key: "orderCode", label: "Mã giao dịch", type: "number" },
       { key: "username", label: "Username" },
@@ -52,6 +56,7 @@
          :columns="columns"
          :fetch="fetch"
          :show="show"
+         :create="create"
          :is-loading="isLoading">
          <template #userId="{ row }">
             <p class="font-bold">{{ row.email }}</p>
