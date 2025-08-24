@@ -1,5 +1,68 @@
 User-agent: *
-Disallow: /api/
-Disallow: /admin/
-
 Allow: /
+Allow: /index
+Allow: /contact
+Allow: /profile
+Allow: /profile/order
+Allow: /profile/txs
+Allow: /payment/*
+
+# Block admin pages and sensitive content
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /403
+Disallow: /404
+Disallow: /500
+Disallow: /cashin/
+Disallow: /server/
+
+# Block API endpoints and internal files
+Disallow: /api/
+Disallow: /_nuxt/
+Disallow: /composables/
+Disallow: /middleware/
+Disallow: /plugins/
+Disallow: /layouts/
+Disallow: /components/
+Disallow: /assets/
+Disallow: /public/
+Disallow: /ecosystem.config.cjs
+Disallow: /eslint.config.mjs
+Disallow: /nuxt.config.ts
+Disallow: /package.json
+Disallow: /tsconfig.json
+Disallow: /tailwind.config.js
+Disallow: /move.sh
+Disallow: /run.sh
+
+# Allow important content
+Allow: /favicon.ico
+Allow: /images/
+Allow: /robots.txt
+Allow: /sitemap.xml
+
+# Crawl delay for better server performance
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://viabmtrust.com/sitemap.xml
+
+# Google Ads specific
+User-agent: AdsBot-Google
+Allow: /
+Crawl-delay: 1
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Facebook Bot
+User-agent: facebookexternalhit
+Allow: /
+Crawl-delay: 1
+
+# Twitter Bot
+User-agent: Twitterbot
+Allow: /
+Crawl-delay: 1
