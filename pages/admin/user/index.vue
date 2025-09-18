@@ -61,7 +61,7 @@
          :columns="columns"
          :fetch="fetch">
          <template #name="{ row }">
-            <div class="flex items-center gap-3">
+            <div class="flex gap-3 items-center">
                <div class="avatar">
                   <div class="w-12 h-12 mask mask-squircle">
                      <img
@@ -113,6 +113,9 @@
          </template>
          <template #discount="{ row }">
             <span class="badge badge-ghost"> {{ row.discount | 0 }} % </span>
+         </template>
+         <template #createdAt="{ row }">
+            {{ new Date(row.createdAt).toLocaleDateString("vi-VN") }}
          </template>
       </MaterialTable>
    </section>
