@@ -1,6 +1,9 @@
 <script setup lang="ts">
+   import { trackAdsConversion } from "~/composables/core/ads";
+
    const router = useRouter();
    onMounted(() => {
+      trackAdsConversion("AW-16967853926/cashin_success");
       setTimeout(() => {
          router.push("/profile");
       }, 2000);

@@ -30,9 +30,34 @@
                      >Liên hệ</a
                   >
                </li>
-               <!-- <li>Privacy Policy</li>
-               <li>Terms of Service</li>
-               <li>License</li> -->
+               <li>
+                  <a
+                     href="/about-us"
+                     class="text-lg font-bold text-neutral-content"
+                     >Về chúng tôi</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="/privacy-policy"
+                     class="text-lg font-bold text-neutral-content"
+                     >Chính sách bảo mật</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="/terms-of-service"
+                     class="text-lg font-bold text-neutral-content"
+                     >Điều khoản dịch vụ</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="/refund-policy"
+                     class="text-lg font-bold text-neutral-content"
+                     >Chính sách hoàn tiền</a
+                  >
+               </li>
             </ul>
          </div>
       </nav>

@@ -1,12 +1,20 @@
 <script setup lang="ts">
+   import { trackAdsConversion } from "~/composables/core/ads";
+
    const route = useRoute();
    const id = ref(route.params.id);
    const vias = ref(route.query.productString?.toString().split("\n"));
 
+   onMounted(() => {
+      trackAdsConversion("AW-16967853926/purchase_success", {
+         transaction_id: String(id.value || ""),
+      });
+   });
+
    const { $toast } = useNuxtApp();
    const copyToClipboard = (text: string) => {
       navigator.clipboard.writeText(text);
-      $toast("Đã copy via vào clipboard, CTRL+V để dán!!!", {
+      $toast("Đã sao chép sản phẩm vào clipboard, CTRL+V để dán.", {
          type: "success",
       });
    };
@@ -14,7 +22,7 @@
    const copyAllToClipboard = () => {
       const allText = vias.value?.join("\n") || "";
       navigator.clipboard.writeText(allText);
-      $toast("Đã copy toàn bộ via vào clipboard, CTRL+V để dán!!!", {
+      $toast("Đã sao chép toàn bộ nội dung vào clipboard, CTRL+V để dán.", {
          type: "success",
       });
    };

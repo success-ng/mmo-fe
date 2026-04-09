@@ -20,56 +20,33 @@
       <priority>0.8</priority>
    </url>
 
-   <!-- Profile Pages -->
+   <!-- Trust & policy pages -->
    <url>
-      <loc>https://viabmtrust.com/profile</loc>
-      <lastmod>2024-12-19</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.7</priority>
-   </url>
-
-   <url>
-      <loc>https://viabmtrust.com/profile/order</loc>
-      <lastmod>2024-12-19</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.6</priority>
-   </url>
-
-   <url>
-      <loc>https://viabmtrust.com/profile/txs</loc>
-      <lastmod>2024-12-19</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.6</priority>
-   </url>
-
-   <!-- Payment Pages -->
-   <url>
-      <loc>https://viabmtrust.com/payment</loc>
-      <lastmod>2024-12-19</lastmod>
+      <loc>https://viabmtrust.com/about-us</loc>
+      <lastmod>2026-04-09</lastmod>
       <changefreq>monthly</changefreq>
-      <priority>0.5</priority>
-   </url>
-
-   <!-- Cashin Pages -->
-   <url>
-      <loc>https://viabmtrust.com/cashin</loc>
-      <lastmod>2024-12-19</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.5</priority>
+      <priority>0.8</priority>
    </url>
 
    <url>
-      <loc>https://viabmtrust.com/cashin/success</loc>
-      <lastmod>2024-12-19</lastmod>
+      <loc>https://viabmtrust.com/privacy-policy</loc>
+      <lastmod>2026-04-09</lastmod>
       <changefreq>monthly</changefreq>
-      <priority>0.4</priority>
+      <priority>0.8</priority>
    </url>
 
    <url>
-      <loc>https://viabmtrust.com/cashin/cancel</loc>
-      <lastmod>2024-12-19</lastmod>
+      <loc>https://viabmtrust.com/terms-of-service</loc>
+      <lastmod>2026-04-09</lastmod>
       <changefreq>monthly</changefreq>
-      <priority>0.4</priority>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>https://viabmtrust.com/refund-policy</loc>
+      <lastmod>2026-04-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
    </url>
 
 </urlset> 

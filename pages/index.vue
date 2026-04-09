@@ -7,29 +7,29 @@
    const dialog = ref<SettingModel>({} as SettingModel);
    const loading = ref(true);
 
-   // SEO Optimization for Google and Google Ads
+   // SEO metadata aligned with Google Ads landing page quality.
    useHead({
-      title: "Cung Cấp Via Việt Cổ - BM Facebook Uy Tín | Bảo Hành 1 Đổi 1",
+      title: "Nền tảng dịch vụ số minh bạch | Hỗ trợ 24/7",
       meta: [
          {
             name: "description",
             content:
-               "Kho nguyên liệu ''xịn sò'' dành cho anh em chạy Facebook Ads! Chuyên cung cấp via chất lượng cao, BM uy tín, page sạch đủ loại – tối ưu cho mọi chiến dịch quảng cáo. Thanh toán tự động – Hỗ trợ tận tâm 24/7 – Bảo hành đầy đủ Giải pháp tối ưu giúp bạn scale camp mượt mà, ổn định, bền vững!",
+               "Nền tảng cung cấp dịch vụ số minh bạch, thanh toán rõ ràng, hỗ trợ khách hàng 24/7 và chính sách bảo hành - hoàn tiền công khai.",
          },
          {
             name: "keywords",
             content:
-               "via2fa, via cổ, via xmdt, via 902, mua BM, via fb, via facebook, facebook ads, quảng cáo facebook, tài khoản facebook, bm facebook, page facebook",
+               "dịch vụ số, thanh toán trực tuyến, hỗ trợ khách hàng, chính sách hoàn tiền, điều khoản dịch vụ",
          },
          {
             property: "og:title",
             content:
-               "Cung Cấp Via Việt Cổ - BM Facebook Uy Tín | Bảo Hành 1 Đổi 1",
+               "Nền tảng dịch vụ số minh bạch | Hỗ trợ 24/7",
          },
          {
             property: "og:description",
             content:
-               "Kho nguyên liệu ''xịn sò'' dành cho anh em chạy Facebook Ads! Chuyên cung cấp via chất lượng cao, BM uy tín, page sạch đủ loại – tối ưu cho mọi chiến dịch quảng cáo.",
+               "Dịch vụ minh bạch, chính sách rõ ràng, hỗ trợ nhanh và quy trình giao dịch an toàn.",
          },
          {
             property: "og:image",
@@ -45,7 +45,7 @@
          },
          {
             property: "og:site_name",
-            content: "Via Việt Cổ - BM Facebook Uy Tín",
+            content: "Nền tảng dịch vụ số",
          },
          {
             name: "twitter:card",
@@ -53,12 +53,12 @@
          },
          {
             name: "twitter:title",
-            content: "Cung Cấp Via Việt Cổ - BM Facebook Uy Tín",
+            content: "Nền tảng dịch vụ số minh bạch",
          },
          {
             name: "twitter:description",
             content:
-               "Kho nguyên liệu ''xịn sò'' dành cho anh em chạy Facebook Ads! Chuyên cung cấp via chất lượng cao, BM uy tín.",
+               "Dịch vụ minh bạch, hỗ trợ tận tâm, thông tin pháp lý và chính sách công khai.",
          },
          {
             name: "twitter:image",
@@ -76,7 +76,7 @@
          },
          {
             name: "author",
-            content: "Via Việt Cổ",
+            content: "Viabmtrust",
          },
          {
             name: "language",
@@ -124,11 +124,11 @@
             innerHTML: JSON.stringify({
                "@context": "https://schema.org",
                "@type": "Organization",
-               name: "Via Việt Cổ - BM Facebook Uy Tín",
+               name: "Viabmtrust",
                url: "https://viabmtrust.com",
                logo: "https://s1.uphinh.org/2021/12/15/Capture.png",
                description:
-                  "Chuyên cung cấp via chất lượng cao, BM uy tín, page sạch đủ loại – tối ưu cho mọi chiến dịch quảng cáo Facebook Ads",
+                  "Nền tảng dịch vụ số minh bạch với chính sách rõ ràng và hỗ trợ khách hàng 24/7.",
                address: {
                   "@type": "PostalAddress",
                   addressCountry: "VN",
@@ -147,10 +147,10 @@
             innerHTML: JSON.stringify({
                "@context": "https://schema.org",
                "@type": "WebSite",
-               name: "Via Việt Cổ",
+               name: "Viabmtrust",
                url: "https://viabmtrust.com",
                description:
-                  "Kho nguyên liệu xịn sò dành cho anh em chạy Facebook Ads",
+                  "Nền tảng giao dịch dịch vụ số với thông tin minh bạch và hỗ trợ 24/7.",
                potentialAction: {
                   "@type": "SearchAction",
                   target:
